@@ -84,7 +84,6 @@ public class GameBoard extends Board implements ActionListener {
 	public final int B_HEIGHT = Bridge.getGameBoardSize(1);
 	public final int DELAY = 10;
 	private boolean hitboxes = false;
-	public double i = 0.9;
 	public int l = 0;
 	private int mx = 0;
 	private int my = 0;
@@ -180,7 +179,6 @@ public class GameBoard extends Board implements ActionListener {
 		loaded = false;
 		ingame = false;
 		gameStatus = "";
-		i = 0.9;
 		l = 0;
 		messages.clear();
 		messages_player.clear();
@@ -362,7 +360,7 @@ public class GameBoard extends Board implements ActionListener {
 			}
 
 			if(x>=8 && x<=17)
-				level4.add(new Floor((x*30), (13*30),Floor.GRASS,FloorBottom.DIRT));
+				level4.add(new FallingFloor((x*30), (13*30),Floor.GRASS,FloorBottom.DIRT));
 			else
 			level4.add(new Floor((x*30), 17*30,Floor.GRASS));
 			
@@ -399,23 +397,22 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	private void loadLevel5(boolean debug) {
 		
+		for(int x=0;x!=32;x++){
+			if(x<=20){
+				if(x>6) level5.add(new Floor(x*30,(int)(3*30+x*(x*0.5)),Floor.GRASS,FloorBottom.GRASS));
+				else level5.add(new Floor(x*30,(int) (3*30+x*(x*0.5)),Floor.GRASS,FloorBottom.STONE));
+			}
+			level5.add(new Floor(x*30,16*30,Floor.GRASS));
+			
+		}
+		level5.add(new Switch(63*15, 15*30, new Wall(7*30,16*30,-(12*30),State.VERTICAL), level5, Rotation.LEFT, InteractionMethod.DISAPPEAR));
 		
-		for(int x=0;x!=18;x++){
-			level5.add(new FallingFloor(x*40, 450-(x*5),Floor.RED_STONE));
-		}
-		for(int y=7;y!= 12;y++){
-			level5.add(new Ladder((24*30)+2, (y*30)));
-		}
-		for(int x=5;x!=24;x++){
-			level5.add(new FallingFloor((x*30), (8*30),Floor.RED_STONE));
-		}
-		level5.add(new FallingFloor((24*30),(12*30),Floor.RED_STONE));
 		
-		level5.add(new Gate(5*30, 7*30,GateType.FLAG));
+		level5.add(new Gate(0*30, 15*30,GateType.FLAG));
 		if(!debug) level5.add(Bridge.getPlayer());
 
 		levels.put(5, level5);
-		
+	
 	}
 	private void loadLevel6(boolean debug) {
 		
