@@ -110,7 +110,7 @@ public class Bridge {
 		game = null;
 		game = new Game();
 		game.setBoard(new GameBoard());
-		game.setTitle("Upsilon");
+		game.setTitle("Trinnorica");
 		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		game.setVisible(true);
 		game.setIconImage(Texture.loadTexture("logo.png"));

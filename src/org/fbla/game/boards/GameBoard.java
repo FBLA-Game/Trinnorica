@@ -30,6 +30,7 @@ import java.util.Random;
 import javax.swing.Timer;
 
 import org.fbla.game.Bridge;
+import org.fbla.game.sprites.Boss;
 import org.fbla.game.sprites.Competitor;
 import org.fbla.game.sprites.Door;
 import org.fbla.game.sprites.FallingFloor;
@@ -496,47 +497,11 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	
 	private void loadLevel8(boolean debug){
-	
-		for(int y=0;y!=7;y++){
-			level8.add(new Wall(16*30,y*30,30,State.VERTICAL));
-		}
-		for(int y=0;y!=10;y++){
-			level8.add(new Wall(32*30,y*30,30,State.VERTICAL));	
-		}
-		for(int x=0;x!=32;x++){
-			if (x==14||x==15)
-				continue;
-			else
-				level8.add(new Floor((x*30),(9*30),Floor.BLUE_STONE, FloorBottom.STONE));
-		}
 		
-		Switch s =  
-				new Switch(35*30, 35*30,new Sprite[]{ 
-						new Wall(16*30,6*30,90, State.VERTICAL)
-						
-				}, level8, Rotation.LEFT, InteractionMethod.DISAPPEAR);
-	
-		if(!debug) s.interact();
+		for(int x=0;x!=32;x++)
+			level8.add(new Floor(x*30,17*30,Floor.GRAY_STONE));
+		level8.add(new Boss(32/2*30,0,31*30,17*30));
 		
-		Switch s2 = new Switch(35*30, 35*30, new Sprite[]{
-				new Wall(14*30,9*30,60, State.HORIZONTAL)
-		},level8, Rotation.LEFT, InteractionMethod.DISAPPEAR);
-		
-			
-		
-											
-		level8.add(new Switch((32*30)-15, (8*30)-7,new Sprite[] {
-				s,
-				s2
-		},level8,Rotation.LEFT,InteractionMethod.TRIGGER));
-				
-		for (int x=14;x!=30;x++){
-			level8.add(new Floor(x*30,15*30,Floor.BLUE_STONE));
-		
-		}
-		
-		level8.add(new Bow(5*30, 7*30));
-		level8.add(new Gate(29*30,14*30,GateType.FLAG));
 	
 		if(!debug) level8.add(Bridge.getPlayer());
 		

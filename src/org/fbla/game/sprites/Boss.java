@@ -19,7 +19,7 @@ import org.fbla.game.utils.DamageReason;
 import org.fbla.game.utils.Direction;
 import org.fbla.game.utils.InteractionMethod;
 
-public class Boss extends Entity implements Moveable,Keyable {
+public class Boss extends Competitor implements Moveable,Keyable {
 	
 	public boolean onground = false;
 	private int dy;
@@ -29,7 +29,7 @@ public class Boss extends Entity implements Moveable,Keyable {
 	private boolean walking = false;
 	private boolean left = false;
 	private boolean right = false;
-	public Boss(int x, int y) {
+	public Boss(int x, int y, int gatex, int gatey) {
         super(x, y);
         init();
         score = 10;
@@ -192,7 +192,7 @@ public class Boss extends Entity implements Moveable,Keyable {
 	@Override
 	public void kill(DamageReason reason){
 		
-		
+		level.add(gate);
 		
 		this.remove();
 	}
