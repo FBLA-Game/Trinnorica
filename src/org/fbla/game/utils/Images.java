@@ -4,7 +4,6 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Polygon;
 import java.awt.Toolkit;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
@@ -15,6 +14,9 @@ import java.awt.image.RGBImageFilter;
 
 import org.fbla.game.sprites.Door;
 import org.fbla.game.sprites.tools.Key;
+import org.fbla.game.spriteutils.Identifiable;
+import org.fbla.game.spriteutils.Sprite;
+import org.fbla.game.spriteutils.Tool;
 
 public class Images {
 	
@@ -96,87 +98,68 @@ public class Images {
 
 	public static void colorKey(Image image, Key key) {
 		
-		colorKey(toBufferedImage(image), key);
+		colorSprite(toBufferedImage(image), key, key.getID());
 		
 	}
 	public static void colorDoor(Image image, Door door) {
 		
-		colorDoor(toBufferedImage(image), door);
+		colorSprite(toBufferedImage(image), door, door.getID());
 		
 	}
 	
-	public static void colorKey(BufferedImage image, Key key) {
+	public static void colorSprite(BufferedImage image, Sprite tool, int id) {
 		
-		int r=0;
-		int g=0;
-		int b=0;
-		switch(key.getID()){
+		
+		int r=255;
+		int g=255;
+		int b=255;
+		switch(id){
 		case 1:
-			r=255;
-			g=0;
-			b=0;
+			r=234;
+			g=59;
+			b=27;
+			break;
+		case 2:
+			r=8;
+			g=199;
+			b=84;
+			break;
+		case 3:
+			r=239;
+			g=142;
+			b=20;
+			break;
+		case 4:
+			r=244;
+			g=244;
+			b=244;
 			break;
 		default:
 			break;
 		}
 		
-		float[] h = Color.RGBtoHSB(r, g, b, null);
-		int color = Color.HSBtoRGB(h[0], h[1], h[2]);
-		int dcolor = Color.HSBtoRGB(h[0], h[1], h[2]-50);
-		int lcolor = Color.HSBtoRGB(h[0], h[1], h[2]-20);
+		Color color = new Color(r,g,b);
+		
+		
+		
 		
 		for(int x=0;x!=image.getWidth();x++){
 			for(int y=0;y!=image.getHeight();y++){
 				if(image.getRGB(x, y) == Color.decode("#C4C400").getRGB())
-					image.setRGB(x, y, color);
+					image.setRGB(x, y, color.getRGB());
 				if(image.getRGB(x, y) == Color.decode("#484800").getRGB())
-					image.setRGB(x, y, dcolor);
+					image.setRGB(x, y, Color.BLACK.getRGB());
 				if(image.getRGB(x, y) == Color.decode("#939300").getRGB())
-					image.setRGB(x, y, lcolor);
+					image.setRGB(x, y, Color.BLACK.getRGB()/*color.brighter().darker().getRGB()*/);
 				
 			}
 		}
 		
-		key.loadImage(image);
+		tool.loadImage(image);
 		
 	}
 	
 	
-	public static void colorDoor(BufferedImage image, Door door) {
-		
-		int r=0;
-		int g=0;
-		int b=0;
-		switch(door.getID()){
-		case 1:
-			r=255;
-			g=0;
-			b=0;
-			break;
-		default:
-			break;
-		}
-		
-		float[] h = Color.RGBtoHSB(r, g, b, null);
-		int color = Color.HSBtoRGB(h[0], h[1], h[2]);
-		int dcolor = Color.HSBtoRGB(h[0], h[1], h[2]-50);
-		int lcolor = Color.HSBtoRGB(h[0], h[1], h[2]-20);
-		
-		for(int x=0;x!=image.getWidth();x++){
-			for(int y=0;y!=image.getHeight();y++){
-				if(image.getRGB(x, y) == Color.decode("#C4C400").getRGB())
-					image.setRGB(x, y, color);
-				if(image.getRGB(x, y) == Color.decode("#484800").getRGB())
-					image.setRGB(x, y, dcolor);
-				if(image.getRGB(x, y) == Color.decode("#939300").getRGB())
-					image.setRGB(x, y, lcolor);
-				
-			}
-		}
-		
-		door.loadImage(image);
-		
-	}
 
 	public static Image createColorImage(String string) {
 		BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);

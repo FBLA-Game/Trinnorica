@@ -272,15 +272,15 @@ public class GameBoard extends Board implements ActionListener {
 		
 		
 		for(int x=3;x!=20;x++){
-			level1.add(new Floor(x*30,6*30,Floor.GRASS,FloorBottom.DIRT));
+			level1.add(new Floor(x*30,6*30,Floor.GRASS,FloorBottom.GRASS));
 		}
 		
 		for(int x=2;x!=31;x++){
-			level1.add(new Floor(x*30, 12*30,Floor.GRASS,FloorBottom.DIRT));
+			level1.add(new Floor(x*30, 12*30,Floor.GRASS,FloorBottom.GRASS));
 		}
 		
 		for(int x=0;x!=32;x++){
-			level1.add(new Floor(x*30, 17*30, Floor.GRASS,FloorBottom.DIRT));
+			level1.add(new Floor(x*30, 17*30, Floor.GRASS,FloorBottom.GRASS));
 		}
 		
 		for(int x=0;x!=10;x++){
@@ -292,7 +292,6 @@ public class GameBoard extends Board implements ActionListener {
 		
 		}
 		
-		level1.add(new Door(5*30, (6*15)+3, 1));
 		
 		
 		
@@ -303,7 +302,6 @@ public class GameBoard extends Board implements ActionListener {
 		
 		
 		
-		level1.add(new Key(10*30,10*30, 1));
 //		level1.add(new Door(18 * 15, (7* 15)+10, 1));
 //		level1.add(new Bow(9 * 30, 20 * 15));
 //		level1.add(new Key(15 * 30, 20 * 15, 1));
@@ -335,11 +333,11 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	private void loadLevel3(boolean debug) {
 		
-		Utils.displayMessage(55, "You can run across one block gaps! (ctrl)", B_WIDTH/2, 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
+		
 		
 		for(int x=0;x!=32;x++){
 			if(x>=5 && x<=25){
-				if((x & 1) == 0) level3.add(new FallingFloor(x*30, 15*30,Floor.RED_STONE));
+				if((x & 1) == 0) level3.add(new FallingFloor(x*30, 15*30,Floor.GRASS));
 			}
 			else level3.add(new Floor(x*30, 15*30,Floor.GRASS));
 		
@@ -416,28 +414,35 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	private void loadLevel6(boolean debug) {
 		
-		level6.add(new Wall(0 * 30, 2 * 30, (30*3)+30, State.HORIZONTAL,"C13424"));
-
-		for (int  i= 4; i != 17; i++) {
-			level6.add(new Wall(i * 30, ((i * 30)/2)+5, 32, State.HORIZONTAL,"C13424"));
+		Switch s = new Switch(35*30, 35*30,new Sprite[]{ 
+				new Wall(3*30-5,0*30,7*30, State.VERTICAL)
+		}, level6, Rotation.LEFT, InteractionMethod.DISAPPEAR);
+	
+		if(!debug) s.interact();
+		
+		Switch s2 = new Switch(35*30, 35*30, new Sprite[]{
+				new Wall(3*30,7*30,60,State.HORIZONTAL)
+				
+		},level6, Rotation.LEFT, InteractionMethod.DISAPPEAR);
+		
+			
+		
+											
+		level6.add(new Switch(0, 6*30-7,new Sprite[] {
+				s,
+				s2
+		},level6,Rotation.RIGHT,InteractionMethod.TRIGGER));
+		
+		for(int x=0;x!=32;x++){
+			if(!(x==3)&&!(x==4))
+				level6.add(new Floor(x*30,7*30,Floor.BLUE_STONE));
+			level6.add(new Floor(x*30,16*30,Floor.GRAY_STONE));
 		}
 		
-		for (int x=2; x!= 17;x++){
-			if(x==1|| x==2 || x==3 || x==5 || x==7 || x==9 || x==11 || x==13 || x== 14 || x==15 || x==16)
-				level6.add(new Floor((x*30), (11*30),Floor.GRAY_STONE));
-			else
-				continue;
-		}
-		for (int x = 0; x != 19; x++) {
-			level6.add(new Floor((x * 30), 16 * 30,Floor.GRAY_STONE));
-		}
-		for (int y = 8; y!= 16; y++) {
-			level6.add(new Ladder((17 * 30), (y*30)));
-		}
 		
-		level6.add(new Switch((2*30)+2, (10*30), new Wall(2*30, (14*30), 60, State.VERTICAL,"C13424"), level6, Rotation.RIGHT, InteractionMethod.DISAPPEAR));
-		level6.add(new Wall ((2*30),2*30,12*30,State.VERTICAL,"C13424"));
-		level6.add(new Gate(0, (15* 30)-2,GateType.FLAG));
+		level6.add(new Gate(31*30, (15* 30),GateType.FLAG));
+		
+		level6.add(new Bow(16*30, 5*30));
 
 		if(!debug) level6.add(Bridge.getPlayer());
 
@@ -446,29 +451,47 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	private void loadLevel7(boolean debug) {
 		
-		for(int x=0;x!=32;x++){
-			if(x==12||x==13||x==14||x==15||x==16||x==17){
-				if(x==14||x==15){
-					level7.add(new Gold(x*30+13,9*15+x));
-					level7.add(new Spike(x*30, 11*15+4+x));
-				} else 
-					level7.add(new Gold(x*30+13,10*15+x));
-				
-			}
-			if(x<28)
-				level7.add(new Floor(x*30, 6*30+x,Floor.GRASS));
-			level7.add(new Floor(x*30,12*30-x,Floor.GRASS,FloorBottom.DIRT));
+			level7.add(new Wall(0, 10*30,16*30,State.HORIZONTAL));
+		
+		
+		for(int x=25;x!=32;x++){
+			level7.add(new Floor(x*30,-30,Floor.GRAY_STONE,FloorBottom.BLUE_STONE));
 		}
 		
 		
-		level7.add(new Gate(0,11*30-1,GateType.FLAG));
+		for(int x=17;x!=32;x++){
+			level7.add(new Floor(x*30, 5*30,Floor.GRAY_STONE));
+		}
 		
 		
 		
 		
+		for(int x=0;x!=32;x++){
+			level7.add(new Floor(x*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE));
+		}
+		
+		for(int y=4;y!=16;y++){
+			level7.add(new Ladder(16*30, y*30));
+		}
+		
+		for(int x=0;x!=16;x++){
+			if(x==0)
+				level7.add(new Key(x*30, 19*15, 1));
+			else level7.add(new Gold(x*30+11, 10*30-11));
+		}
+		
+		
+		
+		level7.add(new Door(25*30, (4*15)+3, 1));
+		
+		level7.add(new Gate(31*30, 8*15, GateType.FLAG));
+		
+
+		
+
 		if(!debug) level7.add(Bridge.getPlayer());
-		levels.put(7, level7);
 		
+		levels.put(7, level7);
 		
 	}
 	
@@ -648,6 +671,9 @@ public class GameBoard extends Board implements ActionListener {
 		
 		
 		loadLevels(false, 0);
+		
+		
+		
 		ingame = false;
 		loaded = false;
 		if (Utils.getPlayerLevel() > levels.size()) {
@@ -711,6 +737,10 @@ public class GameBoard extends Board implements ActionListener {
 		
 		if(Utils.getPlayerLevel() == 1 && Utils.firsttime){
 			loadHelp();
+		}
+		
+		if(Utils.getPlayerLevel() == 3){
+			Utils.displayMessage(55, "You can run across one block gaps! (ctrl)", B_WIDTH/2, 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
 		}
 
 	}
