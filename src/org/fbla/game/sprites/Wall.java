@@ -58,13 +58,13 @@ public class Wall extends Sprite {
     	case VERTICAL:
     		loadImage(Images.createColorImage("#" + color));
     		height = size;
-    		setImageDimensions(5, size);
+    		setImageDimensions(7, size);
     		break;
     
     		
     	case HORIZONTAL:
     		loadImage(Images.createColorImage("#" + color));
-    		setImageDimensions(size, 5);
+    		setImageDimensions(size, 7);
     		width = size;
     		break;
     		default:
@@ -79,7 +79,7 @@ public class Wall extends Sprite {
     	case VERTICAL:
     		loadImage("empty.png");
     		height = size;
-    		setImageDimensions(5, size);
+    		setImageDimensions(7, size);
     		break;
     	case LARGE_VERTICAL:
     		loadImage("empty.png");
@@ -87,7 +87,7 @@ public class Wall extends Sprite {
     		
     	case HORIZONTAL:
     		loadImage("empty.png");
-    		setImageDimensions(size, 5);
+    		setImageDimensions(size, 7);
     		width = size;
     		break;
     		default:

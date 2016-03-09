@@ -1,13 +1,15 @@
 package org.fbla.game.sprites;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import org.fbla.game.Bridge;
 import org.fbla.game.boards.GameBoard;
-import org.fbla.game.sprites.tools.FireBow;
+import org.fbla.game.sprites.tools.Bow;
 import org.fbla.game.spriteutils.Entity;
+import org.fbla.game.spriteutils.Interaction;
 import org.fbla.game.spriteutils.Keyable;
 import org.fbla.game.spriteutils.Moveable;
 import org.fbla.game.spriteutils.Sprite;
@@ -17,7 +19,6 @@ import org.fbla.game.utils.AI;
 import org.fbla.game.utils.BoardType;
 import org.fbla.game.utils.DamageReason;
 import org.fbla.game.utils.Direction;
-import org.fbla.game.utils.InteractionMethod;
 
 public class Boss extends Entity implements Moveable,Keyable {
 	
@@ -29,21 +30,40 @@ public class Boss extends Entity implements Moveable,Keyable {
 	private boolean walking = false;
 	private boolean left = false;
 	private boolean right = false;
-	public Boss(int x, int y) {
+	private int gatex;
+	private int gatey;
+	private ArrayList<Sprite> level;
+	
+	public Boss(int x, int y, int gatex, int gatey, ArrayList<Sprite> level) {
         super(x, y);
         init();
         score = 10;
-        health = 40;
-        maxhealth = 40;
+        health = 20;
+        maxhealth = 20;
+        this.gatex = gatex;
+        this.gatey = gatey;
+        this.level = level;
+        
         setDirection(Direction.RIGHT);
+    }
+	
+	public Boss(int x, int y, Interaction interact) {
+        super(x, y);
+        init();
+        score = 10;
+        health = 20;
+        maxhealth = 20;
+        setDirection(Direction.RIGHT);
+        this.interact = interact;
     }
     
     @Override
     public SpriteType getType(){
-    	return SpriteType.COMPETITOR;
+    	return SpriteType.BOSS;
     }
 
     private void init() {
+    	setTool(new Bow(0,0));
         loadImage("knobber/stand_left.png");
         setImageDimensions(29, 41, -2, -2);
         
@@ -59,7 +79,7 @@ public class Boss extends Entity implements Moveable,Keyable {
         int key = e.getKeyCode();
         
         if (key == KeyEvent.VK_P) {
-        	tool = new FireBow(0,0);
+        	tool = new Bow(0,0);
             setTool(tool);
         }
     }
@@ -74,7 +94,7 @@ public class Boss extends Entity implements Moveable,Keyable {
 			
 			try{
 				for (Sprite sprite : ((GameBoard)Bridge.getGame().getBoard()).sprites) {
-					if(sprite instanceof Competitor) continue;
+					if(sprite instanceof Boss) continue;
 					if(sprite.getSubType().equals(SpriteSubType.CLIMABLE)) continue;
 					if (!getPolygon().intersects(sprite.getPolygon().getBounds())){
 						continue;
@@ -128,7 +148,7 @@ public class Boss extends Entity implements Moveable,Keyable {
 						
 				
 				dx = AI.getFollowSprite(this, Bridge.player);
-				if(Math.abs(Bridge.player.x -this.x) <=100){
+				if(Math.abs(Bridge.player.x -this.x) <=200){
 					dx=0;
 					attemptShoot(Bridge.player);
 				}
@@ -185,15 +205,14 @@ public class Boss extends Entity implements Moveable,Keyable {
 	    		public void run() {
 	    			shootcooldown = false;
 	    			}
-	    		}, 500);
+	    		}, 1000);
 	    	}
 	}
 	
+	
 	@Override
 	public void kill(DamageReason reason){
-		
-		
-		
+		(new Gate(gatex,gatey,Gate.FLAG)).add();
 		this.remove();
 	}
 
@@ -212,9 +231,11 @@ public class Boss extends Entity implements Moveable,Keyable {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+
+	
+
+	
+
 }
-
-	
-
-	
-

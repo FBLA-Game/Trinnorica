@@ -30,6 +30,7 @@ import java.util.Random;
 import javax.swing.Timer;
 
 import org.fbla.game.Bridge;
+import org.fbla.game.sprites.Boss;
 import org.fbla.game.sprites.Competitor;
 import org.fbla.game.sprites.Door;
 import org.fbla.game.sprites.FallingFloor;
@@ -38,7 +39,6 @@ import org.fbla.game.sprites.Gate;
 import org.fbla.game.sprites.Gold;
 import org.fbla.game.sprites.Ladder;
 import org.fbla.game.sprites.Player;
-import org.fbla.game.sprites.Spike;
 import org.fbla.game.sprites.Switch;
 import org.fbla.game.sprites.Wall;
 import org.fbla.game.sprites.tools.Arrow;
@@ -496,54 +496,18 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	
 	private void loadLevel8(boolean debug){
-	
-		for(int y=0;y!=7;y++){
-			level8.add(new Wall(16*30,y*30,30,State.VERTICAL));
-		}
-		for(int y=0;y!=10;y++){
-			level8.add(new Wall(32*30,y*30,30,State.VERTICAL));	
-		}
+		
 		for(int x=0;x!=32;x++){
-			if (x==14||x==15)
-				continue;
-			else
-				level8.add(new Floor((x*30),(9*30),Floor.BLUE_STONE, FloorBottom.STONE));
+			level8.add(new Floor(x*30,17*30,Floor.GRAY_STONE));
 		}
 		
-		Switch s =  
-				new Switch(35*30, 35*30,new Sprite[]{ 
-						new Wall(16*30,6*30,90, State.VERTICAL)
-						
-				}, level8, Rotation.LEFT, InteractionMethod.DISAPPEAR);
-	
-		if(!debug) s.interact();
-		
-		Switch s2 = new Switch(35*30, 35*30, new Sprite[]{
-				new Wall(14*30,9*30,60, State.HORIZONTAL)
-		},level8, Rotation.LEFT, InteractionMethod.DISAPPEAR);
-		
-			
-		
-											
-		level8.add(new Switch((32*30)-15, (8*30)-7,new Sprite[] {
-				s,
-				s2
-		},level8,Rotation.LEFT,InteractionMethod.TRIGGER));
-				
-		for (int x=14;x!=30;x++){
-			level8.add(new Floor(x*30,15*30,Floor.BLUE_STONE));
-		
-		}
-		
-		level8.add(new Bow(5*30, 7*30));
-		level8.add(new Gate(29*30,14*30,GateType.FLAG));
-	
+		level8.add(new Bow(5*30,16*30));
+		level8.add(new Boss(17*30,15*30,30*30,16*30,level8));
+
 		if(!debug) level8.add(Bridge.getPlayer());
 		
 		levels.put(8, level8);
-		
-
-		}
+	}
 	
 	
 	private void loadLevel9(boolean debug){
@@ -664,11 +628,19 @@ public class GameBoard extends Board implements ActionListener {
 		level9.clear();
 		level10.clear();
 		
+		Bridge.player.health = Bridge.player.maxhealth;
+		
 		messages.clear();
 		messages_player.clear();
 		strings_temp.clear();
 		strings_temp_player.clear();
 		
+		sprite_temp.clear();
+		moveables_temp.clear();
+		sprites.clear();
+		moveables.clear();
+		tools.clear();
+		clickables.clear();
 		
 		loadLevels(false, 0);
 		
@@ -680,13 +652,7 @@ public class GameBoard extends Board implements ActionListener {
 			won = true;
 			return;
 		}
-		sprite_temp.clear();
-		moveables_temp.clear();
-		sprites.clear();
-		moveables.clear();
-		Bridge.setPlayerLocation(0, 0);
-		tools.clear();
-		clickables.clear();
+		
 		try {
 			for (Sprite sprite : levels.get(Utils.getPlayerLevel())) {
 				sprites.add(sprite);
@@ -742,6 +708,9 @@ public class GameBoard extends Board implements ActionListener {
 		if(Utils.getPlayerLevel() == 3){
 			Utils.displayMessage(55, "You can run across one block gaps! (ctrl)", B_WIDTH/2, 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
 		}
+		if(Utils.getPlayerLevel() == 8){
+			Utils.displayMessage(55, "Don't touch these guys! They will kill you instantly. /nTry shooting them instead?", (int) (B_WIDTH*0.6), 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
+		}
 
 	}
 
@@ -750,7 +719,6 @@ public class GameBoard extends Board implements ActionListener {
 		paused = true;
 		Utils.displayMessage(13, "(Press ESC to play)", B_WIDTH / 2, 100, -1, "#FFFFFF", 20,getFont());
 
-		Utils.displayMessage(2, "These are coins. Pick them up to gain points!", 272, 578, -1, "#FFFFFF", 15, getFont());
 
 		Utils.displayMessage(4, "<--- This is your HUD --->", B_WIDTH / 2, 15, -1, "#FFFFFF", 10, getFont());
 

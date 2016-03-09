@@ -2,6 +2,7 @@ package org.fbla.game.spriteutils;
 
 import org.fbla.game.Bridge;
 import org.fbla.game.boards.GameBoard;
+import org.fbla.game.sprites.Player;
 import org.fbla.game.utils.DamageReason;
 import org.fbla.game.utils.Direction;
 import org.fbla.game.utils.Utils;
@@ -43,7 +44,7 @@ public class Projectile extends Entity implements Moveable {
 		
 		
 		
-//		
+		
 //		if(gravity){
 //			y = (int) (y + dy);
 //			dy = dy+(0.5);
@@ -53,8 +54,8 @@ public class Projectile extends Entity implements Moveable {
 //				dx=0;
 //			else dx=dx-0.2;
 //		}
-//		
-//		
+		
+		
 		if(direction.equals(Direction.RIGHT))
 			x = (int) (x+dx);
 		if(direction.equals(Direction.LEFT))
@@ -70,10 +71,12 @@ public class Projectile extends Entity implements Moveable {
 		if(!shooter.getType().equals(SpriteType.PLAYER)){
 			if(Utils.intersects(getPolygon(), Bridge.getPlayer().getPolygon())){
 				Bridge.getPlayer().damage(damage, this, DamageReason.PROJECTILE);
+				remove();
 			}
 		}
 		for(Sprite sprite : ((GameBoard)Bridge.getGame().getBoard()).sprites){
 			if(!this.getPolygon().getBounds().intersects(sprite.getPolygon().getBounds())) continue;
+			if(sprite instanceof Player) continue;	
 			if(sprite instanceof Entity){
 				Utils.broadcastMessage(sprite.getType() + "");
 				if(!sprite.getType().equals(shooter.getType())){

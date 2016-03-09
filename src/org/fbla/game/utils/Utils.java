@@ -47,7 +47,7 @@ public class Utils {
 		backgrounds.put(5, Background.ENTERING_CAVE);
 		backgrounds.put(6, Background.CAVE);
 		backgrounds.put(7, Background.CAVE);
-		backgrounds.put(8, Background.SKY);
+		backgrounds.put(8, Background.CAVE);
 		backgrounds.put(9, Background.ENTERING_CAVE);
 		backgrounds.put(10, Background.CAVE);
 		
@@ -56,7 +56,7 @@ public class Utils {
 		spawns.put(3, new int []{21,405});
 		spawns.put(4, new int []{21,480});
 		spawns.put(5, new int []{0,0});
-		spawns.put(6, new int []{0,0});
+		spawns.put(6, new int []{932,170});
 		spawns.put(7, new int []{15,430});
 		spawns.put(8, new int []{21,230});
 		spawns.put(9, new int []{21,260});

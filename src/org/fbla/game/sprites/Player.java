@@ -224,7 +224,7 @@ public class Player extends Entity implements Moveable,Keyable {
 			
 			if (key == KeyEvent.VK_K) {
 				if(shifting){
-					lives = 1;
+//					lives = 1;
 					ready = false;
 					kill(DamageReason.RANDOM);
 				}
@@ -426,20 +426,7 @@ public class Player extends Entity implements Moveable,Keyable {
 						}
 					}
 
-					if (sprite.getType().equals(SpriteType.COMPETITOR)) {
-						if (getPolygon().getBounds().getMaxX() - sprite.getPolygon().getBounds().getMinX() >= -5
-								&& getPolygon().getBounds().getMaxX() - sprite.getPolygon().getBounds().getMinX() <= 0) {
-							damage(((Competitor) sprite).getPower(), this, DamageReason.ENEMY);
-						}
-						if (getPolygon().getBounds().getMinX() - sprite.getPolygon().getBounds().getMaxX() >= -5
-								&& getPolygon().getBounds().getMinX() - sprite.getPolygon().getBounds().getMaxX() <= 0) {
-							damage(((Competitor) sprite).getPower(), this, DamageReason.ENEMY);
-						}
-						if (getPolygon().getBounds().getMaxY() - sprite.getPolygon().getBounds().getMinY() <= 5
-								&& getPolygon().getBounds().getMaxY() - sprite.getPolygon().getBounds().getMinY() >= 0) {
-							((Competitor) sprite).damage(10,this, DamageReason.ENEMY);
-						}
-					}
+					
 					if (sprite.getType().getSubType().equals(SpriteSubType.CLIMABLE) && !jumping) {
 						climbing = true;
 						if (falling)
@@ -456,7 +443,11 @@ public class Player extends Entity implements Moveable,Keyable {
 						y = 0;
 					}
 					
-					if(sprite.getSubType().equals(SpriteSubType.COLLIDEABLE) || sprite.getSubType().equals(SpriteSubType.INTERACTABLE)){
+					if(sprite.getSubType().equals(SpriteSubType.COLLIDEABLE) || sprite.getSubType().equals(SpriteSubType.INTERACTABLE) || sprite.getSubType().equals(SpriteSubType.ENEMY)){
+						if(sprite.getSubType().equals(SpriteSubType.ENEMY)){
+							kill(DamageReason.ENEMY);
+						}
+						
 						switch(getIntercectingDirection(sprite.getPolygon().getBounds())){
 						case LEFT:
 							if(!onground) onground = false;
@@ -584,7 +575,7 @@ public class Player extends Entity implements Moveable,Keyable {
 		lives = lives - 1;
 		((GameBoard) Bridge.getGame().getBoard()).loadLevel();
 		sscore = 0;
-		health = 100;
+		health = maxhealth;
 		if (lives <= 0) {
 			((GameBoard)Bridge.getGame().getBoard()).gameStatus = "gameover:" + reason.getMessage();
 			((GameBoard)Bridge.getGame().getBoard()).ingame = false;

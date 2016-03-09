@@ -20,6 +20,7 @@ public enum SpriteType {
 	DOOR,
 	OPEN_DOOR,
 	SPIKE, 
+	BOSS,
 	BOOTS;
 	
 	SpriteType() {
@@ -30,6 +31,7 @@ public enum SpriteType {
 		if(this == FLOOR) return SpriteSubType.PARTIAL_COLLIDEABLE;
 		if(this == FALLING_FLOOR) return SpriteSubType.PARTIAL_COLLIDEABLE;
 		if(this == COMPETITOR) return SpriteSubType.ENEMY;
+		if(this == BOSS) return SpriteSubType.ENEMY;
 		if(this == SPIKE) return SpriteSubType.BAD_THINGS;
 		if(this == GATE) return SpriteSubType.NON_COLLIDEABLE;
 		if(this == LADDER) return SpriteSubType.CLIMABLE;
