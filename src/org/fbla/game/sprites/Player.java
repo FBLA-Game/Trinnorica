@@ -3,6 +3,7 @@ package org.fbla.game.sprites;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +23,7 @@ import org.fbla.game.spriteutils.Sprite;
 import org.fbla.game.spriteutils.SpriteSubType;
 import org.fbla.game.spriteutils.SpriteType;
 import org.fbla.game.spriteutils.Tool;
+import org.fbla.game.spriteutils.ToolType;
 import org.fbla.game.utils.BoardType;
 import org.fbla.game.utils.DamageReason;
 import org.fbla.game.utils.Direction;
@@ -206,7 +208,9 @@ public class Player extends Entity implements Moveable,Keyable {
 			}
 			
 			if (key == KeyEvent.VK_SHIFT) {
-				if(hasTool() && !shifting) tool.use();
+				if(hasTool() && !shifting && !(tool instanceof Bow)){
+					Utils.displayMessage(56, "TEST", 300, 300, 30, "#FFFFFF", 15, null);tool.use();
+				}
 				shifting = true;
 			}
 			if (key == KeyEvent.VK_E) {
@@ -240,6 +244,8 @@ public class Player extends Entity implements Moveable,Keyable {
 		if(!((GameBoard)Bridge.getGame().getBoard()).paused){
 			
 			if (key == KeyEvent.VK_SHIFT) {
+				
+				
 				if(interact != null){
 					if(tool != null)interact.interact(tool);
 					else interact.interact();
@@ -614,6 +620,12 @@ public class Player extends Entity implements Moveable,Keyable {
 			return;
 		} else {
 			jumpboost = 1;
+		}
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		if(hasTool() && tool instanceof Bow){
+			tool.use();
 		}
 	}
 

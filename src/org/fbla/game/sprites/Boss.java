@@ -32,6 +32,7 @@ public class Boss extends Entity implements Moveable,Keyable {
 	private boolean right = false;
 	private int gatex;
 	private int gatey;
+	private int size = 2;
 	
 	public Boss(int x, int y, int gatex, int gatey) {
         super(x, y);
@@ -63,7 +64,7 @@ public class Boss extends Entity implements Moveable,Keyable {
     private void init() {
     	setTool(new Bow(0,0));
         loadImage("knobber/stand_left.png");
-        setImageDimensions(29, 41, -2, -2);
+        setImageDimensions(29*size, 41*size, -2, -2);
         
     }
     
@@ -163,7 +164,7 @@ public class Boss extends Entity implements Moveable,Keyable {
 				if(right && dx>0)
 					dx = 0;
 				
-				x = x+dx;
+				x = x+dx*size;
 				y = y+dy;
 				
 				

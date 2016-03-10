@@ -2,10 +2,8 @@ package org.fbla.game;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
+import java.awt.Point;
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
@@ -194,6 +192,18 @@ public class Bridge {
 		
 		
 		game.setLocationRelativeTo(null);
+	}
+	
+	public static Point rotatePoint(Point pt, Point center, double angleDeg){
+	    double angleRad = (angleDeg/180)*Math.PI;
+	    double cosAngle = Math.cos(angleRad);
+	    double sinAngle = Math.sin(angleRad);
+	    double dx = (pt.x-center.x);
+	    double dy = (pt.y-center.y);
+
+	    pt.x = center.x + (int) (dx*cosAngle-dy*sinAngle);
+	    pt.y = center.y + (int) (dx*sinAngle+dy*cosAngle);
+	    return pt;
 	}
 
 }

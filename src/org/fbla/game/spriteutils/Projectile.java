@@ -16,12 +16,12 @@ public class Projectile extends Entity implements Moveable {
 	
 	public double dy = -10;
 	public double dx = 10;
-	private boolean gravity;
+	private boolean sdir;
 	
-	public Projectile(int x, int y, Entity shooter, boolean gravity) {
+	public Projectile(int x, int y, Entity shooter, boolean specialdirection) {
 		super(x, y);
 		this.shooter = shooter;
-		this.gravity = gravity;
+		this.sdir = specialdirection;
 	}
 	
 	
@@ -45,21 +45,18 @@ public class Projectile extends Entity implements Moveable {
 		
 		
 		
-//		if(gravity){
-//			y = (int) (y + dy);
-//			dy = dy+(0.5);
-//			
-//			
-//			if(dx<=0)
-//				dx=0;
-//			else dx=dx-0.2;
-//		}
+		if(sdir){
+			y = (int) (y + dy);
+			x = (int) (x + dx);
+		} else {
+			if(direction.equals(Direction.RIGHT))
+				x = (int) (x+dx);
+			if(direction.equals(Direction.LEFT))
+				x = (int) (x-dx);
+		}
 		
 		
-		if(direction.equals(Direction.RIGHT))
-			x = (int) (x+dx);
-		if(direction.equals(Direction.LEFT))
-			x = (int) (x-dx);
+		
 		
 		if(x > 1000){
 			remove();
@@ -78,7 +75,6 @@ public class Projectile extends Entity implements Moveable {
 			if(!this.getPolygon().getBounds().intersects(sprite.getPolygon().getBounds())) continue;
 			if(sprite instanceof Player) continue;	
 			if(sprite instanceof Entity){
-				Utils.broadcastMessage(sprite.getType() + "");
 				if(!sprite.getType().equals(shooter.getType())){
 					((Entity) sprite).damage(this.damage, this, DamageReason.PROJECTILE);	
 				} else {

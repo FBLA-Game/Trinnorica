@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
@@ -61,6 +62,7 @@ import org.fbla.game.utils.BoardType;
 import org.fbla.game.utils.Button;
 import org.fbla.game.utils.ButtonMethod;
 import org.fbla.game.utils.Direction;
+import org.fbla.game.utils.Images;
 import org.fbla.game.utils.InteractionMethod;
 import org.fbla.game.utils.Utils;
 
@@ -85,8 +87,8 @@ public class GameBoard extends Board implements ActionListener {
 	public final int DELAY = 10;
 	private boolean hitboxes = false;
 	public int l = 0;
-	private int mx = 0;
-	private int my = 0;
+	public int mx = 0;
+	public int my = 0;
 	public Sprite sprite = null;
 	public boolean in = false;
 	private boolean fs = false;
@@ -502,7 +504,7 @@ public class GameBoard extends Board implements ActionListener {
 		}
 		
 		level8.add(new Bow(5*30,16*30));
-		level8.add(new Boss(17*30,15*30,30*30,16*30));
+		level8.add(new Boss(17*30,7*30,30*30,16*30));
 
 		if(!debug) level8.add(Bridge.getPlayer());
 		
@@ -813,6 +815,7 @@ public class GameBoard extends Board implements ActionListener {
 	}
 
 	private void drawObjects(Graphics g) {
+		e=0;
 		
 //		Utils.broadcastMessage(extra + "");
 
@@ -878,10 +881,26 @@ public class GameBoard extends Board implements ActionListener {
 			case ARROW:
 				
 //				g.drawImage(Images.rotate(sprite.getImage(), Math.asin(((Arrow) sprite).dx)/ Math.asin(((Arrow) sprite).dy)), (int) (sprite.getX()*extra), (int) (sprite.getY()*extra), (int) (16), (int) (4), this);
+				try{
+					if(((Arrow) sprite).getDirection().equals(Direction.LEFT)) g.drawImage(sprite.getImage(), (int) ((sprite.x + 16)*extra), (int) (sprite.y*extra), -16, 4, this);
+					else g.drawImage(sprite.getImage(), (int) (sprite.getX()*extra), (int) (sprite.getY()*extra), (int) (16), (int) (4), this);
+					
+				} catch(NullPointerException ex){
+//					Graphics2D g2 = Images.toBufferedImage(sprite.getImage()).createGraphics();
+//					g2.rotate(Math.toRadians(Math.atan(((Arrow)sprite).dx/((Arrow)sprite).dy)));
+					Polygon p = new Polygon(new int[] {1,2,3,4}, new int[] {1,2,3,4}, 4);
+					for(int i=0;i!=sprite.getPolygon().npoints;i++){
+						p.xpoints[i] = (int) Bridge.rotatePoint(new Point(sprite.getPolygon().xpoints[i],sprite.getPolygon().ypoints[i]), new Point((int) sprite.getPolygon().getBounds().getCenterX(), (int)sprite.getPolygon().getBounds().getCenterY()),Math.atan(((Arrow)sprite).dx/((Arrow)sprite).dy)).getX();
+						p.ypoints[i] = (int) Bridge.rotatePoint(new Point(sprite.getPolygon().xpoints[i],sprite.getPolygon().ypoints[i]), new Point((int) sprite.getPolygon().getBounds().getCenterX(), (int)sprite.getPolygon().getBounds().getCenterY()),Math.atan(((Arrow)sprite).dx/((Arrow)sprite).dy)).getY();
+						
+					}
+					((Arrow) sprite).bounds = p;
+					p = null;
+					g.drawImage(sprite.getImage(), sprite.x, sprite.y, this);
+					
+//					g2.dispose();
+				}
 				
-				
-				if(((Arrow) sprite).getDirection().equals(Direction.LEFT)) g.drawImage(sprite.getImage(), (int) ((sprite.x + 16)*extra), (int) (sprite.y*extra), -16, 4, this);
-				else g.drawImage(sprite.getImage(), (int) (sprite.getX()*extra), (int) (sprite.getY()*extra), (int) (16), (int) (4), this);
 				break;
 			default:
 				g.drawImage(sprite.getImage(), (int) (sprite.getX()*extra), (int) (sprite.getY()*extra), (int) (sprite.getWidth()), (int) (sprite.getHeight()), this);
@@ -896,7 +915,7 @@ public class GameBoard extends Board implements ActionListener {
 
 		Bridge.getPlayer().drawHealthBar(g, (int) ((player.x - (100 / 2))*extra), (int) ((player.y - 20)*extra), 100, 5);
 		
-		
+		e=e+1;
 		
 		if (!Bridge.getPlayer().walking) {
 			if(player.getFacingDirection().equals(Direction.LEFT))
@@ -910,6 +929,8 @@ public class GameBoard extends Board implements ActionListener {
 				g.drawImage(player.getImage(), player.x, player.y, player.getWalkingWidth(), player.getWalkingHeight(), this);
 		}
 		
+		if(Bridge.player.shifting && !(debug)) g.drawImage(Texture.loadTexture("aim.png"), mx, my, this); 
+		
 		
 		if (Bridge.getPlayer().hasTool()) {
 			Tool tool = ((Player) Bridge.getPlayer()).getTool();
@@ -921,6 +942,7 @@ public class GameBoard extends Board implements ActionListener {
 			g.drawPolygon(Bridge.getPlayer().getPolygon());
 
 		for (Sprite sprite : tools) {
+			if(sprite instanceof Entity) e=e+1;
 			g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), this);
 		}
 
@@ -1038,7 +1060,6 @@ public class GameBoard extends Board implements ActionListener {
 		
 		if(in && debug) this.sprite.drawInfo(mx, my, g);
 		
-		e=0;
 		
 		
 		if (debug) {
@@ -1285,6 +1306,7 @@ public class GameBoard extends Board implements ActionListener {
 	}
 
 	public void addMoveable(Moveable moveable) {
+		Utils.broadcastMessage("MOVEABLE");
 		moveables_temp.add(moveable);
 	}
 
@@ -1478,6 +1500,8 @@ public class GameBoard extends Board implements ActionListener {
 
 	private class MMListener extends MouseMotionAdapter {
 		
+		
+		
 		public void mouseDragged(MouseEvent e){
 			
 			mx = e.getX();
@@ -1532,11 +1556,13 @@ public class GameBoard extends Board implements ActionListener {
 	private class MListener extends MouseAdapter {
 
 		public void mousePressed(MouseEvent e) {
+
 			try {
 				for (Clickable clickable : clickables)
 					if (clickable.getPolygon().contains(e.getPoint())) {
 						clickable.mousePressed(e);
 					}
+				Bridge.player.mouseClicked(e);
 			} catch (ConcurrentModificationException ex) {
 			}
 		}
