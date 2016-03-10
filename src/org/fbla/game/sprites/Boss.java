@@ -32,17 +32,15 @@ public class Boss extends Entity implements Moveable,Keyable {
 	private boolean right = false;
 	private int gatex;
 	private int gatey;
-	private ArrayList<Sprite> level;
 	
-	public Boss(int x, int y, int gatex, int gatey, ArrayList<Sprite> level) {
+	public Boss(int x, int y, int gatex, int gatey) {
         super(x, y);
         init();
         score = 10;
-        health = 20;
-        maxhealth = 20;
+        maxhealth = 50;
+        health = maxhealth;
         this.gatex = gatex;
         this.gatey = gatey;
-        this.level = level;
         
         setDirection(Direction.RIGHT);
     }

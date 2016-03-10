@@ -502,7 +502,7 @@ public class GameBoard extends Board implements ActionListener {
 		}
 		
 		level8.add(new Bow(5*30,16*30));
-		level8.add(new Boss(17*30,15*30,30*30,16*30,level8));
+		level8.add(new Boss(17*30,15*30,30*30,16*30));
 
 		if(!debug) level8.add(Bridge.getPlayer());
 		
@@ -534,6 +534,9 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	
 	private void loadLevel10(boolean debug){
+		
+		Bridge.player.inventory.add(new Bow(0,0));
+		Bridge.player.inventory.add(new Key(0,0,1));
 		
 		for(int x=25;x!=32;x++){
 			level10.add(new Floor(x*30,-30,Floor.GRAY_STONE,FloorBottom.BLUE_STONE));
