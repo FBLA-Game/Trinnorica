@@ -1,5 +1,7 @@
 package org.fbla.game.sprites.tools;
 
+import java.awt.Polygon;
+
 import org.fbla.game.spriteutils.Entity;
 import org.fbla.game.spriteutils.Projectile;
 import org.fbla.game.spriteutils.SpriteType;
@@ -31,8 +33,9 @@ public class Arrow extends Projectile  {
 
     private void init() {
         loadImage("tools/arrow.png");
-        setImageDimensions(16, 4, 0, 0);
+        setImageDimensions(15, 5, 0, 0);
     }	
+    
     
     
 }

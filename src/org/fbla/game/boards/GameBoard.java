@@ -886,19 +886,27 @@ public class GameBoard extends Board implements ActionListener {
 					else g.drawImage(sprite.getImage(), (int) (sprite.getX()*extra), (int) (sprite.getY()*extra), (int) (16), (int) (4), this);
 					
 				} catch(NullPointerException ex){
-//					Graphics2D g2 = Images.toBufferedImage(sprite.getImage()).createGraphics();
-//					g2.rotate(Math.toRadians(Math.atan(((Arrow)sprite).dx/((Arrow)sprite).dy)));
 					Polygon p = new Polygon(new int[] {1,2,3,4}, new int[] {1,2,3,4}, 4);
+					Point pp;
+//					p.reset();
 					for(int i=0;i!=sprite.getPolygon().npoints;i++){
-						p.xpoints[i] = (int) Bridge.rotatePoint(new Point(sprite.getPolygon().xpoints[i],sprite.getPolygon().ypoints[i]), new Point((int) sprite.getPolygon().getBounds().getCenterX(), (int)sprite.getPolygon().getBounds().getCenterY()),Math.atan(((Arrow)sprite).dx/((Arrow)sprite).dy)).getX();
-						p.ypoints[i] = (int) Bridge.rotatePoint(new Point(sprite.getPolygon().xpoints[i],sprite.getPolygon().ypoints[i]), new Point((int) sprite.getPolygon().getBounds().getCenterX(), (int)sprite.getPolygon().getBounds().getCenterY()),Math.atan(((Arrow)sprite).dx/((Arrow)sprite).dy)).getY();
+						pp = Bridge.rotatePoint(
+								new Point(sprite.bounds.xpoints[i],sprite.bounds.ypoints[i]), //Original Point
+								new Point((int)sprite.bounds.getBounds().getCenterX(), (int)sprite.bounds.getBounds().getCenterY()), // Center Point
+								Math.toDegrees(Math.atan(((Arrow) sprite).dy/((Arrow)sprite).dx))
+								);
+						
+						p.xpoints[i] = (int) pp.getX();
+						p.ypoints[i] = (int) pp.getY();
 						
 					}
-					((Arrow) sprite).bounds = p;
-					p = null;
-					g.drawImage(sprite.getImage(), sprite.x, sprite.y, this);
+//					g.setColor(Color.RED);
+//					g.fillPolygon(p);
+					sprite.bounds = p;
 					
-//					g2.dispose();
+					g.drawImage(Images.rotate(sprite.getImage(), Math.toDegrees(Math.atan(((Arrow)sprite).dy/((Arrow)sprite).dx))), sprite.x, sprite.y,(int)p.getBounds().getWidth(),(int)p.getBounds().getHeight(),this);
+					p = null;
+
 				}
 				
 				break;
