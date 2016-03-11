@@ -20,8 +20,10 @@ public class Arrow extends Projectile  {
     }
 	public Arrow(int x, int y, int dx, int dy, Entity shooter) {
         super(x, y, shooter, true);
-        this.dx = (dx-shooter.x)/30;
-        this.dy = (dy-shooter.y)/30;
+        this.dx = 1;
+        this.dy = Math.tan(Math.atan(dy/dx));
+//        this.dx = (dx-shooter.x)/30;
+//        this.dy = (dy-shooter.y)/30;
         
         damage = 10;
         init();
