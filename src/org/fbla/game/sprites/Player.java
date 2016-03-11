@@ -624,7 +624,7 @@ public class Player extends Entity implements Moveable,Keyable {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		if(hasTool() && tool instanceof Bow){
+		if(hasTool() && tool instanceof Bow && shifting){
 			tool.use();
 		}
 	}

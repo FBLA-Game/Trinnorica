@@ -84,7 +84,7 @@ public class FallingFloor extends Entity implements Moveable {
 	public void move() {
 		
 		if(t){
-			y = y+1;
+			y = y+2;
 		}
 	}
 

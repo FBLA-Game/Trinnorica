@@ -22,6 +22,7 @@ public class Arrow extends Projectile  {
         super(x, y, shooter, true);
         this.dx = (dx-shooter.x)/30;
         this.dy = (dy-shooter.y)/30;
+        
         damage = 10;
         init();
     }
@@ -32,8 +33,10 @@ public class Arrow extends Projectile  {
     }
 
     private void init() {
-        loadImage("tools/arrow.png");
-        setImageDimensions(15, 5, 0, 0);
+    	width = 15;
+    	height = 5;
+//        loadImage("tools/arrow.png");
+//        getImageDimensions();
     }	
     
     

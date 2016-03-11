@@ -888,6 +888,9 @@ public class GameBoard extends Board implements ActionListener {
 				} catch(NullPointerException ex){
 					Polygon p = new Polygon(new int[] {1,2,3,4}, new int[] {1,2,3,4}, 4);
 					Point pp;
+//					sprite.width = (int) sprite.getImage().getWidth(this);
+//					sprite.height = (int) sprite.getImage().getHeight(this);
+					p = sprite.getPolygon();
 //					p.reset();
 					for(int i=0;i!=sprite.getPolygon().npoints;i++){
 						pp = Bridge.rotatePoint(
@@ -900,11 +903,15 @@ public class GameBoard extends Board implements ActionListener {
 						p.ypoints[i] = (int) pp.getY();
 						
 					}
-//					g.setColor(Color.RED);
-//					g.fillPolygon(p);
+					g.setColor(Color.decode("#671D04"));
+					g.fillPolygon(p);
 					sprite.bounds = p;
+//					sprite.width = (int) p.getBounds().getWidth();
+//					sprite.height = (int) p.getBounds().getHeight();
 					
-					g.drawImage(Images.rotate(sprite.getImage(), Math.toDegrees(Math.atan(((Arrow)sprite).dy/((Arrow)sprite).dx))), sprite.x, sprite.y,(int)p.getBounds().getWidth(),(int)p.getBounds().getHeight(),this);
+					
+//					g.drawImage(Images.rotate(sprite.getImage(), Math.toDegrees(Math.atan(((Arrow)sprite).dy/((Arrow)sprite).dx))), sprite.x, sprite.y,(int)p.getBounds().getWidth(),(int)p.getBounds().getHeight(),this);
+					
 					p = null;
 
 				}
@@ -937,7 +944,7 @@ public class GameBoard extends Board implements ActionListener {
 				g.drawImage(player.getImage(), player.x, player.y, player.getWalkingWidth(), player.getWalkingHeight(), this);
 		}
 		
-		if(Bridge.player.shifting && !(debug)) g.drawImage(Texture.loadTexture("aim.png"), mx, my, this); 
+		if(Bridge.player.shifting && !(debug) && Bridge.player.hasTool() && Bridge.player.getTool() instanceof Bow) g.drawImage(Texture.loadTexture("aim.png"), mx, my, this); 
 		
 		
 		if (Bridge.getPlayer().hasTool()) {
@@ -1314,7 +1321,6 @@ public class GameBoard extends Board implements ActionListener {
 	}
 
 	public void addMoveable(Moveable moveable) {
-		Utils.broadcastMessage("MOVEABLE");
 		moveables_temp.add(moveable);
 	}
 

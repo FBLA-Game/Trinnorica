@@ -38,12 +38,12 @@ public class Images {
 
 		int neww = (int) Math.floor(w * cos + h * sin), newh = (int) Math.floor(h * cos + w * sin);
 
-		BufferedImage bimg = toBufferedImage(getEmptyImage(16, 4));
+		BufferedImage bimg = toBufferedImage(getEmptyImage(img.getWidth(null), img.getHeight(null)));
 		Graphics2D g = bimg.createGraphics();
 
 		g.translate((neww - w) / 2, (newh - h) / 2);
-		g.rotate(Math.toRadians(angle), w / 2, h / 2);
-		g.drawRenderedImage(toBufferedImage(img), null);
+		g.rotate(Math.toRadians(angle));
+		g.drawRenderedImage(toBufferedImage(img),null);
 		g.dispose();
 
 		return toImage(bimg);

@@ -168,6 +168,18 @@ public class Utils {
 			return 0;
 		}
 	}
+	
+	public static long gcm(long a, long b) {
+	    return b == 0 ? a : gcm(b, a % b);
+	}
+
+	public static String asFraction(int a, int b) {
+	    long gcm = gcm(a, b);
+	    return (a / gcm) + "/" + (b / gcm);
+	}
+
+	
+	
 
 	public static void savePlayerInfo(Player player) {
 		
