@@ -118,8 +118,14 @@ public class Bridge {
 		game.setResizable(false);
 		game.setLocationRelativeTo(null);
 		
+		
+		
 		player.level = 1;
 		Utils.setPlayerLevel(1);
+		
+		((GameBoard) game.board).drawLoading(game.getGraphics());
+		
+		
 		((GameBoard) game.board).init();
 		
 		Utils.broadcastMessage(player.getPlayerModel());

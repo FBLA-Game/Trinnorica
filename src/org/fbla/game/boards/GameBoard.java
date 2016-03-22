@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
@@ -62,7 +61,6 @@ import org.fbla.game.utils.BoardType;
 import org.fbla.game.utils.Button;
 import org.fbla.game.utils.ButtonMethod;
 import org.fbla.game.utils.Direction;
-import org.fbla.game.utils.Images;
 import org.fbla.game.utils.InteractionMethod;
 import org.fbla.game.utils.Utils;
 
@@ -813,8 +811,19 @@ public class GameBoard extends Board implements ActionListener {
 		
 
 	}
+	
+	public void drawLoading(Graphics g) {
+
+		g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,35));
+		g.setColor(Color.WHITE);
+//		Image i = Texture.loadTexture("loading.gif");
+//		g.drawImage(i, B_WIDTH/2, B_WIDTH/2, this);
+		g.drawString("LOADING...\nPlease wait..", B_WIDTH/2 - g.getFontMetrics().stringWidth("LOADING...\nPlease wait..")/2, B_HEIGHT/2 - g.getFontMetrics().getHeight());
+		
+	}
 
 	private void drawObjects(Graphics g) {
+		
 		e=0;
 		
 //		Utils.broadcastMessage(extra + "");
@@ -886,33 +895,17 @@ public class GameBoard extends Board implements ActionListener {
 					else g.drawImage(sprite.getImage(), (int) (sprite.getX()*extra), (int) (sprite.getY()*extra), (int) (16), (int) (4), this);
 					
 				} catch(NullPointerException ex){
-					Polygon p = new Polygon(new int[] {1,2,3,4}, new int[] {1,2,3,4}, 4);
-					Point pp;
-//					sprite.width = (int) sprite.getImage().getWidth(this);
-//					sprite.height = (int) sprite.getImage().getHeight(this);
-					p = sprite.getPolygon();
-//					p.reset();
-					for(int i=0;i!=sprite.getPolygon().npoints;i++){
-						pp = Bridge.rotatePoint(
-								new Point(sprite.bounds.xpoints[i],sprite.bounds.ypoints[i]), //Original Point
-								new Point((int)sprite.bounds.getBounds().getCenterX(), (int)sprite.bounds.getBounds().getCenterY()), // Center Point
-								Math.toDegrees(Math.atan(((Arrow) sprite).dy/((Arrow)sprite).dx))
-								);
-						
-						p.xpoints[i] = (int) pp.getX();
-						p.ypoints[i] = (int) pp.getY();
-						
-					}
-					g.setColor(Color.decode("#671D04"));
-					g.fillPolygon(p);
-					sprite.bounds = p;
+					
+					((Arrow)sprite).draw(g);
+					
+					
+					
 //					sprite.width = (int) p.getBounds().getWidth();
 //					sprite.height = (int) p.getBounds().getHeight();
 					
 					
 //					g.drawImage(Images.rotate(sprite.getImage(), Math.toDegrees(Math.atan(((Arrow)sprite).dy/((Arrow)sprite).dx))), sprite.x, sprite.y,(int)p.getBounds().getWidth(),(int)p.getBounds().getHeight(),this);
 					
-					p = null;
 
 				}
 				

@@ -1,7 +1,11 @@
 package org.fbla.game.sprites.tools;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Polygon;
 
+import org.fbla.game.Bridge;
 import org.fbla.game.spriteutils.Entity;
 import org.fbla.game.spriteutils.Projectile;
 import org.fbla.game.spriteutils.SpriteType;
@@ -57,7 +61,33 @@ public class Arrow extends Projectile  {
     	height = 5;
 //        loadImage("tools/arrow.png");
 //        getImageDimensions();
-    }	
+    }
+	public void draw(Graphics g) {
+		Polygon p = new Polygon(new int[] {1,2,3,4}, new int[] {1,2,3,4}, 4);
+		Point pp;
+//		sprite.width = (int) sprite.getImage().getWidth(this);
+//		sprite.height = (int) sprite.getImage().getHeight(this);
+		p = getPolygon();
+//		p.reset();
+		for(int i=0;i!=getPolygon().npoints;i++){
+			pp = Bridge.rotatePoint(
+					new Point(bounds.xpoints[i],bounds.ypoints[i]), //Original Point
+					new Point((int)bounds.getBounds().getCenterX(), (int)bounds.getBounds().getCenterY()), // Center Point
+					Math.toDegrees(Math.atan(dy/dx))
+					);
+			
+			p.xpoints[i] = (int) pp.getX();
+			p.ypoints[i] = (int) pp.getY();
+			
+		}
+		g.setColor(Color.decode("#671D04"));
+		g.fillPolygon(p);
+		bounds = p;
+		p=null;
+		
+		
+		
+	}	
     
     
     
