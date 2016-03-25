@@ -265,6 +265,7 @@ public class GameBoard extends Board implements ActionListener {
 
 	}
 
+	//Learn about ladders
 	private void loadLevel1(boolean debug) {
 		
 		
@@ -311,26 +312,25 @@ public class GameBoard extends Board implements ActionListener {
 		levels.put(1, level1);
 	}
 	
+	
+	//Expand on ladders
 	private void loadLevel2(boolean debug) {
 		
-		for(int x=0;x!=32;x++){
-			
-			if(x>5 && x<28){
-				if(x<16){
-					level2.add(new FallingFloor(x*30, 15*30+x, Floor.GRASS));
-				} else {
-					level2.add(new FallingFloor(x*30, 16*30-x, Floor.GRASS));
-				}
-			}
-			if(x<6) level2.add(new Floor(x*30, (15*30)+x,Floor.GRASS));
-			if(x>27)level2.add(new Floor(x*30, (16*30)-x,Floor.GRASS));
+		for(int i=0;i!=32;i++){
+			if(i>=20)
+				level2.add(new Floor(i*30,8*30,Floor.GRASS,FloorBottom.DIRT));
+			level2.add(new Floor(i*30,17*30,Floor.GRASS));
+			if(i<=16 && i>=7 && (i & 1) == 0)
+				level2.add(new Ladder(17*30,i*30));
 		}
 		
-		level2.add(new Gate(31*30,16*30-63,Gate.FLAG));
+		level2.add(new Gate(31*30,7*30,Gate.FLAG));
 		if(!debug) level2.add(Bridge.getPlayer());
 
 		levels.put(2, level2);
 	}
+	
+	//Learn about falling floors & 1 block gaps & sprinting
 	private void loadLevel3(boolean debug) {
 		
 		
@@ -348,6 +348,8 @@ public class GameBoard extends Board implements ActionListener {
 
 		levels.put(3, level3);
 	}
+	
+	//Expand on Falling Floors and Ladders
 	private void loadLevel4(boolean debug) {
 		
 		for(int x=0;x!=32;x++){
@@ -393,6 +395,8 @@ public class GameBoard extends Board implements ActionListener {
 		levels.put(4, level4);
 		
 	}
+	
+	//Learn about switches
 	private void loadLevel5(boolean debug) {
 		
 		for(int x=0;x!=32;x++){
@@ -412,6 +416,8 @@ public class GameBoard extends Board implements ActionListener {
 		levels.put(5, level5);
 	
 	}
+	
+	//Expand on switches and learn Projectiles & Bows
 	private void loadLevel6(boolean debug) {
 		
 		Switch s = new Switch(35*30, 35*30,new Sprite[]{ 
@@ -449,6 +455,8 @@ public class GameBoard extends Board implements ActionListener {
 		levels.put(6, level6);
 		
 	}
+	
+	//Learn keys & tools.
 	private void loadLevel7(boolean debug) {
 		
 			level7.add(new Wall(0, 10*30,16*30,State.HORIZONTAL));
@@ -495,14 +503,27 @@ public class GameBoard extends Board implements ActionListener {
 		
 	}
 	
+	
+	//Expand keys (multiple) learn inventory.
 	private void loadLevel8(boolean debug){
 		
-		for(int x=0;x!=32;x++){
-			level8.add(new Floor(x*30,17*30,Floor.GRAY_STONE));
+		for(int i=0;i!=32;i++){
+			if(i<16&&i!=7){
+				level8.add(new Floor(i*30,8*30,Floor.GRAY_STONE));
+			}
+			
+			if(i>=7 && i<17){
+				level8.add(new Ladder(7*30,i*30));
+			}
+			
+			level8.add(new Floor(i*30,17*30,Floor.GRAY_STONE));
 		}
+		level8.add(new Wall(16*30, 8*30, 9*30, State.VERTICAL, "111111"));
+		level8.add(new Door(16*30, 5*30+3, 1));
+		level8.add(new Key(0*30, 7*30+3, 2));
+		level8.add(new Key(1*30, 7*30+3, 1));
 		
-		level8.add(new Bow(5*30,16*30));
-		level8.add(new Boss(17*30,7*30,30*30,16*30));
+		
 
 		if(!debug) level8.add(Bridge.getPlayer());
 		
