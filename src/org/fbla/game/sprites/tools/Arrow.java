@@ -29,23 +29,23 @@ public class Arrow extends Projectile  {
     }
 	public Arrow(int x, int y, int dx, int dy, Entity shooter) {
         super(x, y, shooter, true);
-        a = Math.atan((dy-(double) (y))/(dx-(double) (x)));
-      //  this.dx = 1;
+//        a = Math.atan((dy-(double) (y))/(dx-(double) (x)));
+//        this.dx = 1;
   //      this.dy = Math.tan(Math.atan(dy/dx));
-//        this.dx = (dx-shooter.x)/30;
-//        this.dy = (dy-shooter.y)/30;
+        this.dx = (dx-shooter.x)/30;
+        this.dy = (dy-shooter.y)/30;
         
         
-        a = a *100;
-        if(a<-90.0){
-        	a = Math.atan(((double) (y)-dy)/((double) (x)-dx));
-            a = a *100;
-        }
+//        a = a *100;
+//        if(a<-90.0){
+//        	a = Math.atan(((double) (y)-dy)/((double) (x)-dx));
+//            a = a *100;
+//        }
         
-        this.dx = speed * Math.cos(Math.toRadians(a));
-        this.dy = speed * Math.sin(Math.toRadians(a));
+//        this.dx = speed * Math.cos(Math.toRadians(a));
+//        this.dy = speed * Math.sin(Math.toRadians(a));
         
-        Utils.broadcastMessage("A: " + a + "\nDX: " + this.dx + "\nDY: " + this.dy);
+//        Utils.broadcastMessage("A: " + a + "\nDX: " + this.dx + "\nDY: " + this.dy);
         
         damage = 10;
         init();
