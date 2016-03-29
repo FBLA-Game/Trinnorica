@@ -159,6 +159,8 @@ public class Entity extends Sprite {
 	public void removeTool(Tool tool) {
 		tool.setEntity(null);
 		this.tool = null;
+		tool.remove();
+		
 		if(this instanceof Player){
 			Bridge.getPlayer().inventory.remove(tool);
 		}

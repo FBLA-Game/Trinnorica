@@ -9,7 +9,7 @@ public class Wall extends Sprite {
 	
 	State state;
 	int size;
-	String color;
+	public String color;
 	public static String BLUE_WALL = "8075FF";
 	public static String BLACK_WALL = "212121";
 

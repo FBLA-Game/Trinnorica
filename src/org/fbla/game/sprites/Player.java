@@ -209,7 +209,7 @@ public class Player extends Entity implements Moveable,Keyable {
 			
 			if (key == KeyEvent.VK_SHIFT) {
 				if(hasTool() && !shifting && !(tool instanceof Bow)){
-					Utils.displayMessage(56, "TEST", 300, 300, 30, "#FFFFFF", 15, null);tool.use();
+					tool.use();
 				}
 				shifting = true;
 			}
@@ -325,6 +325,7 @@ public class Player extends Entity implements Moveable,Keyable {
 		((GameBoard)Bridge.getGame().getBoard()).moveables_temp.clear();
 		((GameBoard)Bridge.getGame().getBoard()).removedSprites.clear();
 		inventory.clear();
+		inventory = new ArrayList<>();
 		
 		Utils.savePlayerInfo(Bridge.player);
 		
@@ -337,7 +338,7 @@ public class Player extends Entity implements Moveable,Keyable {
 		
 		
 
-		Utils.savePlayerInfo(this);
+		
 		((GameBoard)Bridge.getGame().getBoard()).loadLevel();
 		((GameBoard)Bridge.getGame().getBoard()).ingame = true;
 		

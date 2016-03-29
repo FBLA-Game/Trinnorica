@@ -507,21 +507,28 @@ public class GameBoard extends Board implements ActionListener {
 	//Expand keys (multiple) learn inventory.
 	private void loadLevel8(boolean debug){
 		
+		level8.add(new Wall(16*30, 8*30, 9*30, State.VERTICAL, "111111"));
+		level8.add(new Wall(20*30, 5*30, 9*30, State.VERTICAL, "111111"));
+		
 		for(int i=0;i!=32;i++){
-			if(i<16&&i!=7){
+			if(i<19&&i!=7){
 				level8.add(new Floor(i*30,8*30,Floor.GRAY_STONE));
 			}
 			
 			if(i>=7 && i<17){
 				level8.add(new Ladder(7*30,i*30));
+				level8.add(new Ladder(19*30,i*30));
 			}
 			
 			level8.add(new Floor(i*30,17*30,Floor.GRAY_STONE));
 		}
-		level8.add(new Wall(16*30, 8*30, 9*30, State.VERTICAL, "111111"));
+		
 		level8.add(new Door(16*30, 5*30+3, 1));
+		level8.add(new Door(22*30, 14*30+3, 2));
 		level8.add(new Key(0*30, 7*30+3, 2));
 		level8.add(new Key(1*30, 7*30+3, 1));
+		
+		level8.add(new Gate(31*30,16*30));
 		
 		
 
@@ -556,8 +563,6 @@ public class GameBoard extends Board implements ActionListener {
 	
 	private void loadLevel10(boolean debug){
 		
-		Bridge.player.inventory.add(new Bow(0,0));
-		Bridge.player.inventory.add(new Key(0,0,1));
 		
 		for(int x=25;x!=32;x++){
 			level10.add(new Floor(x*30,-30,Floor.GRAY_STONE,FloorBottom.BLUE_STONE));
@@ -651,6 +656,9 @@ public class GameBoard extends Board implements ActionListener {
 		level8.clear();
 		level9.clear();
 		level10.clear();
+		
+		Bridge.player.inventory.clear();
+		if(Bridge.player.hasTool()) Bridge.player.removeTool(Bridge.player.getTool());
 		
 		Bridge.player.health = Bridge.player.maxhealth;
 		
@@ -958,7 +966,9 @@ public class GameBoard extends Board implements ActionListener {
 				g.drawImage(player.getImage(), player.x, player.y, player.getWalkingWidth(), player.getWalkingHeight(), this);
 		}
 		
-		if(Bridge.player.shifting && !(debug) && Bridge.player.hasTool() && Bridge.player.getTool() instanceof Bow) g.drawImage(Texture.loadTexture("aim.png"), mx, my, this); 
+		if(Bridge.player.shifting && !(debug) && Bridge.player.hasTool() && Bridge.player.getTool() instanceof Bow){
+			g.drawImage(Texture.loadTexture("aim.png"), mx, my, this); 
+		}
 		
 		
 		if (Bridge.getPlayer().hasTool()) {

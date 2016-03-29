@@ -41,7 +41,7 @@ public class MenuBoard extends Board implements ActionListener {
 
 	public int M_WIDTH = 960;
 	public int M_HEIGHT = 640;
-	public int LEVEL_DEBUG = 6;
+	public int LEVEL_DEBUG = 8;
 	private int mx = 0;
 	private int my = 0;
 	Timer timer;
@@ -228,9 +228,9 @@ public class MenuBoard extends Board implements ActionListener {
 //			
 //			
 //			
-//			if(event.getKeyCode() == KeyEvent.VK_D){
-//				Bridge.openLevelDebug(LEVEL_DEBUG);
-//			}
+			if(event.getKeyCode() == KeyEvent.VK_D){
+				Bridge.openLevelDebug(LEVEL_DEBUG);
+			}
 			
 			//Cameron
 			//Hidden feature.
