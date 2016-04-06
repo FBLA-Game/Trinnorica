@@ -1,6 +1,7 @@
 package org.fbla.game.sprites;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -31,6 +32,7 @@ import org.fbla.game.utils.Sound;
 import org.fbla.game.utils.Utils;
 
 import res.Audio;
+import res.Texture;
 
 public class Player extends Entity implements Moveable,Keyable {
 
@@ -63,6 +65,7 @@ public class Player extends Entity implements Moveable,Keyable {
 	private String model = "yellow";
 	public List<Tool> inventory = new ArrayList<>();
 	private HashMap<Integer, Integer> jumpInfo = new HashMap<>();
+	private HashMap<Integer, Image> images = new HashMap<>();
 	private boolean ctrl = false;
 	public boolean ready;
 	private int jumpboost = 1;
@@ -77,6 +80,9 @@ public class Player extends Entity implements Moveable,Keyable {
 		initPlayer();
 		health= 100;
 		maxhealth = 100;
+		images.put(0, Texture.loadTexture("playermodels/yellow/stand.png"));
+		images.put(1, Texture.loadTexture("playermodels/yellow/walk.gif"));
+		images.put(2, Texture.loadTexture("playermodels/yellow/jump.png"));
 		
 	}
 
@@ -144,8 +150,6 @@ public class Player extends Entity implements Moveable,Keyable {
 				walking= true;
 				
 
-				loadImage("playermodels/" + model + "/walk.gif");
-				setImageDimensions(ww, wh, -2, -2);
 				
 				
 
@@ -158,10 +162,6 @@ public class Player extends Entity implements Moveable,Keyable {
 				dx = 2;
 				walking= true;
 				
-				
-
-				loadImage("playermodels/" + model + "/walk.gif");
-				setImageDimensions(ww, wh, -2, -2);
 				
 				
 
@@ -262,24 +262,19 @@ public class Player extends Entity implements Moveable,Keyable {
 			if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
 				dx = 0;
 				walking= false;
-				loadImage("playermodels/" + model + "/stand.png");
-				
 				
 				
 				if(invisible)
 					toggleInvisiblility();
 				
-				setImageDimensions(rw, rh, -2, -2);
 			}
 
 			if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
 				dx = 0;
 				walking= false;
 				if(right) x=x+(getRestingWidth()+4);
-				loadImage("playermodels/" + model + "/stand.png");
 				if(invisible)
 					toggleInvisiblility();
-				setImageDimensions(rw, rh, -2, -2);
 			}
 
 			if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
@@ -357,6 +352,28 @@ public class Player extends Entity implements Moveable,Keyable {
 	@Override
 	public void move() {
 		
+		if(!onground && !climbing){
+			if(getImage() != images.get(2)){
+				loadImage(Texture.loadTexture("playermodels/yellow/jump.png"));
+				setImageDimensions(ww, wh, -2, -2);
+			}
+			
+		} else {
+			if(walking){
+				if(getImage() != images.get(1)){
+					loadImage(Texture.loadTexture("playermodels/yellow/walk.gif"));
+					setImageDimensions(rw, rh, -2, -2);
+				}
+				
+			} else {
+				if(getImage() != images.get(0)){
+					loadImage(Texture.loadTexture("playermodels/yellow/stand.png"));
+					setImageDimensions(rw, rh, -2, -2);
+				}
+				
+			}
+		}
+		
 		if(!walking) setImageDimensions(rw, rh, -2, -2);
 		else setImageDimensions(ww, wh, -2, -2);
 		
@@ -376,7 +393,7 @@ public class Player extends Entity implements Moveable,Keyable {
 		
 		
 		
-		if (gravity) {
+		if (gravity) { 
 
 			onground = false;
 			up = false;

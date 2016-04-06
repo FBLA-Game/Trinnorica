@@ -507,8 +507,7 @@ public class GameBoard extends Board implements ActionListener {
 	//Expand keys (multiple) learn inventory.
 	private void loadLevel8(boolean debug){
 		
-		level8.add(new Wall(16*30, 8*30, 9*30, State.VERTICAL, "111111"));
-		level8.add(new Wall(20*30, 5*30, 9*30, State.VERTICAL, "111111"));
+		
 		
 		for(int i=0;i!=32;i++){
 			if(i<19&&i!=7){
@@ -517,7 +516,6 @@ public class GameBoard extends Board implements ActionListener {
 			
 			if(i>=7 && i<17){
 				level8.add(new Ladder(7*30,i*30));
-				level8.add(new Ladder(19*30,i*30));
 			}
 			
 			level8.add(new Floor(i*30,17*30,Floor.GRAY_STONE));
@@ -530,7 +528,8 @@ public class GameBoard extends Board implements ActionListener {
 		
 		level8.add(new Gate(31*30,16*30));
 		
-		
+		level8.add(new Wall(16*30, 9*30, 8*30, State.VERTICAL, "111111"));
+		level8.add(new Wall(20*30, 5*30, 9*30, State.VERTICAL, "111111"));
 
 		if(!debug) level8.add(Bridge.getPlayer());
 		
