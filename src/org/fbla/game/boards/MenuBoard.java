@@ -267,19 +267,27 @@ public class MenuBoard extends Board implements ActionListener {
 	private class MMListener extends MouseMotionAdapter {
 
 		public void mouseMoved(MouseEvent e) {
-			if(board.contains(e.getPoint())) mouse = true; else mouse = false;
+			if(board.contains(e.getPoint())){
+				mouse = true;
+				
+			} else mouse = false;
 			mx = e.getX();
 			my = e.getY();
 			for (Clickable clickable : clickables) {
 				if (clickable.getPolygon().contains(e.getPoint())) {
 					clickable.mouseMoved(e);
-				}
+					((Button) clickable).over = true;
+					
+				} else ((Button) clickable).over = false;
 			}
 
 		}
+		
 	}
 
 	private class MListener extends MouseAdapter {
+		
+
 		
 		
 		public void mousePressed(MouseEvent e) {

@@ -1584,7 +1584,9 @@ public class GameBoard extends Board implements ActionListener {
 			for (Clickable clickable : clickables) {
 				if (clickable.getPolygon().contains(e.getPoint())) {
 					clickable.mouseMoved(e);
-				}
+					((Button) clickable).over = true;
+					
+				} else ((Button) clickable).over = false;
 			}
 
 		}

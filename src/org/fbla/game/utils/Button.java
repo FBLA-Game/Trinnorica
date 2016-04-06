@@ -22,6 +22,7 @@ public class Button implements Clickable {
     Color back;
     Font font;
     public ButtonMethod method;
+    public boolean over = false;
 	
 	public Button(String message, int x, int y, int width, int height, Color fore, Color back, Font font, ButtonMethod method){
 		this.message = message;
@@ -61,7 +62,6 @@ public class Button implements Clickable {
 	
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -91,10 +91,22 @@ public class Button implements Clickable {
 	@Override
 	public Polygon drawPolygon(Graphics g) {
 		Polygon p = getPolygon();
-		g.setColor(back);
-		g.fillPolygon(p);
-		g.setColor(fore);
-		g.drawString(message, x-(g.getFontMetrics(g.getFont()).stringWidth(message)/2), y + (g.getFontMetrics().getHeight()/4));
+		
+		if(over){
+			g.setColor(fore);
+			g.fillPolygon(p);
+			g.setColor(back);
+			g.drawString(message, x-(g.getFontMetrics(g.getFont()).stringWidth(message)/2), y + (g.getFontMetrics().getHeight()/4));
+			
+		} else {
+
+			g.setColor(back);
+			g.fillPolygon(p);
+			g.setColor(fore);
+			g.drawString(message, x-(g.getFontMetrics(g.getFont()).stringWidth(message)/2), y + (g.getFontMetrics().getHeight()/4));
+			
+		
+		}
 		return p;
 	}
 
