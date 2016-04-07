@@ -423,6 +423,7 @@ public class Player extends Entity implements Moveable,Keyable {
 					}
 					if(sprite instanceof Tool){
 						setTool(((Tool) sprite));
+						Audio.playSound(Sound.TOOL);
 						inventory.add(((Tool) sprite));
 					}
 					if(sprite.getSubType().equals(SpriteSubType.BAD_THINGS)){
@@ -462,7 +463,7 @@ public class Player extends Entity implements Moveable,Keyable {
 					if(sprite.getType().equals(SpriteType.GATE)){
 						((GameBoard)Bridge.getGame().getBoard()).gameStatus = "won:" + level;
 						((GameBoard)Bridge.getGame().getBoard()).ingame = false;
-						Audio.playSound(Sound.WIN);
+						Audio.playSound(Sound.LEVELUP);
 						x = 0;
 						y = 0;
 					}

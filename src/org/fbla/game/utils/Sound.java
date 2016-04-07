@@ -10,6 +10,8 @@ public enum Sound {
 	JUMP("jump_1.wav:jump_2.wav"),
 	SCORE("score.wav"),
 	WIN("win.wav"),
+	LEVELUP("win.wav"),
+	TOOL("levelup.wav"),
 	TEST("test.wav");
 	
 	String sound;
