@@ -787,9 +787,14 @@ public class GameBoard extends Board implements ActionListener {
 			g.setFont(small);
 
 			g.drawString(inv, (B_WIDTH / 2) - (fmlarge.stringWidth(inv) / 2), 30);
+			Image img = Bridge.getPlayer().inventory.get(l).getImage();
+			Image holder = Texture.loadTexture("item-holder.png");
 
-			g.drawImage(Bridge.getPlayer().inventory.get(l).getImage(), B_WIDTH / 2, B_HEIGHT / 2, 50, 50, this);
-
+			g.drawImage(holder, B_WIDTH / 2-(holder.getWidth(null)), B_HEIGHT / 2 - (holder.getHeight(null)), holder.getWidth(null)*2, holder.getHeight(null)*2, this);
+			g.drawImage(img, B_WIDTH / 2-(img.getWidth(null)), B_HEIGHT / 2 - (img.getHeight(null)), img.getWidth(null)*2, img.getHeight(null)*2, this);
+			
+			
+			
 			clickables.add(new Button(close, B_WIDTH / 4, (B_HEIGHT / 2 + B_HEIGHT) / 2, B_WIDTH / 6, 18, Color.GRAY,
 					Color.WHITE, small, ButtonMethod.CLOSE_INVENTORY));
 
@@ -969,13 +974,11 @@ public class GameBoard extends Board implements ActionListener {
 			g.drawImage(Texture.loadTexture("aim.png"), mx, my, this); 
 		}
 		
-		
+		g.drawImage(Texture.loadTexture("item-holder.png"), ((B_WIDTH / 2 + B_WIDTH) / 2 + g.getFontMetrics().stringWidth("Tool:")), 25, this);
 		if (Bridge.getPlayer().hasTool()) {
 			Tool tool = ((Player) Bridge.getPlayer()).getTool();
-			g.drawImage(tool.getImage(), ((B_WIDTH / 2 + B_WIDTH) / 2 + g.getFontMetrics().stringWidth("Tool:")), 25, this);
-		} else {
-			g.drawImage(Texture.loadTexture("unknown.png"), ((B_WIDTH / 2 + B_WIDTH) / 2 + g.getFontMetrics().stringWidth("Tool:")), 25, this);
-		}
+			g.drawImage(tool.getImage(), ((B_WIDTH / 2 + B_WIDTH) / 2 + g.getFontMetrics().stringWidth("Tool:"))+3, 28, this);
+		} 
 		if (debug && hitboxes)
 			g.drawPolygon(Bridge.getPlayer().getPolygon());
 

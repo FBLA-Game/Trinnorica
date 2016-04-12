@@ -45,7 +45,7 @@ public class Sprite {
 		((GameBoard)Bridge.getGame().getBoard()).removeSprite(this);
 		exists = false;
 		if(getType() == SpriteType.KEY){
-			((Key) this).getEntity().removeTool((Tool) this);
+			((Key)this).removeTool((Tool) this);
 		}
     }
     

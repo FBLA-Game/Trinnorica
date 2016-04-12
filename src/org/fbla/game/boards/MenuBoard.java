@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,17 +19,12 @@ import java.util.List;
 import javax.swing.Timer;
 
 import org.fbla.game.Bridge;
-import org.fbla.game.sprites.tools.Bow;
-import org.fbla.game.sprites.tools.FireBow;
-import org.fbla.game.sprites.tools.Key;
-import org.fbla.game.sprites.tools.NinjaCloak;
 import org.fbla.game.spriteutils.Clickable;
 import org.fbla.game.utils.Background;
 import org.fbla.game.utils.Board;
 import org.fbla.game.utils.BoardType;
 import org.fbla.game.utils.Button;
 import org.fbla.game.utils.ButtonMethod;
-import org.fbla.game.utils.Utils;
 
 import res.Texture;
 
@@ -95,13 +91,13 @@ public class MenuBoard extends Board implements ActionListener {
 		
 		g.setColor(Color.WHITE);
 
-		g.drawImage(Background.WIN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
+		g.drawImage(Background.MENU.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
 		
-//		g.drawImage(Texture.loadTexture("title.png"), M_WIDTH/2-200, 25, 400, 50, this);
+		g.drawImage(Texture.loadTexture("title.png"), M_WIDTH/2-200, 25, 400, 50, this);
 		
-		g.setFont(Bridge.font);
+//		g.setFont(Bridge.font);
 		
-		g.drawString("Trinnorica", (M_WIDTH/2) - (g.getFontMetrics().stringWidth("Trinnorica")/2), 55);
+//		g.drawString("Trinnorica", (M_WIDTH/2) - (g.getFontMetrics().stringWidth("Trinnorica")/2), 55);
 
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 		
@@ -115,7 +111,10 @@ public class MenuBoard extends Board implements ActionListener {
 		
 		g.drawImage(Texture.loadTexture("playermodels/" +model+ "/stand.png"),
 		
-				(M_WIDTH / 2) - ((13 * 5) / 2), (M_HEIGHT / 2) - ((44 * 5) / 2), Bridge.getPlayer().getRestingWidth() * 5, Bridge.getPlayer().getRestingHeight() * 5, this);
+				(M_WIDTH / 2) - ((Bridge.getPlayer().getRestingWidth() * 5) / 2), (M_HEIGHT / 2) - ((Bridge.getPlayer().getRestingHeight() * 5) / 2), Bridge.getPlayer().getRestingWidth() * 5, Bridge.getPlayer().getRestingHeight() * 5, this);
+//		Image img = Texture.loadTexture("moving_floor.gif");
+//		g.drawImage(img,
+//				(M_WIDTH / 2) - ((img.getWidth(null) * 5) / 2), (M_HEIGHT / 2) - ((img.getHeight(null) * 5) - Bridge.getPlayer().getWalkingHeight()/2 ), img.getWidth(null) * 5, img.getHeight(null) * 5, this);
 
 		g.setColor(Color.white);
 
