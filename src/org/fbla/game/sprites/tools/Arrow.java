@@ -32,8 +32,8 @@ public class Arrow extends Projectile  {
 //        a = Math.atan((dy-(double) (y))/(dx-(double) (x)));
 //        this.dx = 1;
   //      this.dy = Math.tan(Math.atan(dy/dx));
-        this.dx = ((dx/3)-shooter.x)/10;
-        this.dy = ((dy/3)-shooter.y)/20;
+        this.dx = ((dx)-shooter.x)/30;
+        this.dy = ((dy)-shooter.y)/30;
         
         
         a = a *100;

@@ -57,7 +57,7 @@ public class Player extends Entity implements Moveable,Keyable {
 	public int level = 1;
 	int f = 970;
 	
-	public int rw = 13;
+	public int rw = 30;
 	public int rh = 40;
 	public int ww = 30;
 	public int wh = 40;
