@@ -32,8 +32,6 @@ public class Utils {
 	private static File rootFile;
 	public static boolean firsttime = false;
 	public static HashMap<Integer, Background> backgrounds = new HashMap<>();
-	public static HashMap<String, SoundHolder> soundHolders = new HashMap<>();
-	public static HashMap<String, Integer> sounds = new HashMap<>();
 	public static HashMap<Integer, int[]> spawns = new HashMap<>();
 
 	public static void init() {
@@ -364,30 +362,6 @@ public class Utils {
 	}
 
 
-	public static OutputStream createSoundHolder(String name) {
-		SoundHolder holder = new SoundHolder(name);
-		soundHolders.put(name, holder);
-		return holder;
-	}
 
-
-	public static SoundHolder getSound(String name) {
-		if(soundHolders.containsKey(name))
-			return soundHolders.get(name);
-		else {
-			createSoundHolder(name);
-			return soundHolders.get(name);
-		}
-	}
-	
-	public static int holder(String name){
-		return sounds.get(name);
-	}
-	
-	public static void write(String name, int info){
-		sounds.put(name, info);
-	}
-
-	
 
 }
