@@ -27,7 +27,7 @@ public class Sprite {
     public String imagePath = "";
     private Sprite sprite;
     public Polygon bounds;
-    private boolean exists = false;
+    protected boolean exists = false;
 
     public Sprite(int x, int y) {
     	this.sprite = this;
