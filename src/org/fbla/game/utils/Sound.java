@@ -13,7 +13,7 @@ public enum Sound {
 	LEVELUP("win.wav"),
 	TOOL("levelup.wav"),
 	TEST("test.wav"), 
-	BACKGROUND("background_1.wav");
+	BACKGROUND("background_1.wav:background_2.wav");
 	
 	String sound;
 	

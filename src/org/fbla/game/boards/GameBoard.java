@@ -1364,7 +1364,7 @@ public class GameBoard extends Board implements ActionListener {
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-			if(!paused || !ingame) return;
+//			if(!paused || !ingame) return;
 			for (Sprite sprite : getLevel(Bridge.player.level))
 				if (sprite instanceof Keyable)
 					((Keyable) sprite).keyReleased(e);
