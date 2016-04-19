@@ -14,8 +14,10 @@ import org.fbla.game.boards.GameBoard;
 import org.fbla.game.boards.LevelDebugBoard;
 import org.fbla.game.boards.MenuBoard;
 import org.fbla.game.sprites.Player;
+import org.fbla.game.utils.Sound;
 import org.fbla.game.utils.Utils;
 
+import res.Audio;
 import res.Texture;
 
 public class Bridge {
@@ -129,6 +131,8 @@ public class Bridge {
 		((GameBoard) game.board).init();
 		
 		Utils.broadcastMessage(player.getPlayerModel());
+		
+		
 	
 	
 	}
