@@ -134,6 +134,8 @@ public class Player extends Entity implements Moveable,Keyable {
 		
 		if(!Bridge.getGame().getBoard().getType().equals(BoardType.GAME_BOARD)) return;
 		if(!((GameBoard)Bridge.getGame().getBoard()).paused){
+			
+			
 
 			int key = e.getKeyCode();
 			if(key == KeyEvent.VK_CONTROL){
@@ -153,6 +155,9 @@ public class Player extends Entity implements Moveable,Keyable {
 				
 				
 
+			}
+			if(ctrl && key == KeyEvent.VK_ALT){
+				Audio.nextSong();
 			}
 
 			if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {

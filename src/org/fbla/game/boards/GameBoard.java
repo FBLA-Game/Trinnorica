@@ -1378,6 +1378,8 @@ public class GameBoard extends Board implements ActionListener {
 				loadLevel();
 			}
 			
+			
+			
 			if(inv){
 
 				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
