@@ -62,8 +62,10 @@ import org.fbla.game.utils.Button;
 import org.fbla.game.utils.ButtonMethod;
 import org.fbla.game.utils.Direction;
 import org.fbla.game.utils.InteractionMethod;
+import org.fbla.game.utils.Sound;
 import org.fbla.game.utils.Utils;
 
+import res.Audio;
 import res.Texture;
 
 public class GameBoard extends Board implements ActionListener {
@@ -166,6 +168,8 @@ public class GameBoard extends Board implements ActionListener {
 		loadLevel();
 		
 		vc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		
+		Audio.playSound(Sound.BACKGROUND);
 
 	}
 	
