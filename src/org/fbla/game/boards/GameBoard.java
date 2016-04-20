@@ -30,7 +30,7 @@ import java.util.Random;
 import javax.swing.Timer;
 
 import org.fbla.game.Bridge;
-import org.fbla.game.sprites.Boss;
+import org.fbla.game.sprites.Box;
 import org.fbla.game.sprites.Competitor;
 import org.fbla.game.sprites.Door;
 import org.fbla.game.sprites.FallingFloor;
@@ -125,7 +125,7 @@ public class GameBoard extends Board implements ActionListener {
 	ArrayList<Sprite> level8 = new ArrayList<>();
 	ArrayList<Sprite> level9 = new ArrayList<>();
 	ArrayList<Sprite> level10 = new ArrayList<>();
-	private HashMap<Integer, ArrayList<Sprite>> levels = new HashMap<>();
+	public HashMap<Integer, ArrayList<Sprite>> levels = new HashMap<>();
 
 	public static int maxlives = 5;
 
@@ -276,6 +276,7 @@ public class GameBoard extends Board implements ActionListener {
 		
 		
 		
+		
 		for(int x=3;x!=20;x++){
 			level1.add(new Floor(x*30,6*30,Floor.GRASS,FloorBottom.GRASS));
 		}
@@ -305,7 +306,7 @@ public class GameBoard extends Board implements ActionListener {
 		}
 	
 		
-		
+		level1.add(new Box(15*30,15*30));
 		
 //		level1.add(new Door(18 * 15, (7* 15)+10, 1));
 //		level1.add(new Bow(9 * 30, 20 * 15));

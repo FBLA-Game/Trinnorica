@@ -21,7 +21,7 @@ public enum SpriteType {
 	OPEN_DOOR,
 	SPIKE, 
 	BOSS,
-	BOOTS;
+	BOOTS, BOX;
 	
 	SpriteType() {
 		
@@ -47,6 +47,7 @@ public enum SpriteType {
 		if(this == SWITCH) return SpriteSubType.INTERACTABLE;
 		if(this == TRIGGERED_SWITCH) return SpriteSubType.INTERACTABLE;
 		if(this == FALLING_WALL) return SpriteSubType.COLLIDEABLE;
+		if(this == BOX) return SpriteSubType.COLLIDEABLE;
 		else return null;
 	}
 }
