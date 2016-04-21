@@ -57,7 +57,7 @@ public class Player extends Entity implements Moveable,Keyable {
 	public int level = 1;
 	int f = 970;
 	
-	public int rw = 30;
+	public int rw = 13;
 	public int rh = 40;
 	public int ww = 30;
 	public int wh = 40;
@@ -358,10 +358,10 @@ public class Player extends Entity implements Moveable,Keyable {
 	public void move() {
 		
 		if(!onground && !climbing){
-			if(getImage() != images.get(2)){
-				loadImage(Texture.loadTexture("playermodels/yellow/jump.png"));
-				setImageDimensions(ww, wh, -2, -2);
-			}
+//			if(getImage() != images.get(2)){
+//				loadImage(Texture.loadTexture("playermodels/yellow/jump.png"));
+//				setImageDimensions(ww, wh, -2, -2);
+//			}
 			
 		} else {
 			if(walking){
@@ -407,7 +407,7 @@ public class Player extends Entity implements Moveable,Keyable {
 			climbing = false;
 			
 			Rectangle polygon = getPolygon().getBounds();
-			polygon.setBounds(x, y, width, height+1);
+			polygon.setBounds(x, y, width+2, height+1);
 			
 			
 
@@ -476,6 +476,11 @@ public class Player extends Entity implements Moveable,Keyable {
 					if(sprite.getSubType().equals(SpriteSubType.COLLIDEABLE) || sprite.getSubType().equals(SpriteSubType.INTERACTABLE) || sprite.getSubType().equals(SpriteSubType.ENEMY)){
 						if(sprite.getSubType().equals(SpriteSubType.ENEMY)){
 							kill(DamageReason.ENEMY);
+						}
+						
+						if(sprite instanceof Box){
+							((Box) sprite).bounce(this);
+							continue;
 						}
 						
 						switch(getIntercectingDirection(sprite.getPolygon().getBounds())){

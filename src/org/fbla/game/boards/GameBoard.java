@@ -874,6 +874,8 @@ public class GameBoard extends Board implements ActionListener {
 		
 		for (Sprite sprite : sprites) {
 			
+			
+			
 			if(sprite instanceof Entity){
 				e = e+1;
 				continue;

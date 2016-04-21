@@ -7,17 +7,19 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.fbla.game.Bridge;
 import org.fbla.game.boards.GameBoard;
 import org.fbla.game.sprites.Player;
+import org.fbla.game.spriteutils.Sprite;
 
 import res.Audio;
 
@@ -33,6 +35,7 @@ public class Utils {
 	public static boolean firsttime = false;
 	public static HashMap<Integer, Background> backgrounds = new HashMap<>();
 	public static HashMap<Integer, int[]> spawns = new HashMap<>();
+	public static String[] hexvalues = new String[] {"a","b","c","d","e","f","1","2","3","4","5","6","7","8","9","0"};
 
 	public static void init() {
 		root = "C://KANSAS_WELLSVILLE_HIGHSCHOOL/master/";
@@ -359,6 +362,28 @@ public class Utils {
 
 	public static int getPlayerLevel() {
 		return player_level;
+	}
+
+
+	public static void startRandomColorTimer(final Sprite sprite) {
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask(){
+			
+			@Override
+			public void run(){
+				sprite.loadImage(Images.createColorImage(sprite, Utils.generateRandomHEXColor()));
+			}
+		}, 10L, 10L);
+	}
+	
+	public static String generateRandomHEXColor(){
+		String color = "#";
+		
+		for(int i=0;i!=6;i++){
+			color = color + hexvalues[new Random().nextInt(hexvalues.length)];
+		}
+		return color;
+		
 	}
 
 

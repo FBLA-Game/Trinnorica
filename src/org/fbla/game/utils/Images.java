@@ -11,12 +11,12 @@ import java.awt.image.FilteredImageSource;
 import java.awt.image.ImageFilter;
 import java.awt.image.ImageProducer;
 import java.awt.image.RGBImageFilter;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.fbla.game.sprites.Door;
 import org.fbla.game.sprites.tools.Key;
-import org.fbla.game.spriteutils.Identifiable;
 import org.fbla.game.spriteutils.Sprite;
-import org.fbla.game.spriteutils.Tool;
 
 public class Images {
 	
@@ -163,7 +163,15 @@ public class Images {
 	
 	
 
-	public static Image createColorImage(String string) {
+	public static Image createColorImage(Sprite sprite, String string) {
+		
+		
+		
+		
+		
+		if(string == "random"){
+			Utils.startRandomColorTimer(sprite);
+		}
 		BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 		image.setRGB(0, 0, Color.decode(string).getRGB());
 		return image;
