@@ -23,4 +23,6 @@ public enum Background {
 	public Image getImage(){
 		return Texture.loadTexture("backgrounds/" + background);
 	}
+	
+	
 }

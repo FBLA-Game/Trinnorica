@@ -387,6 +387,35 @@ public class Utils {
 		return color;
 		
 	}
+
+
+	public static LevelType getLevelType(int level) {
+		switch(level){
+		case 1:
+			return LevelType.GRASS;
+		case 2:
+			return LevelType.GRASS;
+		case 3:
+			return LevelType.GRASS;
+		case 4:
+			return LevelType.GRASS;
+		case 5:
+			return LevelType.GRASS;
+		case 6:
+			return LevelType.GRASS;
+		case 7:
+			return LevelType.GRASS;
+		case 8:
+			return LevelType.GRASS;
+		case 9:
+			return LevelType.GRASS;
+		case 10:
+			return LevelType.GRASS;
+		default:
+			return null;
+			
+		}
+	}
 	
 
 

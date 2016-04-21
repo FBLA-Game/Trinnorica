@@ -1,6 +1,6 @@
 package org.fbla.game.utils;
 
-public enum MusicType {
+public enum LevelType {
 	
 	CAVE,
 	BOSS,
