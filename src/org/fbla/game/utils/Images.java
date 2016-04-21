@@ -171,7 +171,9 @@ public class Images {
 		
 		if(string == "random"){
 			Utils.startRandomColorTimer(sprite);
+			return null;
 		}
+		
 		BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 		image.setRGB(0, 0, Color.decode(string).getRGB());
 		return image;

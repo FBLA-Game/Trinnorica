@@ -479,6 +479,7 @@ public class Player extends Entity implements Moveable,Keyable {
 						}
 						
 						if(sprite instanceof Box){
+							if(!walking && (((Box)sprite).falling || ((Box)sprite).onground)) ((Box) sprite).stop(); else
 							((Box) sprite).bounce(this);
 							continue;
 						}

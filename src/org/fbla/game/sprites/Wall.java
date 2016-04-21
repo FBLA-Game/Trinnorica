@@ -75,19 +75,19 @@ public class Wall extends Sprite {
     	switch(state){
     	
     	case VERTICAL:
-    		loadImage(Images.createColorImage("#" + color));
+    		loadImage(Images.createColorImage(this,"#" + color));
     		height = size;
     		setImageDimensions(7, size);
     		break;
     
     		
     	case HORIZONTAL:
-    		loadImage(Images.createColorImage("#" + color));
+    		loadImage(Images.createColorImage(this,"#" + color));
     		setImageDimensions(size, 7);
     		width = size;
     		break;
     		default:
-    			loadImage(Images.createColorImage("#" + color));
+    			loadImage(Images.createColorImage(this,"#" + color));
     			break;
     	}
     }

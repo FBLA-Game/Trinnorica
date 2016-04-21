@@ -373,8 +373,10 @@ public class Utils {
 			public void run(){
 				sprite.loadImage(Images.createColorImage(sprite, Utils.generateRandomHEXColor()));
 			}
-		}, 10L, 10L);
+		}, 100L, 100L);
 	}
+	
+	
 	
 	public static String generateRandomHEXColor(){
 		String color = "#";
@@ -385,6 +387,7 @@ public class Utils {
 		return color;
 		
 	}
+	
 
 
 

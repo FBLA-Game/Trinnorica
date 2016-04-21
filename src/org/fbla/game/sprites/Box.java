@@ -23,7 +23,7 @@ public class Box extends Entity implements Moveable {
 	public double dy;
 	public boolean onground = false;
 	private boolean jumping = false;
-	private boolean falling = false;
+	boolean falling = false;
 	
 	
 	public Box(int x, int y) {
@@ -40,7 +40,7 @@ public class Box extends Entity implements Moveable {
     }
 
     private void init() {
-    	loadImage(Images.createColorImage("#000000"));
+    	loadImage(Images.createColorImage(this, "random"));
     	setImageDimensions(30, 30);
     }
 
@@ -50,6 +50,10 @@ public class Box extends Entity implements Moveable {
 
 	@Override
 	public void move() {
+		
+		if(x>=950 || x<=0){
+			changeDirection();
+		}
 		
 		for (Sprite sprite : ((GameBoard)Bridge.getGame().getBoard()).sprites) {
 			if(sprite instanceof Player) continue;
@@ -109,6 +113,13 @@ public class Box extends Entity implements Moveable {
 	}
 
 
+	void changeDirection() {
+		dx=dx*-1;
+	}
+
+
+
+
 	@Override
 	public void disable() {
 		// TODO Auto-generated method stub
@@ -144,5 +155,12 @@ public class Box extends Entity implements Moveable {
 			else dx = dx*-1;
 		
 		}
+	}
+
+
+
+
+	public void stop() {
+		dx = 0;
 	}
 }
