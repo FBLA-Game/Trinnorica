@@ -13,7 +13,9 @@ public enum Sound {
 	LEVELUP("win.wav"),
 	TOOL("levelup.wav"),
 	TEST("test.wav"), 
-	BACKGROUND("background_1.wav:background_2.wav:background_3.wav");
+	BACKGROUND_CAVE("background_cave_1.wav"),
+	BACKGROUND_BOSS("boss_1.wav"),
+	BACKGROUND_GRASS("background_grass_1.wav");
 	
 	String sound;
 	
@@ -32,6 +34,46 @@ public enum Sound {
 		
 		}
 		return sound;
+	}
+	
+	public SoundType getSoundType(){
+		switch(this){
+		case BUTTON_CLICK:
+			return SoundType.OTHER;
+		case BOW_SHOOT:
+			return SoundType.OTHER;
+		case JUMP:
+			return SoundType.OTHER;
+		case SCORE:
+			return SoundType.OTHER;
+		case WIN:
+			return SoundType.OTHER;
+		case LEVELUP:
+			return SoundType.OTHER;
+		case BACKGROUND_CAVE:
+			return SoundType.BACKGROUND;
+		case BACKGROUND_BOSS:
+			return SoundType.BACKGROUND;
+		case BACKGROUND_GRASS:
+			return SoundType.BACKGROUND;
+		default:
+			return SoundType.OTHER;
+			
+		}
+		
+	}
+
+	public static Sound levelBackgroundMusic(LevelType levelType) {
+		switch(levelType){
+		case BOSS:
+			return BACKGROUND_BOSS;
+		case GRASS:
+			return BACKGROUND_GRASS;
+		case CAVE:
+			return BACKGROUND_CAVE;
+		default:
+			return Sound.BACKGROUND_GRASS;
+		}
 	}
 
 }

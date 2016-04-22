@@ -156,9 +156,6 @@ public class Player extends Entity implements Moveable,Keyable {
 				
 
 			}
-			if(ctrl && key == KeyEvent.VK_ALT){
-				Audio.nextSong();
-			}
 
 			if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
 				setDirection(Direction.RIGHT);

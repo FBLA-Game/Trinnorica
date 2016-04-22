@@ -747,7 +747,8 @@ public class GameBoard extends Board implements ActionListener {
 			Utils.displayMessage(55, "Don't touch these guys! They will kill you instantly. /nTry shooting them instead?", (int) (B_WIDTH*0.6), 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
 		}
 		
-		Audio.playSound(Sound.levelBackgroundMusic(Utils.getLevelType(Bridge.getPlayer().getLevel())));
+		Audio.playBackground(Sound.levelBackgroundMusic(Utils.getLevelType(Bridge.getPlayer().getLevel())));
+		Utils.broadcastMessage(Utils.getLevelType(Bridge.getPlayer().getLevel()) + "");
 
 	}
 

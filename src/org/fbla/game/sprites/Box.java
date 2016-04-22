@@ -10,12 +10,8 @@ import org.fbla.game.spriteutils.Moveable;
 import org.fbla.game.spriteutils.Sprite;
 import org.fbla.game.spriteutils.SpriteSubType;
 import org.fbla.game.spriteutils.SpriteType;
-import org.fbla.game.utils.DamageReason;
 import org.fbla.game.utils.Images;
-import org.fbla.game.utils.Sound;
 import org.fbla.game.utils.Utils;
-
-import res.Audio;
 
 public class Box extends Entity implements Moveable {
 	

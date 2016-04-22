@@ -334,10 +334,7 @@ public class Utils {
 
 	
 
-	public static void playSound(Sound sound) {
-		Audio.playSound(sound);
-		
-	}
+	
 	
 	public static boolean intersects(Shape shape1, Shape shape2){
 		Area a1 = new Area(shape1);
@@ -402,15 +399,15 @@ public class Utils {
 		case 5:
 			return LevelType.GRASS;
 		case 6:
-			return LevelType.GRASS;
+			return LevelType.CAVE;
 		case 7:
-			return LevelType.GRASS;
+			return LevelType.CAVE;
 		case 8:
-			return LevelType.GRASS;
+			return LevelType.CAVE;
 		case 9:
-			return LevelType.GRASS;
+			return LevelType.CAVE;
 		case 10:
-			return LevelType.GRASS;
+			return LevelType.BOSS;
 		default:
 			return null;
 			
