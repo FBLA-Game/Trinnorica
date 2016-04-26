@@ -524,8 +524,7 @@ public class Player extends Entity implements Moveable,Keyable {
 				y += dy;
 				if (x < 1)
 					x = 1;
-				if (y < 1)
-					y = 1;
+				
 				if (x > f - width)
 					x = f - width;
 				return;

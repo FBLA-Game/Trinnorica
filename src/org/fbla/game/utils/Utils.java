@@ -54,6 +54,7 @@ public class Utils {
 		backgrounds.put(8, Background.CAVE);
 		backgrounds.put(9, Background.CAVE);
 		backgrounds.put(10, Background.CAVE);
+		backgrounds.put(11, Background.ENTERING_CAVE);
 		
 		spawns.put(1, new int []{21,460});
 		spawns.put(2, new int []{21,405});
@@ -65,6 +66,7 @@ public class Utils {
 		spawns.put(8, new int []{21,230});
 		spawns.put(9, new int []{21,260});
 		spawns.put(10, new int []{15,430});
+		spawns.put(11, new int []{15,430});
 		
 		
 
@@ -408,6 +410,8 @@ public class Utils {
 			return LevelType.CAVE;
 		case 10:
 			return LevelType.BOSS;
+		case 11:
+			return LevelType.CAVE;
 		default:
 			return null;
 			

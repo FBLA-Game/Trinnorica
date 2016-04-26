@@ -125,6 +125,8 @@ public class GameBoard extends Board implements ActionListener {
 	ArrayList<Sprite> level8 = new ArrayList<>();
 	ArrayList<Sprite> level9 = new ArrayList<>();
 	ArrayList<Sprite> level10 = new ArrayList<>();
+	ArrayList<Sprite> level11 = new ArrayList<>();
+	
 	public HashMap<Integer, ArrayList<Sprite>> levels = new HashMap<>();
 
 	public static int maxlives = 5;
@@ -203,6 +205,7 @@ public class GameBoard extends Board implements ActionListener {
 		level8.clear();
 		level9.clear();
 		level10.clear();
+		level11.clear();
 		levels.clear();
 		
 		
@@ -222,6 +225,7 @@ public class GameBoard extends Board implements ActionListener {
 		level8.clear();
 		level9.clear();
 		level10.clear();
+		level11.clear();
 		
 		if(debug){
 			if(i==1) loadLevel1(true);
@@ -234,7 +238,7 @@ public class GameBoard extends Board implements ActionListener {
 			if(i==8) loadLevel8(true);
 			if(i==9) loadLevel9(true);
 			if(i==10) loadLevel10(true);
-			
+			if(i==11) loadLevel11(true);
 			return;
 			
 		}
@@ -249,6 +253,7 @@ public class GameBoard extends Board implements ActionListener {
 		loadLevel8(false);
 		loadLevel9(false);
 		loadLevel10(false);
+		loadLevel11(false);
 
 		
 		
@@ -638,6 +643,27 @@ public class GameBoard extends Board implements ActionListener {
 	}
 	
 
+	private void loadLevel11(boolean debug){
+		
+		for(int i=0;i!=32;i++){
+			level11.add(new Floor(i*30,17*30,Floor.BLUE_STONE));
+			if(i<17)
+				level11.add(new Ladder(15*30,i*30));
+		}
+		
+
+		
+
+		level11.add(new Gate(14*30,-32));
+		level11.add(new Gate(15*30,-32));
+		level11.add(new Gate(16*30,-32));
+		if(!debug) level11.add(Bridge.getPlayer());
+		
+		levels.put(11, level11);
+		
+	}
+	
+
 	public ArrayList<Sprite> getLevel(int level) {
 		
 
@@ -688,6 +714,7 @@ public class GameBoard extends Board implements ActionListener {
 		level8.clear();
 		level9.clear();
 		level10.clear();
+		level11.clear();
 		
 		Bridge.player.inventory.clear();
 		if(Bridge.player.hasTool()) Bridge.player.removeTool(Bridge.player.getTool());
