@@ -14,7 +14,7 @@ public enum Sound {
 	TOOL("levelup.wav"),
 	TEST("test.wav"), 
 	BACKGROUND_CAVE("background_cave_1.wav"),
-	BACKGROUND_BOSS("boss_1.wav"),
+	BACKGROUND_BOSS("background_boss_1.wav"),
 	BACKGROUND_GRASS("background_grass_1.wav");
 	
 	String sound;

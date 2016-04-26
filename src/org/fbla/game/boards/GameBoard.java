@@ -305,7 +305,7 @@ public class GameBoard extends Board implements ActionListener {
 		}
 	
 		
-		level1.add(new Box(15*30,15*30));
+//		level1.add(new Box(15*30,15*30));
 		
 //		level1.add(new Door(18 * 15, (7* 15)+10, 1));
 //		level1.add(new Bow(9 * 30, 20 * 15));
@@ -543,20 +543,49 @@ public class GameBoard extends Board implements ActionListener {
 	
 	private void loadLevel9(boolean debug){
 		
-		level9.add(new Wall(0, 10*30, 15*30,State.HORIZONTAL));
-		level9.add(new Wall(17*30, 10*30, 15*30,State.HORIZONTAL));
-		
-		level9.add(new Wall(15*30,10*30,8*30,State.VERTICAL));
-		level9.add(new Wall(17*30,10*30,8*30,State.VERTICAL));
-		
-		
-		for(int y=8;y!=19;y++){
-			level9.add(new Gold(16*30,y*30));
+		for(int x=0;x!=32;x++){
+			
+			if(x<16)
+				if(x!=8)
+				level9.add(new Floor(x*30,9*30,Floor.GRAY_STONE));
+			if(x<20)
+				level9.add(new Floor(x*30, 17*30, Floor.GRAY_STONE));
+			else level9.add(new FallingFloor(x*30, 17*30, Floor.GRAY_STONE));
 		}
 		
-		level9.add(new Gate(15*30-12, 37*15, 0));
-		level9.add(new Gate(16*30-12, 37*15, 0));
-		level9.add(new Gate(17*30-12, 37*15, 0));
+		for(int y=0;y!=19;y++){
+			if(y>7 && y<17)
+				level9.add(new Ladder(8*30,y*30));
+		}
+		
+		level9.add(new Key(30*15, 17*15, 3));
+		level9.add(new Bow(29*15, 17*15));
+		
+		Switch s1 = new Switch(-30,-30,new Gate(30*30,8*30),level9,Rotation.DOWN,InteractionMethod.DISAPPEAR);
+		
+		s1.interact();
+		
+		Switch s2 = new Switch(31*30,31*15,new Sprite[] {
+				new Ladder(19*30,8*30),
+				new Ladder(19*30,9*30),
+				new Ladder(19*30,10*30),
+				new Ladder(19*30,11*30),
+				new Ladder(19*30,12*30),
+				new Ladder(19*30,13*30),
+				new Ladder(19*30,14*30),
+				new Ladder(19*30,15*30),
+				new Ladder(19*30,16*30),
+				new Wall(20*30,9*30,12*30,State.HORIZONTAL)
+		},level9,Rotation.LEFT,InteractionMethod.DISAPPEAR);
+		
+		Switch s3 = new Switch(0, 8*30, new Sprite[] {s1, s2}, level9, Rotation.RIGHT, InteractionMethod.TRIGGER);
+		
+		level9.add(s1);
+		level9.add(s2);
+		level9.add(s3);
+		
+		level9.add(new Wall(16*30-7,0,9*30,State.VERTICAL));
+		level9.add(new Door(15*30,14*30+3,3));
 		
 		if(!debug) level9.add(Bridge.getPlayer());
 		

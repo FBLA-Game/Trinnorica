@@ -47,14 +47,14 @@ public class Audio {
 			long frames = clip.getFrameLength();
 			double time = (frames+0.0) / format.getFrameRate();
 			final Timer timer = new Timer();	
-			timer.schedule(new TimerTask() {	
-				@Override		
-				public void run() {	
-					clip.flush();
-					
-					timer.cancel();
-				}	
-			}, (long) time*1000);
+//			timer.schedule(new TimerTask() {	
+//				@Override		
+//				public void run() {	
+//					clip.flush();
+//					
+//					timer.cancel();
+//				}	
+//			}, (long) time*1000);
 			
 			
 			try {
@@ -87,22 +87,23 @@ public class Audio {
 			
 			
 			
-			clip.start();
+			
 			if(sound.getSoundType().equals(SoundType.BACKGROUND)){
 				background = clip;
+				background.start();
 				AudioFormat format = background.getFormat();
 				long frames = background.getFrameLength();
 				double time = (frames+0.0) / format.getFrameRate(); 			
 				final Timer timer = new Timer();	
-				timer.schedule(new TimerTask() {	
-					@Override		
-					public void run() {	
-						clip.flush();
-						
-						playSound(sound);
-						timer.cancel();
-					}	
-				}, (long) time*1000);
+//				timer.schedule(new TimerTask() {	
+//					@Override		
+//					public void run() {	
+//						clip.flush();
+//						
+//						playSound(sound);
+//						timer.cancel();
+//					}	
+//				}, (long) time*1000);
 				Utils.broadcastMessage(name);	
 				
 				try {

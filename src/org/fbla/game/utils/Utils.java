@@ -52,7 +52,7 @@ public class Utils {
 		backgrounds.put(6, Background.CAVE);
 		backgrounds.put(7, Background.CAVE);
 		backgrounds.put(8, Background.CAVE);
-		backgrounds.put(9, Background.ENTERING_CAVE);
+		backgrounds.put(9, Background.CAVE);
 		backgrounds.put(10, Background.CAVE);
 		
 		spawns.put(1, new int []{21,460});
