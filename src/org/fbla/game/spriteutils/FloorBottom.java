@@ -8,7 +8,8 @@ public enum FloorBottom {
 	BLUE_STONE("#373496"),
 	RED_STONE("#721F15"),
 	DIRT("#562B0D"),
-	GRASS("#005600");
+	GRASS("#005600"),
+	TRANSPARENT("clear");
 	
 	String color;
 	

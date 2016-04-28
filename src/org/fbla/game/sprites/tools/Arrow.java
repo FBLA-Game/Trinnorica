@@ -36,11 +36,11 @@ public class Arrow extends Projectile  {
         this.dy = ((dy)-shooter.y)/30;
         
         
-        a = a *100;
-        if(a<-90.0){
-        	a = Math.atan(((double) (y)-dy)/((double) (x)-dx));
-            a = a *100;
-        }
+//        a = a *100;
+//        if(a<-90.0){
+//        	a = Math.atan(((double) (y)-dy)/((double) (x)-dx));
+//            a = a *100;
+//        }
         
 //       this.dx = speed * Math.cos(Math.toDegrees(a));
 //       this.dy = speed * Math.sin(Math.toDegrees(a));

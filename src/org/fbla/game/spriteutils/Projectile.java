@@ -46,8 +46,8 @@ public class Projectile extends Entity implements Moveable {
 		
 		
 		if(sdir){
-			y = (int) (y + dy);
-			x = (int) (x + dx);
+			x += dx;
+			y += dy;
 		} else {
 			if(direction.equals(Direction.RIGHT))
 				x = (int) (x+dx);
