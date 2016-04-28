@@ -18,6 +18,8 @@ public enum FloorBottom {
 	}
 	
 	public Color getColor(){
+		if(color == "clear")
+			return new Color(0, 0, 0, 0);
 		return Color.decode(color);
 	}
 	
