@@ -601,44 +601,95 @@ public class GameBoard extends Board implements ActionListener {
 	private void loadLevel10(boolean debug){
 		
 		
-		for(int x=25;x!=32;x++){
-			level10.add(new Floor(x*30,-30,Floor.GRAY_STONE,FloorBottom.BLUE_STONE));
+		
+		
+		
+		for(int x=0;x!=7;x++){
+			level10.add(new Floor(x*30, 5*30, Floor.GRAY_STONE, FloorBottom.STONE));
+		}
+		for(int x=24;x!=32;x++){
+			level10.add(new Floor(x*30, 5*30, Floor.GRAY_STONE, FloorBottom.STONE));
+		}
+		for(int x=0;x!=10;x++){
+			level10.add(new Floor(x*30, 10*30, Floor.GRAY_STONE, FloorBottom.STONE));
 		}
 		
 		
-		for(int x=17;x!=32;x++){
-			level10.add(new Floor(x*30, 5*30,Floor.GRAY_STONE));
+		
+		level10.add(new Bow( 2*30,9*30));
+		
+		for(int y=10;y!=16;y++){
+			level10.add(new Ladder(5*30, y*30));
 		}
 		
-		for(int x=0;x!=16;x++){
-			level10.add(new FallingFloor(x*30, 10*30,Floor.RED_STONE));
-		}
+		Switch s1 = new Switch(63*15,1*30,new Sprite[] {
+				new Ladder(3*30,5*30),
+				new Ladder(3*30,6*30),
+				new Ladder(3*30,7*30),
+				new Ladder(3*30,8*30),
+				new Ladder(3*30,9*30),
+				new Wall(7*30,5*30,17*30,State.HORIZONTAL)
+		}, level10,Rotation.LEFT,InteractionMethod.DISAPPEAR);
 		
 		
-		for(int x=0;x!=32;x++){
-			level10.add(new Floor(x*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE));
-		}
+		Switch s2 = new Switch(63*15,5*30,new Sprite[] {
+			
+				new Floor (0*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(1*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(2*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(3*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(4*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(5*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(6*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(7*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(8*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(9*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(10*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(11*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(12*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(13*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(14*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(15*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(16*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(17*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(18*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(19*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(20*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(21*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(22*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(23*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(24*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(25*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(26*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(27*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(28*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(29*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(30*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(31*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
+				new Floor(32*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),		
+		},level10,Rotation.LEFT,InteractionMethod.DISAPPEAR);
 		
-		for(int y=4;y!=16;y++){
-			level10.add(new Ladder(16*30, y*30));
-		}
 		
-		for(int x=0;x!=16;x++){
-			if(x==0)
-				level10.add(new Key(x*30, 19*15, 1));
-			else level10.add(new Gold(x*30+11, 10*30-11));
-		}
 		
-		level10.add(new Door(25*30, (4*15)+3, 1));
 		
-		level10.add(new Gate(31*30, 8*15, GateType.FLAG));
+		
+		
+		
+		
+		
 		
 
+		
+		
+		
+		level10.add(s1);
+		level10.add(s2);
+		s1.interact();
 		
 
 		if(!debug) level10.add(Bridge.getPlayer());
 		
-		levels.put(10, level10);
+		levels.put(10, level10 );
 		
 	}
 	
