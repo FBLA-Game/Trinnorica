@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -37,7 +38,11 @@ public class CreditsBoard extends Board implements ActionListener {
 	public int M_HEIGHT = 640;
 	private int mx = 0;
 	private int my = 0;
+	private int i = 0;
+	private int st = M_HEIGHT;
+	private int si = 20;
 	Timer timer;
+	boolean drawing = true;
 	private Board board;
 	boolean mouse = true;
 	public List<Clickable> clickables = new ArrayList<>();
@@ -84,23 +89,64 @@ public class CreditsBoard extends Board implements ActionListener {
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 50));
 		
 		
-		g.drawString("Trinnorica", (M_WIDTH/2) - (g.getFontMetrics().stringWidth("Trinnorica")/2), 55);
+//		g.drawString("Trinnorica", (M_WIDTH/2) - (g.getFontMetrics().stringWidth("Trinnorica")/2), 55);
 
+		g.setFont(new Font(Font.SANS_SERIF, Font.TYPE1_FONT, si));
 		
-		g.setFont(new Font(Font.SANS_SERIF, Font.TYPE1_FONT, 15));
-		g.drawString("Authors & Developers:", M_WIDTH/2 - (g.getFontMetrics().stringWidth("Authors & Developers:")/2), 100);
-		String a = "Cameron Witcher, Joseph Phillips";
-		g.drawString(a, M_WIDTH/2 - (g.getFontMetrics().stringWidth(a)/2), 120);
+		drawOutlineString("Authors & Developers:", x("Authors & Developers",g), st+(si*1)-i,g);
+		drawOutlineString("Cameron Witcher - Head Developer", x("Cameron Witcher - Head Developer",g), st+(si*2)-i,g);
+		drawOutlineString("Joseph Phillips - Level Designer & Story Creator", x("Joseph Phillips - Level Designer & Story Creator",g), st+(si*3)-i,g);
+		
+		drawOutlineString("Adviser:", x("Adviser:",g), st+(si*5)-i,g);
+		drawOutlineString("Dawn Rottinghaus", x("Dawn Rottinghaus",g), st+(si*6)-i,g);
+		
+		drawOutlineString("Helpers & Beta Testers:", x("Helpers & Beta Testers:",g), st+(si*8)-i,g);
+		drawOutlineString("Anna Kline", x("Anna Kline",g), st+(si*9)-i,g);
+		drawOutlineString("Jenni Korteniemi", x("Jenni Korteniemi",g), st+(si*10)-i,g);
+		drawOutlineString("Jordon Stiff", x("Jordon Stiff",g), st+(si*11)-i,g);
+		drawOutlineString("Lindsay Studevant", x("Lindsay Studevant",g), st+(si*12)-i,g);
+		drawOutlineString("Cynthia Crim", x("Cynthia Crim",g), st+(si*13)-i,g);
+		drawOutlineString("Brent Long", x("Brent Long",g), st+(si*14)-i,g);
+		drawOutlineString("Shante Kemp", x("Shante Kemp",g), st+(si*15)-i,g);
+		drawOutlineString("Amanda Haagensen", x("Amanda Haagensen",g), st+(si*16)-i,g);
+		drawOutlineString("Craig Chaney", x("Craig Chaney",g), st+(si*17)-i,g);
+		drawOutlineString("Oscar Dunreath West V", x("Oscar Dunreath West V",g), st+(si*18)-i,g);
+		drawOutlineString("Tori Ponce", x("Tori Ponce",g), st+(si*19)-i,g);
+		drawOutlineString("Austin Borders", x("Austin Borders",g), st+(si*20)-i,g);
+		drawOutlineString("Emery Mignot", x("Emery Mignot",g), st+(si*21)-i,g);
+		drawOutlineString("Haylen Wilhite", x("Haylen Wilhite",g), st+(si*22)-i,g);
+		drawOutlineString("Kiala Goodman", x("Kiala Goodman",g), st+(si*23)-i,g);
+		drawOutlineString("Blake Qualls", x("Blake Qualls",g), st+(si*24)-i,g);
+		drawOutlineString("Caleb Pearson", x("Caleb Pearson",g), st+(si*25)-i,g);
+		drawOutlineString("Shayna Heart", x("Shayna Heart",g), st+(si*26)-i,g);
+		drawOutlineString("Antonio Oropeza", x("Antonio Oropeza",g), st+(si*27)-i,g);
+		drawOutlineString("Allison Farquhar", x("Allison Farquhar",g), st+(si*28)-i,g);
+		drawOutlineString("Carsyn Stephenson", x("Carsyn Stephenson",g), st+(si*29)-i,g);
 
 		for (Clickable clickable : clickables) {
 			g.drawPolygon(clickable.drawPolygon(g));
 		}
+		g.drawImage(Texture.loadTexture("title.png"), M_WIDTH/2-200, 25, 400, 50, this);
 		
 		if ( mouse )g.drawImage(Texture.loadTexture("pointer.png"), mx, my, this);
 		
-		
+		i=i+1;
 		
 
+	}
+	
+	public static void drawOutlineString(String string, int x, int y, Graphics g){
+		g.setColor(Color.BLACK);
+		g.drawString(string, x-1, y-1);
+		g.drawString(string, x-1, y+1);
+		g.drawString(string, x+1, y-1);
+		g.drawString(string, x+1, y+1);
+		g.setColor(Color.WHITE);
+		g.drawString(string, x, y);
+	}
+	
+	private int x(String string, Graphics g){
+		return M_WIDTH/2 - (g.getFontMetrics().stringWidth(string)/2);
 	}
 
 	@Override
@@ -109,6 +155,15 @@ public class CreditsBoard extends Board implements ActionListener {
 	}
 
 	private class TAdapter extends KeyAdapter {
+		
+		@Override
+		public void keyPressed(KeyEvent e){
+			int key = e.getKeyCode();
+			
+			if(key == KeyEvent.VK_R){
+				i = 0;
+			}
+		}
 		
 	}
 

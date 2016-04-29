@@ -879,14 +879,19 @@ public class GameBoard extends Board implements ActionListener {
 	}
 
 	private void drawWin(Graphics g) {
-		Button restart = new Button("Try again", B_WIDTH / 2, B_HEIGHT / 2, B_WIDTH / 6, B_HEIGHT / 10,
+		Button restart = new Button("Play again", (B_WIDTH / 2) - (B_WIDTH / 4), B_HEIGHT / 2, B_WIDTH / 6, B_HEIGHT / 10,
 				Color.decode("#44cc44"), Color.white, new Font("Helvetica", Font.PLAIN, 15), ButtonMethod.RESTART);
+		
+		Button credits = new Button("Credits", (B_WIDTH / 2) + (B_WIDTH / 4), B_HEIGHT / 2, B_WIDTH / 6, B_HEIGHT / 10,
+				Color.decode("#44cc44"), Color.white, new Font("Helvetica", Font.PLAIN, 15), ButtonMethod.CREDITS);
 		clickables.clear();
 		clickables.add(restart);
+		
+		clickables.add(credits);
 
 		g.drawImage(Background.WIN.getImage(), 0, 0, Bridge.getGameBoardSize(0), Bridge.getGameBoardSize(1), this);
 
-		String won = "You won!";
+		String won = "Congratulations!";
 
 		Font small = new Font("Helvetica", Font.BOLD, 14);
 		Font large = new Font("Helvetica", Font.BOLD, 25);
@@ -895,9 +900,11 @@ public class GameBoard extends Board implements ActionListener {
 
 		g.setColor(Color.white);
 		g.setFont(large);
-		g.drawString(won, (B_WIDTH - fmlarge.stringWidth(won)) / 2, B_HEIGHT / 3);
-		g.setColor(Color.red);
+		g.drawString(won, (B_WIDTH - fmlarge.stringWidth(won)) / 2, B_HEIGHT / 4);
+		g.setColor(Color.WHITE);
 		g.setFont(small);
+		String congrat = "You have won the game, and have gotten out!";
+		g.drawString(congrat, (B_WIDTH - g.getFontMetrics().stringWidth(congrat))/2, B_HEIGHT/3);
 		for (Clickable clickable : clickables) {
 			clickable.drawPolygon(g);
 		}
