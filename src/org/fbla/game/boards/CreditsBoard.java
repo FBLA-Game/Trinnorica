@@ -62,7 +62,7 @@ public class CreditsBoard extends Board implements ActionListener {
 		addMouseMotionListener(new MMListener());
 		addMouseListener(new MListener());
 		
-		clickables.add(new Button("Back to menu", 100, 50, 100, 20, Color.GRAY, Color.WHITE, new Font(Font.SANS_SERIF, Font.BOLD, 15), ButtonMethod.MAIN_MENU));
+		clickables.add(new Button("Back to menu", 100, 50, 100, 20, Color.GRAY, Color.WHITE, new Font(Font.SANS_SERIF, Font.BOLD, si), ButtonMethod.MAIN_MENU));
 
 
 		setLayout(null);
@@ -83,7 +83,8 @@ public class CreditsBoard extends Board implements ActionListener {
 		
 		
 
-		g.drawImage(Background.WIN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
+		g.drawImage(Background.MENU.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
+		g.drawImage(Background.DARKEN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
 		
 		g.setColor(Color.WHITE);
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 50));
@@ -92,6 +93,8 @@ public class CreditsBoard extends Board implements ActionListener {
 //		g.drawString("Trinnorica", (M_WIDTH/2) - (g.getFontMetrics().stringWidth("Trinnorica")/2), 55);
 
 		g.setFont(new Font(Font.SANS_SERIF, Font.TYPE1_FONT, si));
+		
+		g.drawImage(Texture.loadTexture("title.png"), M_WIDTH/2-200, (st-55)-i, 400, 50, this);
 		
 		drawOutlineString("Authors & Developers:", x("Authors & Developers",g), st+(si*1)-i,g);
 		drawOutlineString("Cameron Witcher - Head Developer", x("Cameron Witcher - Head Developer",g), st+(si*2)-i,g);
@@ -121,12 +124,23 @@ public class CreditsBoard extends Board implements ActionListener {
 		drawOutlineString("Shayna Heart", x("Shayna Heart",g), st+(si*26)-i,g);
 		drawOutlineString("Antonio Oropeza", x("Antonio Oropeza",g), st+(si*27)-i,g);
 		drawOutlineString("Allison Farquhar", x("Allison Farquhar",g), st+(si*28)-i,g);
-		drawOutlineString("Carsyn Stephenson", x("Carsyn Stephenson",g), st+(si*29)-i,g);
+//		drawOutlineString("Carsyn Stephenson", x("Carsyn Stephenson",g), st+(si*29)-i,g);
+		drawOutlineString("Garrett George", x("Garrett George",g), st+(si*29)-i,g);
+		drawOutlineString("Brian Kindle", x("Brian Kindle",g), st+(si*30)-i,g);
+		drawOutlineString("Marshall Christian", x("Marshall Christian",g), st+(si*31)-i,g);
+		
+		if(st+(si*32)-i <= 0)
+			startCreditsClose(g);
+//			ButtonMethod.MAIN_MENU.clicked();
 
+		
+		
+		g.setFont(new Font(Font.SANS_SERIF, Font.TYPE1_FONT, 15));
+		
 		for (Clickable clickable : clickables) {
 			g.drawPolygon(clickable.drawPolygon(g));
 		}
-		g.drawImage(Texture.loadTexture("title.png"), M_WIDTH/2-200, 25, 400, 50, this);
+		
 		
 		if ( mouse )g.drawImage(Texture.loadTexture("pointer.png"), mx, my, this);
 		
@@ -135,6 +149,21 @@ public class CreditsBoard extends Board implements ActionListener {
 
 	}
 	
+	private void startCreditsClose(Graphics g) {
+		g.drawImage(Background.MENU.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
+		g.drawImage(Background.DARKEN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
+		int b=0;
+		for(int i=0;i!=11;i++){
+			if(i==10){
+				i=0;
+				b=b+1;
+				for(int z=0;z!=b;z++)
+					g.drawImage(Background.DARKEN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
+			}
+		}
+		
+	}
+
 	public static void drawOutlineString(String string, int x, int y, Graphics g){
 		g.setColor(Color.BLACK);
 		g.drawString(string, x-1, y-1);

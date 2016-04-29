@@ -12,6 +12,7 @@ public enum Background {
 	ENTERING_CAVE("cave_entry-background.png"),
 	CAVE("cave-background.png"),
 	GAMEOVER("gameover-background.png"), 
+	DARKEN("darken.png"), 
 	MENU("menu-background.png");
 	
 	String background;
