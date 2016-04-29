@@ -12,8 +12,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimerTask;
 
 import javax.swing.Timer;
 
@@ -24,6 +26,8 @@ import org.fbla.game.utils.Board;
 import org.fbla.game.utils.BoardType;
 import org.fbla.game.utils.Button;
 import org.fbla.game.utils.ButtonMethod;
+import org.fbla.game.utils.Images;
+import org.fbla.game.utils.Utils;
 
 import res.Texture;
 
@@ -80,6 +84,10 @@ public class CreditsBoard extends Board implements ActionListener {
 	}
 
 	public void drawMenu(Graphics g) {
+		if(st+(si*32)-i <= 0){
+			startCreditsClose(g);
+			return;
+		}
 		
 		
 
@@ -129,8 +137,7 @@ public class CreditsBoard extends Board implements ActionListener {
 		drawOutlineString("Brian Kindle", x("Brian Kindle",g), st+(si*30)-i,g);
 		drawOutlineString("Marshall Christian", x("Marshall Christian",g), st+(si*31)-i,g);
 		
-		if(st+(si*32)-i <= 0)
-			startCreditsClose(g);
+		
 //			ButtonMethod.MAIN_MENU.clicked();
 
 		
@@ -150,19 +157,10 @@ public class CreditsBoard extends Board implements ActionListener {
 	}
 	
 	private void startCreditsClose(Graphics g) {
-		g.drawImage(Background.MENU.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
-		g.drawImage(Background.DARKEN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
-		int b=0;
-		for(int i=0;i!=11;i++){
-			if(i==10){
-				i=0;
-				b=b+1;
-				for(int z=0;z!=b;z++)
-					g.drawImage(Background.DARKEN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
-			}
-		}
-		
+		ButtonMethod.MAIN_MENU.clicked();
 	}
+	
+	
 
 	public static void drawOutlineString(String string, int x, int y, Graphics g){
 		g.setColor(Color.BLACK);

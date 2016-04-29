@@ -178,6 +178,13 @@ public class Images {
 		image.setRGB(0, 0, Color.decode(string).getRGB());
 		return image;
 	}
+
+	public static Image createRGBAImage(float r, float g, float b, float d) {
+		BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
+		
+		image.setRGB(0, 0, new Color(r, g, b).getRGB());
+		return image;
+	}
 	
 //	public static void setPolygon(Polygon p, Image image){
 //		BufferedImage i = toBufferedImage(image);
