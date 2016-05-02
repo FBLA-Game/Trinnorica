@@ -148,7 +148,7 @@ public class Player extends Entity implements Moveable,Keyable {
 			if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
 				setDirection(Direction.LEFT);
 				facing = Direction.LEFT;
-				dx = -2;
+				dx = -3;
 				walking= true;
 				
 
@@ -161,7 +161,7 @@ public class Player extends Entity implements Moveable,Keyable {
 				setDirection(Direction.RIGHT);
 				facing = Direction.RIGHT;
 				if(!walking && !left && right) x=x-getWalkingWidth();
-				dx = 2;
+				dx = 3;
 				walking= true;
 				
 				

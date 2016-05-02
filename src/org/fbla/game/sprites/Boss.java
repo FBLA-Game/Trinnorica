@@ -149,13 +149,15 @@ public class Boss extends Entity implements Moveable,Keyable {
 						
 				
 				dx = AI.getFollowSprite(this, Bridge.player);
-				if(Math.abs(Bridge.player.x -this.x) <=200){
-					dx=0;
-					attemptShoot(Bridge.player);
-				}
-				if(dx==0){
-					loadImage("knobber/stand_" + getDirection().toString().toLowerCase() + ".png");
-					walking = false;
+				
+				if(dx<=0 ){
+					if(x <= Bridge.player.x+10 && (x >= Bridge.getPlayer().x-10)){
+						setDir(Direction.LEFT);
+						dx=0;
+						loadImage("knobber/stand_" + getDirection().toString().toLowerCase() + ".png");
+						walking = false;
+					}
+					
 				}
 				else {
 					walking = true;

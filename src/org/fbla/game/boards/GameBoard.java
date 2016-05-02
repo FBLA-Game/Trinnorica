@@ -571,7 +571,7 @@ public class GameBoard extends Board implements ActionListener {
 		
 		s1.interact();
 		
-		Switch s2 = new Switch(31*30,31*15,new Sprite[] {
+		Switch s2 = new Switch(63*15,31*15,new Sprite[] {
 				new Ladder(19*30,8*30),
 				new Ladder(19*30,9*30),
 				new Ladder(19*30,10*30),
@@ -584,7 +584,7 @@ public class GameBoard extends Board implements ActionListener {
 				new Wall(20*30,9*30,12*30,State.HORIZONTAL)
 		},level9,Rotation.LEFT,InteractionMethod.DISAPPEAR,SwitchType.RED);
 		
-		Switch s3 = new Switch(0, 8*30, new Sprite[] {s1, s2}, level9, Rotation.RIGHT, InteractionMethod.TRIGGER,SwitchType.RED);
+		Switch s3 = new Switch(0, 8*30, new Sprite[] {s1, s2}, level9, Rotation.RIGHT, InteractionMethod.TRIGGER,SwitchType.GREEN);
 		
 		level9.add(s1);
 		level9.add(s2);
@@ -680,7 +680,7 @@ public class GameBoard extends Board implements ActionListener {
 		
 		
 
-		level10.add(new Boss(16*30,15*15, 31*30,8*15));
+		level10.add(new Boss(30*30,15*15, 31*30,8*15));
 		
 		
 		level10.add(s1);
@@ -851,8 +851,14 @@ public class GameBoard extends Board implements ActionListener {
 		if(Utils.getPlayerLevel() == 3){
 			Utils.displayMessage(55, "You can run across one block gaps! (ctrl)", B_WIDTH/2, 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
 		}
+		if(Utils.getPlayerLevel() == 6){
+			Utils.displayMessage(55, "To use a bow press SHIFT, and click with the mouse.", (int)  (B_WIDTH/2), 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
+		}
+		if(Utils.getPlayerLevel() == 9){
+			Utils.displayMessage(55, "You can't trigger GREEN buttons with arrows.", (int)  (B_WIDTH/2), 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
+		}
 		if(Utils.getPlayerLevel() == 10){
-			Utils.displayMessage(55, "Don't touch this guy! He will kill you instantly. /nTry something else instead...?", (int) (B_WIDTH*0.6), 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
+			Utils.displayMessage(55, "Don't touch this guy! He will kill you instantly.", (int) B_WIDTH/2, 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
 		}
 		
 		Audio.playBackground(Sound.levelBackgroundMusic(Utils.getLevelType(Bridge.getPlayer().getLevel())));
