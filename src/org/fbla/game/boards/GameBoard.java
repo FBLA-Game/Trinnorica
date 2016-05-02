@@ -30,7 +30,7 @@ import java.util.Random;
 import javax.swing.Timer;
 
 import org.fbla.game.Bridge;
-import org.fbla.game.sprites.Box;
+import org.fbla.game.sprites.Boss;
 import org.fbla.game.sprites.Competitor;
 import org.fbla.game.sprites.Door;
 import org.fbla.game.sprites.FallingFloor;
@@ -40,6 +40,7 @@ import org.fbla.game.sprites.Gold;
 import org.fbla.game.sprites.Ladder;
 import org.fbla.game.sprites.Player;
 import org.fbla.game.sprites.Switch;
+import org.fbla.game.sprites.SwitchType;
 import org.fbla.game.sprites.Wall;
 import org.fbla.game.sprites.tools.Arrow;
 import org.fbla.game.sprites.tools.Bow;
@@ -416,7 +417,7 @@ public class GameBoard extends Board implements ActionListener {
 			level5.add(new Floor(x*30,16*30,Floor.GRASS));
 			
 		}
-		level5.add(new Switch(63*15, 15*30, new Wall(7*30,16*30,-(12*30),State.VERTICAL), level5, Rotation.LEFT, InteractionMethod.DISAPPEAR));
+		level5.add(new Switch(63*15, 15*30, new Wall(7*30,16*30,-(12*30),State.VERTICAL), level5, Rotation.LEFT, InteractionMethod.DISAPPEAR,SwitchType.RED));
 		
 		
 		level5.add(new Gate(0*30, 15*30,GateType.FLAG));
@@ -431,14 +432,14 @@ public class GameBoard extends Board implements ActionListener {
 		
 		Switch s = new Switch(35*30, 35*30,new Sprite[]{ 
 				new Wall(3*30-5,0*30,7*30, State.VERTICAL)
-		}, level6, Rotation.LEFT, InteractionMethod.DISAPPEAR);
+		}, level6, Rotation.LEFT, InteractionMethod.DISAPPEAR,SwitchType.RED);
 	
 		if(!debug) s.interact();
 		
 		Switch s2 = new Switch(35*30, 35*30, new Sprite[]{
 				new Wall(3*30,7*30,60,State.HORIZONTAL)
 				
-		},level6, Rotation.LEFT, InteractionMethod.DISAPPEAR);
+		},level6, Rotation.LEFT, InteractionMethod.DISAPPEAR,SwitchType.RED);
 		
 			
 		
@@ -446,7 +447,7 @@ public class GameBoard extends Board implements ActionListener {
 		level6.add(new Switch(0, 6*30-7,new Sprite[] {
 				s,
 				s2
-		},level6,Rotation.RIGHT,InteractionMethod.TRIGGER));
+		},level6,Rotation.RIGHT,InteractionMethod.TRIGGER,SwitchType.RED));
 		
 		for(int x=0;x!=32;x++){
 			if(!(x==3)&&!(x==4))
@@ -566,7 +567,7 @@ public class GameBoard extends Board implements ActionListener {
 		level9.add(new Key(30*15, 17*15, 3));
 		level9.add(new Bow(29*15, 17*15));
 		
-		Switch s1 = new Switch(-30,-30,new Gate(30*30,8*30),level9,Rotation.DOWN,InteractionMethod.DISAPPEAR);
+		Switch s1 = new Switch(-30,-30,new Gate(30*30,8*30),level9,Rotation.DOWN,InteractionMethod.DISAPPEAR,SwitchType.RED);
 		
 		s1.interact();
 		
@@ -581,9 +582,9 @@ public class GameBoard extends Board implements ActionListener {
 				new Ladder(19*30,15*30),
 				new Ladder(19*30,16*30),
 				new Wall(20*30,9*30,12*30,State.HORIZONTAL)
-		},level9,Rotation.LEFT,InteractionMethod.DISAPPEAR);
+		},level9,Rotation.LEFT,InteractionMethod.DISAPPEAR,SwitchType.RED);
 		
-		Switch s3 = new Switch(0, 8*30, new Sprite[] {s1, s2}, level9, Rotation.RIGHT, InteractionMethod.TRIGGER);
+		Switch s3 = new Switch(0, 8*30, new Sprite[] {s1, s2}, level9, Rotation.RIGHT, InteractionMethod.TRIGGER,SwitchType.RED);
 		
 		level9.add(s1);
 		level9.add(s2);
@@ -629,10 +630,10 @@ public class GameBoard extends Board implements ActionListener {
 				new Ladder(3*30,8*30),
 				new Ladder(3*30,9*30),
 				new Wall(7*30,5*30,17*30,State.HORIZONTAL)
-		}, level10,Rotation.LEFT,InteractionMethod.DISAPPEAR);
+		}, level10,Rotation.LEFT,InteractionMethod.DISAPPEAR,SwitchType.RED);
 		
 		
-		Switch s2 = new Switch(63*15,5*30,new Sprite[] {
+		Switch s2 = new Switch(63*15,4*30,new Sprite[] {
 			
 				new Floor (0*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
 				new Floor(1*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
@@ -667,7 +668,7 @@ public class GameBoard extends Board implements ActionListener {
 				new Floor(30*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
 				new Floor(31*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),
 				new Floor(32*30, 16*30, Floor.GRAY_STONE, FloorBottom.STONE),		
-		},level10,Rotation.LEFT,InteractionMethod.DISAPPEAR);
+		},level10,Rotation.LEFT,InteractionMethod.DISAPPEAR,SwitchType.GREEN);
 		
 		
 		
@@ -679,7 +680,7 @@ public class GameBoard extends Board implements ActionListener {
 		
 		
 
-		
+		level10.add(new Boss(16*30,15*15, 31*30,8*15));
 		
 		
 		level10.add(s1);
@@ -850,8 +851,8 @@ public class GameBoard extends Board implements ActionListener {
 		if(Utils.getPlayerLevel() == 3){
 			Utils.displayMessage(55, "You can run across one block gaps! (ctrl)", B_WIDTH/2, 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
 		}
-		if(Utils.getPlayerLevel() == 8){
-			Utils.displayMessage(55, "Don't touch these guys! They will kill you instantly. /nTry shooting them instead?", (int) (B_WIDTH*0.6), 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
+		if(Utils.getPlayerLevel() == 10){
+			Utils.displayMessage(55, "Don't touch this guy! He will kill you instantly. /nTry something else instead...?", (int) (B_WIDTH*0.6), 100, -1, "#FFFFFF", 30, new Font(Font.SANS_SERIF,Font.PLAIN,30));
 		}
 		
 		Audio.playBackground(Sound.levelBackgroundMusic(Utils.getLevelType(Bridge.getPlayer().getLevel())));

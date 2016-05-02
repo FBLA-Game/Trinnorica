@@ -85,6 +85,8 @@ public class Boss extends Entity implements Moveable,Keyable {
 	@Override
 	public void move() {
 		if(!dead){
+			
+			onground = false;
 			if (x >= 970 || x <= -1 || y >= 650 || y <= -1) {
 				kill(DamageReason.VOID);
 			}

@@ -112,7 +112,7 @@ public class CreditsBoard extends Board implements ActionListener {
 		drawOutlineString("Dawn Rottinghaus", x("Dawn Rottinghaus",g), st+(si*6)-i,g);
 		
 		drawOutlineString("Helpers & Beta Testers:", x("Helpers & Beta Testers:",g), st+(si*8)-i,g);
-		drawOutlineString("Anna Kline", x("Anna Kline",g), st+(si*9)-i,g);
+		drawOutlineString("Anna Kline - Head Beta Tester", x("Anna Kline - Head Beta Tester",g), st+(si*9)-i,g);
 		drawOutlineString("Jenni Korteniemi", x("Jenni Korteniemi",g), st+(si*10)-i,g);
 		drawOutlineString("Jordon Stiff", x("Jordon Stiff",g), st+(si*11)-i,g);
 		drawOutlineString("Lindsay Studevant", x("Lindsay Studevant",g), st+(si*12)-i,g);
@@ -136,6 +136,7 @@ public class CreditsBoard extends Board implements ActionListener {
 		drawOutlineString("Garrett George", x("Garrett George",g), st+(si*29)-i,g);
 		drawOutlineString("Brian Kindle", x("Brian Kindle",g), st+(si*30)-i,g);
 		drawOutlineString("Marshall Christian", x("Marshall Christian",g), st+(si*31)-i,g);
+		
 		
 		
 //			ButtonMethod.MAIN_MENU.clicked();

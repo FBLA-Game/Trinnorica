@@ -18,21 +18,23 @@ public class Switch extends Interactable {
 	Sprite[] sprites;
 	Rotation rotation;
 	SpriteType type;
+	SwitchType stype;
 	boolean triggered = false;
 	private boolean multiple = false;
 	private InteractionMethod method;
 
-	public Switch(int x, int y, Sprite sprite, ArrayList<Sprite> level, Rotation rotation, InteractionMethod method) {
+	public Switch(int x, int y, Sprite sprite, ArrayList<Sprite> level, Rotation rotation, InteractionMethod method,SwitchType stype) {
         super(x, y);
         type = SpriteType.SWITCH;
         this.sprite = sprite;
         level.add(sprite);
         this.method = method;
         this.rotation = rotation;
+        this.stype = stype;
         init();
     }
 	
-	public Switch(int x, int y, Sprite[] sprites, ArrayList<Sprite> level, Rotation rotation, InteractionMethod method) {
+	public Switch(int x, int y, Sprite[] sprites, ArrayList<Sprite> level, Rotation rotation, InteractionMethod method,SwitchType stype) {
         super(x, y);
         type = SpriteType.SWITCH;
         this.sprites = sprites;
@@ -41,6 +43,7 @@ public class Switch extends Interactable {
         this.rotation = rotation;
         multiple = true;
         this.method = method;
+        this.stype = stype;
         init();
     }
     
@@ -51,7 +54,7 @@ public class Switch extends Interactable {
 
     private void init() {
         
-        loadImage(Images.rotate(Texture.loadTexture("objects/switch.png"), rotation.getRotation()));
+        loadImage(Images.rotate(Texture.loadTexture("objects/switch_" + stype + ".png"), rotation.getRotation()));
         getImageDimensions();
     }
     
@@ -71,7 +74,7 @@ public class Switch extends Interactable {
     		if(rotation.equals(Rotation.LEFT)) x = x-5;
     		if(rotation.equals(Rotation.UP)) y = y-5;
     		triggered = false;
-    		loadImage(Images.rotate(Texture.loadTexture("objects/switch.png"), rotation.getRotation()));
+    		loadImage(Images.rotate(Texture.loadTexture("objects/switch_" + stype + ".png"), rotation.getRotation()));
         	getImageDimensions();
         	type = SpriteType.SWITCH;
         	return;
@@ -80,11 +83,15 @@ public class Switch extends Interactable {
     		if(rotation.equals(Rotation.LEFT)) x = x+5;
     		if(rotation.equals(Rotation.UP)) y = y+5;
 
-    		loadImage(Images.rotate(Texture.loadTexture("objects/triggered-switch.png"), rotation.getRotation()));
+    		loadImage(Images.rotate(Texture.loadTexture("objects/triggered-switch_" + stype + ".png"), rotation.getRotation()));
         	getImageDimensions();
         	type = SpriteType.TRIGGERED_SWITCH;
         	triggered = true;
     	}
     	
     }
+
+	public Object getSwitchType() {
+		return stype;
+	}
 }

@@ -2,7 +2,10 @@ package org.fbla.game.spriteutils;
 
 import org.fbla.game.Bridge;
 import org.fbla.game.boards.GameBoard;
+import org.fbla.game.sprites.Boss;
 import org.fbla.game.sprites.Player;
+import org.fbla.game.sprites.Switch;
+import org.fbla.game.sprites.SwitchType;
 import org.fbla.game.utils.DamageReason;
 import org.fbla.game.utils.Direction;
 import org.fbla.game.utils.Utils;
@@ -76,12 +79,13 @@ public class Projectile extends Entity implements Moveable {
 			if(sprite instanceof Player) continue;	
 			if(sprite instanceof Entity){
 				if(!sprite.getType().equals(shooter.getType())){
-					((Entity) sprite).damage(this.damage, this, DamageReason.PROJECTILE);	
+					if(!(sprite instanceof Boss)) ((Entity) sprite).damage(this.damage, this, DamageReason.PROJECTILE);	
 				} else {
 					continue;
 				}
 			}
 			if(sprite.getSubType().equals(SpriteSubType.INTERACTABLE)){
+				if(sprite instanceof Switch && ((Switch)sprite).getSwitchType().equals(SwitchType.GREEN)) continue;
 				((Interactable) sprite).interact();
 				this.remove();
 				continue;
