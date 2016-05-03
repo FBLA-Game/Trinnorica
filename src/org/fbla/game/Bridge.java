@@ -41,6 +41,7 @@ public class Bridge {
 		gameBoardSize.put(0, 960);
 		gameBoardSize.put(1, 540);
 		game = new Game();
+		game.setIconImage(Texture.loadTexture("logo.png"));
 		game.init();
 		
 		File file = new File("C://KANSAS_WELLSVILLE_HIGHSCHOOL/master/");
@@ -50,10 +51,10 @@ public class Bridge {
 		}
 		Utils.init();
 		
+		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		
-		
+		Audio.playBackground(Sound.BACKGROUND_MENU);
 		
 		
 		
@@ -116,7 +117,7 @@ public class Bridge {
 		game.setIconImage(Texture.loadTexture("logo.png"));
 		game.setPreferredSize(new Dimension(gameBoardSize.get(0)+6, gameBoardSize.get(1)+28));
 		game.pack();
-		
+		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		game.setResizable(false);
 		game.setLocationRelativeTo(null);
 		
@@ -166,7 +167,7 @@ public class Bridge {
 		
 		game.setResizable(false);
 		game.setLocationRelativeTo(null);
-		
+		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		player.level = 1;
 		Utils.setPlayerLevel(1);
 		((GameBoard) game.board).init();
@@ -179,12 +180,15 @@ public class Bridge {
 		game = null;
 		game = new Game();
 		game.setPreferredSize(new Dimension(960, 640));
+		game.setIconImage(Texture.loadTexture("logo.png"));
 		game.setBoard(new MenuBoard());
 		game.pack();
 		game.setVisible(true);
-		
+		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		game.setLocationRelativeTo(null);
+		
+		Audio.playBackground(Sound.BACKGROUND_MENU);
 	}
 	
 	public static int getGameBoardSize(int value){
@@ -192,14 +196,16 @@ public class Bridge {
 	}
 
 	public static void credits() {
+		Audio.playBackground(Sound.BACKGROUND_CREDITS);
 		game.clear();
 		game = null;
 		game = new Game();
+		game.setIconImage(Texture.loadTexture("logo.png"));
 		game.setPreferredSize(new Dimension(960, 640));
 		game.setBoard(new CreditsBoard());
 		game.pack();
 		game.setVisible(true);
-		
+		game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		game.setLocationRelativeTo(null);
 	}

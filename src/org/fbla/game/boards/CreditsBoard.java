@@ -84,7 +84,7 @@ public class CreditsBoard extends Board implements ActionListener {
 	}
 
 	public void drawMenu(Graphics g) {
-		if(st+(si*32)-i <= 0){
+		if(st+(si*68)-i <= 0){
 			startCreditsClose(g);
 			return;
 		}
@@ -132,10 +132,22 @@ public class CreditsBoard extends Board implements ActionListener {
 		drawOutlineString("Shayna Heart", x("Shayna Heart",g), st+(si*26)-i,g);
 		drawOutlineString("Antonio Oropeza", x("Antonio Oropeza",g), st+(si*27)-i,g);
 		drawOutlineString("Allison Farquhar", x("Allison Farquhar",g), st+(si*28)-i,g);
-//		drawOutlineString("Carsyn Stephenson", x("Carsyn Stephenson",g), st+(si*29)-i,g);
-		drawOutlineString("Garrett George", x("Garrett George",g), st+(si*29)-i,g);
-		drawOutlineString("Brian Kindle", x("Brian Kindle",g), st+(si*30)-i,g);
-		drawOutlineString("Marshall Christian", x("Marshall Christian",g), st+(si*31)-i,g);
+		drawOutlineString("Carsyn Stephenson", x("Carsyn Stephenson",g), st+(si*29)-i,g);
+		drawOutlineString("Garrett George", x("Garrett George",g), st+(si*30)-i,g);
+		drawOutlineString("Brian Kindle", x("Brian Kindle",g), st+(si*31)-i,g);
+		drawOutlineString("Marshall Christian", x("Marshall Christian",g), st+(si*32)-i,g);
+		drawOutlineString("Dylan McPeek", x("Dylan McPeek",g), st+(si*33)-i,g);
+		drawOutlineString("Tyler Christensen", x("Tyler Christensen",g), st+(si*34)-i,g);
+		
+		drawOutlineString("Music & Audio:", x("Music & Audio:",g), st+(si*36)-i,g);
+		drawOutlineString("Background music: HeatleyBros", x("Background music: HeatleyBros",g), st+(si*37)-i,g);
+		drawOutlineString("Sound Effects: Bfxr.net", x("Sound Effects: Bfxr.net",g), st+(si*38)-i,g);
+		
+		drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), st+(si*40)-i,g);
+		if(st+(si*41)-i <= 90)g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, 90, 600, 465, this);
+		else g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, st+(si*41)-i, 600, 465, this);
+		
+		
 		
 		
 		

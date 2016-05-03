@@ -15,7 +15,9 @@ public enum Sound {
 	TEST("test.wav"), 
 	BACKGROUND_CAVE("background_cave_1.wav"),
 	BACKGROUND_BOSS("background_boss_1.wav"),
-	BACKGROUND_GRASS("background_grass_1.wav");
+	BACKGROUND_GRASS("background_grass_1.wav"), 
+	BACKGROUND_MENU("background_menu.wav"), 
+	BACKGROUND_CREDITS("background_credits.wav");
 	
 	String sound;
 	
@@ -55,6 +57,10 @@ public enum Sound {
 		case BACKGROUND_BOSS:
 			return SoundType.BACKGROUND;
 		case BACKGROUND_GRASS:
+			return SoundType.BACKGROUND;
+		case BACKGROUND_MENU:
+			return SoundType.BACKGROUND;
+		case BACKGROUND_CREDITS:
 			return SoundType.BACKGROUND;
 		default:
 			return SoundType.OTHER;

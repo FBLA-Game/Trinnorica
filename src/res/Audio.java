@@ -17,7 +17,7 @@ import org.fbla.game.utils.Utils;
 public class Audio {
 	
 	static Clip background = null;
-	
+	final static Timer timer = new Timer();	
 	
 	public static synchronized void playSound(final org.fbla.game.utils.Sound sound) {
 		
@@ -74,7 +74,10 @@ public class Audio {
 	public static void playBackground(final Sound sound) {
 		
 		try{
-			if(background!=null)background.close();
+			if(background!=null){
+				timer.cancel();
+				background.close();
+			}
 			final String name = sound.getSoundString();
 			
 			
@@ -94,16 +97,16 @@ public class Audio {
 				AudioFormat format = background.getFormat();
 				long frames = background.getFrameLength();
 				double time = (frames+0.0) / format.getFrameRate(); 			
-				final Timer timer = new Timer();	
-//				timer.schedule(new TimerTask() {	
-//					@Override		
-//					public void run() {	
-//						clip.flush();
-//						
-//						playSound(sound);
-//						timer.cancel();
-//					}	
-//				}, (long) time*1000);
+				
+				timer.schedule(new TimerTask() {	
+					@Override		
+					public void run() {	
+						clip.flush();
+						
+						playSound(sound);
+						timer.cancel();
+					}	
+				}, (long) time*1000);
 				Utils.broadcastMessage(name);	
 				
 				try {
