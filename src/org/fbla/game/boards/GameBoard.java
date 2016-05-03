@@ -19,6 +19,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -62,6 +63,7 @@ import org.fbla.game.utils.BoardType;
 import org.fbla.game.utils.Button;
 import org.fbla.game.utils.ButtonMethod;
 import org.fbla.game.utils.Direction;
+import org.fbla.game.utils.Images;
 import org.fbla.game.utils.InteractionMethod;
 import org.fbla.game.utils.Sound;
 import org.fbla.game.utils.Utils;
@@ -1044,6 +1046,7 @@ public class GameBoard extends Board implements ActionListener {
 				g.drawImage(player.getImage(), player.x, player.y, player.getRestingWidth(), player.getRestingHeight(),
 						this);
 		} else {
+			
 			if (player.getFacingDirection().equals(Direction.LEFT))
 				g.drawImage(player.getImage(), player.x + player.getWalkingWidth(), player.y,
 						-(player.getWalkingWidth()), player.getWalkingHeight(), this);

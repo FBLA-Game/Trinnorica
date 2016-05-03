@@ -75,7 +75,11 @@ public class Audio {
 		
 		try{
 			if(background!=null){
-				timer.cancel();
+				try{
+					timer.cancel();
+				} catch(IllegalStateException ex){
+					
+				}
 				background.close();
 			}
 			final String name = sound.getSoundString();
@@ -98,15 +102,18 @@ public class Audio {
 				long frames = background.getFrameLength();
 				double time = (frames+0.0) / format.getFrameRate(); 			
 				
-				timer.schedule(new TimerTask() {	
-					@Override		
-					public void run() {	
-						clip.flush();
-						
-						playSound(sound);
-						timer.cancel();
-					}	
-				}, (long) time*1000);
+				try{
+					timer.schedule(new TimerTask() {
+						@Override		
+						public void run() {	
+							clip.flush();
+							playSound(sound);
+							timer.cancel();	
+						}	
+					}, (long) time*1000);
+				} catch(IllegalStateException ex){
+					
+				}
 				Utils.broadcastMessage(name);	
 				
 				try {

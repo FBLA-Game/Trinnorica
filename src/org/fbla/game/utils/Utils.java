@@ -417,6 +417,12 @@ public class Utils {
 			
 		}
 	}
+
+
+	public static void drawOutlineString() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 

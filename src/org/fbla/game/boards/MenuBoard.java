@@ -25,6 +25,7 @@ import org.fbla.game.utils.Board;
 import org.fbla.game.utils.BoardType;
 import org.fbla.game.utils.Button;
 import org.fbla.game.utils.ButtonMethod;
+import org.fbla.game.utils.Utils;
 
 import res.Texture;
 
@@ -50,6 +51,7 @@ public class MenuBoard extends Board implements ActionListener {
 		setType(BoardType.MENU_BOARD);
 		initBoard();
 		board = this;
+		this.setBackground(Color.BLACK);
 	}
 
 	public void initBoard() {
@@ -86,45 +88,53 @@ public class MenuBoard extends Board implements ActionListener {
 	}
 
 	public void drawMenu(Graphics g) {
-		
-		g.setFont(Bridge.font.deriveFont(45f));
-		
-		g.setColor(Color.WHITE);
+		if(Bridge.font == null){
+			g.setFont(new Font("Helvetica", Font.PLAIN, 50));
+			GameBoard.drawOutlineString("Loading.... Please Wait...", M_WIDTH/2 - (g.getFontMetrics().stringWidth("Loading.... Please Wait...")/2), M_HEIGHT/2, g, Color.RED, Color.WHITE);
 
-		g.drawImage(Background.MENU.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
-		
-		g.drawImage(Texture.loadTexture("title.png"), M_WIDTH/2-200, 25, 400, 50, this);
-		
-//		g.setFont(Bridge.font);
-		
-//		g.drawString("Trinnorica", (M_WIDTH/2) - (g.getFontMetrics().stringWidth("Trinnorica")/2), 55);
+		} else {
 
-		g.setFont(Bridge.font.deriveFont(15f));
+			
+			g.setFont(Bridge.font.deriveFont(45f));
+			
+			g.setColor(Color.WHITE);
+
+			g.drawImage(Background.MENU.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
+			
+			g.drawImage(Texture.loadTexture("title.png"), M_WIDTH/2-200, 25, 400, 50, this);
+			
+//			g.setFont(Bridge.font);
+			
+//			g.drawString("Trinnorica", (M_WIDTH/2) - (g.getFontMetrics().stringWidth("Trinnorica")/2), 55);
+
+			g.setFont(Bridge.font.deriveFont(15f));
+			
+			String model;
+			
+			try{
+				model = Bridge.getPlayer().getPlayerModel();
+			} catch(NullPointerException ex){
+				model = "yellow";
+			}
+			
+			g.drawImage(Texture.loadTexture("playermodels/" +model+ "/stand.png"),
+			
+					(M_WIDTH / 2) - ((Bridge.getPlayer().getRestingWidth() * 5) / 2), (M_HEIGHT / 2) - ((Bridge.getPlayer().getRestingHeight() * 5) / 2), Bridge.getPlayer().getRestingWidth() * 5, Bridge.getPlayer().getRestingHeight() * 5, this);
+//			Image img = Texture.loadTexture("moving_floor.gif");
+//			g.drawImage(img,
+//					(M_WIDTH / 2) - ((img.getWidth(null) * 5) / 2), (M_HEIGHT / 2) - ((img.getHeight(null) * 5) - Bridge.getPlayer().getWalkingHeight()/2 ), img.getWidth(null) * 5, img.getHeight(null) * 5, this);
+
+			g.setColor(Color.white);
+
+			for (Clickable clickable : clickables) {
+				g.drawPolygon(clickable.drawPolygon(g));
+			}
+			
+			
+			if (mouse) g.drawImage(Texture.loadTexture("pointer.png"), mx, my, this);
+
 		
-		String model;
-		
-		try{
-			model = Bridge.getPlayer().getPlayerModel();
-		} catch(NullPointerException ex){
-			model = "yellow";
 		}
-		
-		g.drawImage(Texture.loadTexture("playermodels/" +model+ "/stand.png"),
-		
-				(M_WIDTH / 2) - ((Bridge.getPlayer().getRestingWidth() * 5) / 2), (M_HEIGHT / 2) - ((Bridge.getPlayer().getRestingHeight() * 5) / 2), Bridge.getPlayer().getRestingWidth() * 5, Bridge.getPlayer().getRestingHeight() * 5, this);
-//		Image img = Texture.loadTexture("moving_floor.gif");
-//		g.drawImage(img,
-//				(M_WIDTH / 2) - ((img.getWidth(null) * 5) / 2), (M_HEIGHT / 2) - ((img.getHeight(null) * 5) - Bridge.getPlayer().getWalkingHeight()/2 ), img.getWidth(null) * 5, img.getHeight(null) * 5, this);
-
-		g.setColor(Color.white);
-
-		for (Clickable clickable : clickables) {
-			g.drawPolygon(clickable.drawPolygon(g));
-		}
-		
-		
-		if (mouse) g.drawImage(Texture.loadTexture("pointer.png"), mx, my, this);
-
 	}
 
 	@Override
