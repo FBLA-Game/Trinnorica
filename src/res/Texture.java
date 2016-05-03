@@ -2,6 +2,7 @@ package res;
 
 import java.awt.Image;
 import java.io.File;
+import java.io.InputStream;
 
 import javax.swing.ImageIcon;
 
@@ -20,10 +21,10 @@ public class Texture {
 		}
 	}
 	
-	public static File loadFont(String resource){
+	public static InputStream loadFont(String resource){
 		
 		try {
-			return new File(Texture.class.getResource("/font/" + resource).getFile());
+			return Texture.class.getResourceAsStream("font/" + resource);
 		} catch (Exception e) {
 			return null;
 		}

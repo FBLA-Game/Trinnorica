@@ -2,8 +2,11 @@ package org.fbla.game;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
@@ -55,6 +58,15 @@ public class Bridge {
 		
 		
 		Audio.playBackground(Sound.BACKGROUND_MENU);
+		
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, Texture.loadFont("BLKCHCRY.ttf")).deriveFont(20f);
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, Texture.loadFont("BLKCHCRY.ttf")));
+		} catch (FontFormatException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		

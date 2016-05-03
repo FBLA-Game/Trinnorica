@@ -778,20 +778,20 @@ public class GameBoard extends Board implements ActionListener {
 		}
 
 		if (Utils.getPlayerLevel() == 3) {
-			Utils.displayMessage(55, "You can run across one block gaps! (ctrl)", B_WIDTH / 2, 100, -1, "#FFFFFF", 30,
-					new Font(Font.SANS_SERIF, Font.PLAIN, 30));
+			Utils.displayMessage(55, "You can run across one block gaps! (ctrl)", B_WIDTH / 2, 100, -1, "#FFFFFF", 50,
+					Bridge.font.deriveFont(50));
 		}
 		if (Utils.getPlayerLevel() == 6) {
 			Utils.displayMessage(55, "To use a bow press SHIFT, and click with the mouse.", (int) (B_WIDTH / 2), 100,
-					-1, "#FFFFFF", 30, new Font(Font.SANS_SERIF, Font.PLAIN, 30));
+					-1, "#FFFFFF", 50, Bridge.font.deriveFont(50) );
 		}
 		if (Utils.getPlayerLevel() == 9) {
 			Utils.displayMessage(55, "You can't trigger GREEN buttons with arrows.", (int) (B_WIDTH / 2), 100, -1,
-					"#FFFFFF", 30, new Font(Font.SANS_SERIF, Font.PLAIN, 30));
+					"#FFFFFF", 50, Bridge.font.deriveFont(50));
 		}
 		if (Utils.getPlayerLevel() == 10) {
 			Utils.displayMessage(55, "Don't touch this guy! He will kill you instantly.", (int) B_WIDTH / 2, 100, -1,
-					"#FFFFFF", 30, new Font(Font.SANS_SERIF, Font.PLAIN, 30));
+					"#FFFFFF", 50, Bridge.font.deriveFont(50));
 		}
 
 		Audio.playBackground(Sound.levelBackgroundMusic(Utils.getLevelType(Bridge.getPlayer().getLevel())));
@@ -800,6 +800,7 @@ public class GameBoard extends Board implements ActionListener {
 	}
 
 	public void loadHelp() {
+		setFont(Bridge.font.deriveFont(20));
 
 		paused = true;
 		Utils.displayMessage(13, "(Press ESC to play)", B_WIDTH / 2, 100, -1, "#FFFFFF", 20, getFont());
@@ -831,9 +832,9 @@ public class GameBoard extends Board implements ActionListener {
 
 			String select = "Select";
 
-			Font small = new Font("Helvetica", Font.BOLD, 14);
+			Font small = Bridge.font.deriveFont(15);
 
-			Font large = new Font("Helvetica", Font.BOLD, 25);
+			Font large = Bridge.font.deriveFont(40);
 
 			FontMetrics fmlarge = getFontMetrics(large);
 
@@ -873,11 +874,11 @@ public class GameBoard extends Board implements ActionListener {
 
 	private void drawWin(Graphics g) {
 		Button restart = new Button("Play again", (B_WIDTH / 2) - (B_WIDTH / 4), B_HEIGHT / 2, B_WIDTH / 6,
-				B_HEIGHT / 10, Color.decode("#44cc44"), Color.white, new Font("Helvetica", Font.PLAIN, 15),
+				B_HEIGHT / 10, Color.decode("#44cc44"), Color.white, Bridge.font.deriveFont(15),
 				ButtonMethod.RESTART);
 
 		Button credits = new Button("Credits", (B_WIDTH / 2) + (B_WIDTH / 4), B_HEIGHT / 2, B_WIDTH / 6, B_HEIGHT / 10,
-				Color.decode("#44cc44"), Color.white, new Font("Helvetica", Font.PLAIN, 15), ButtonMethod.CREDITS);
+				Color.decode("#44cc44"), Color.white, Bridge.font.deriveFont(15), ButtonMethod.CREDITS);
 		clickables.clear();
 		clickables.add(restart);
 
@@ -887,8 +888,8 @@ public class GameBoard extends Board implements ActionListener {
 
 		String won = "Congratulations!";
 
-		Font small = new Font("Helvetica", Font.BOLD, 14);
-		Font large = new Font("Helvetica", Font.BOLD, 25);
+		Font small = Bridge.font.deriveFont(15);
+		Font large = Bridge.font.deriveFont(40);
 		// FontMetrics fmsmall = getFontMetrics(small);
 		FontMetrics fmlarge = getFontMetrics(large);
 
@@ -929,7 +930,7 @@ public class GameBoard extends Board implements ActionListener {
 		g.drawImage(Utils.getBackground(Utils.getPlayerLevel()).getImage(), 0, 0, (int) (960.0 * extra),
 				(int) (540.0 * extra), this);
 		g.setColor(Color.black);
-		g.setFont(new Font("Helvetica", Font.BOLD, 20));
+		g.setFont(Bridge.font.deriveFont(30));
 
 		for (Sprite sprite : sprites) {
 
@@ -1071,7 +1072,7 @@ public class GameBoard extends Board implements ActionListener {
 			g.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), this);
 		}
 
-		g.setFont(new Font("Helvetica", Font.PLAIN, 20));
+		g.setFont(Bridge.font.deriveFont(30));
 
 		drawOutlineString("Score: " + Bridge.getPlayer().getScore(), (B_WIDTH / 2 + B_WIDTH) / 2, 20, g, Color.WHITE,
 				Color.BLACK);
@@ -1095,7 +1096,7 @@ public class GameBoard extends Board implements ActionListener {
 			int time = Integer.parseInt(info[3]);
 			if (time != -1) {
 				g.setColor(Color.decode(info[4]));
-				g.setFont(new Font("Helvetica", Font.BOLD, Integer.parseInt(info[5])));
+				g.setFont(Bridge.font.deriveFont(Integer.parseInt(info[5])));
 				if (info[0].contains("/n")) {
 					String[] m = info[0].split("/n");
 					for (int i = 0; i != m.length; i++) {
@@ -1113,7 +1114,7 @@ public class GameBoard extends Board implements ActionListener {
 			}
 			if (time == -1) {
 				g.setColor(Color.decode(info[4]));
-				g.setFont(new Font("Helvetica", Font.BOLD, Integer.parseInt(info[5])));
+				g.setFont(Bridge.font.deriveFont(Integer.parseInt(info[5])));
 				if (info[0].contains("/n")) {
 					String[] m = info[0].split("/n");
 					for (int i = 0; i != m.length; i++) {
@@ -1142,7 +1143,7 @@ public class GameBoard extends Board implements ActionListener {
 			int time = Integer.parseInt(info[3]);
 			if (time != -1) {
 				g.setColor(Color.decode(info[4]));
-				g.setFont(new Font("Helvetica", Font.BOLD, Integer.parseInt(info[5])));
+				g.setFont(Bridge.font.deriveFont(Integer.parseInt(info[5])));
 				if (info[0].contains("/n")) {
 					String[] m = info[0].split("/n");
 					for (int i = 0; i != m.length; i++) {
@@ -1160,7 +1161,7 @@ public class GameBoard extends Board implements ActionListener {
 			}
 			if (time == -1) {
 				g.setColor(Color.decode(info[4]));
-				g.setFont(new Font("Helvetica", Font.BOLD, Integer.parseInt(info[5])));
+				g.setFont(Bridge.font.deriveFont(Integer.parseInt(info[5])));
 				if (info[0].contains("/n")) {
 					String[] m = info[0].split("/n");
 					for (int i = 0; i != m.length; i++) {
@@ -1197,7 +1198,7 @@ public class GameBoard extends Board implements ActionListener {
 
 		if (debug) {
 
-			g.setFont(new Font(Font.MONOSPACED, Font.PLAIN, d));
+			g.setFont(Bridge.font.deriveFont(d));
 
 			drawOutlineString("Version: " + Bridge.getGame().getVersion(), 0, d, g, Color.WHITE, Color.BLACK);
 
@@ -1251,17 +1252,17 @@ public class GameBoard extends Board implements ActionListener {
 			reason = reason.replaceAll("_", " ");
 
 			Button restart = new Button("Try again", B_WIDTH / 2, B_HEIGHT / 2, B_WIDTH / 6, B_HEIGHT / 10,
-					Color.decode("#950000"), Color.white, new Font("Helvetica", Font.PLAIN, 15), ButtonMethod.RESTART);
+					Color.decode("#950000"), Color.white, Bridge.font.deriveFont(20), ButtonMethod.RESTART);
 
 			clickables.clear();
 			clickables.add(restart);
 
 			g.drawPolygon(restart.drawPolygon(g));
 
-			g.setFont(new Font("Helvetica", Font.BOLD, 20));
+			g.setFont(Bridge.font.deriveFont(30));
 			g.drawString(gameover, (B_WIDTH - g.getFontMetrics().stringWidth(gameover)) / 2, B_HEIGHT / 4);
 
-			g.setFont(new Font("Helvetica", Font.BOLD, 15));
+			g.setFont(Bridge.font.deriveFont(20));
 			g.drawString(reason, (B_WIDTH - g.getFontMetrics().stringWidth(reason)) / 2, B_HEIGHT / 3);
 
 			if (mouse)
@@ -1275,12 +1276,12 @@ public class GameBoard extends Board implements ActionListener {
 			String won = "You won level " + gameStatus.split(":")[1] + "!";
 
 			Button levelup = new Button("Next Level", B_WIDTH / 2, B_HEIGHT / 2, B_WIDTH / 6, B_HEIGHT / 10,
-					Color.decode("#44cc44"), Color.white, new Font("Helvetica", Font.PLAIN, 15), ButtonMethod.LEVEL_UP);
+					Color.decode("#44cc44"), Color.white, Bridge.font.deriveFont(15), ButtonMethod.LEVEL_UP);
 			clickables.add(levelup);
 
 			g.drawPolygon(levelup.drawPolygon(g));
 
-			Font small = new Font("Helvetica", Font.BOLD, 14);
+			Font small = Bridge.font.deriveFont(15);
 			FontMetrics fm = getFontMetrics(small);
 			g.setFont(small);
 			g.drawString(won, (B_WIDTH - fm.stringWidth(won)) / 2, B_HEIGHT / 3);
@@ -1380,9 +1381,9 @@ public class GameBoard extends Board implements ActionListener {
 		paused = true;
 
 		clickables.add(new Button("Resume", B_WIDTH / 4, B_HEIGHT / 2, B_WIDTH / 6, 50, Color.gray, Color.white,
-				new Font("Helvetica", Font.BOLD, 25), ButtonMethod.RESUME));
+				Bridge.font.deriveFont(30), ButtonMethod.RESUME));
 		clickables.add(new Button("Main Menu", (B_WIDTH / 2 + B_WIDTH) / 2, B_HEIGHT / 2, B_WIDTH / 4, 50, Color.gray,
-				Color.white, new Font("Helvetica", Font.BOLD, 25), ButtonMethod.MAIN_MENU));
+				Color.white, Bridge.font.deriveFont(30), ButtonMethod.MAIN_MENU));
 
 	}
 
@@ -1637,6 +1638,7 @@ public class GameBoard extends Board implements ActionListener {
 					in = false;
 				}
 
+			setFont(Bridge.font.deriveFont(15));
 			for (Clickable clickable : clickables) {
 				if (clickable.getPolygon().contains(e.getPoint())) {
 					clickable.mouseMoved(e);

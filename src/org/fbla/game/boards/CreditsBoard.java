@@ -95,12 +95,13 @@ public class CreditsBoard extends Board implements ActionListener {
 		g.drawImage(Background.DARKEN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
 		
 		g.setColor(Color.WHITE);
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 50));
+//		Bridge.font.getSize();
+		g.setFont(Bridge.font);
 		
 		
 //		g.drawString("Trinnorica", (M_WIDTH/2) - (g.getFontMetrics().stringWidth("Trinnorica")/2), 55);
 
-		g.setFont(new Font(Font.SANS_SERIF, Font.TYPE1_FONT, si));
+//		g.setFont(new Font(Font.SANS_SERIF, Font.TYPE1_FONT, si));
 		
 		g.drawImage(Texture.loadTexture("title.png"), M_WIDTH/2-200, (st-55)-i, 400, 50, this);
 		
@@ -138,15 +139,22 @@ public class CreditsBoard extends Board implements ActionListener {
 		drawOutlineString("Marshall Christian", x("Marshall Christian",g), st+(si*32)-i,g);
 		drawOutlineString("Dylan McPeek", x("Dylan McPeek",g), st+(si*33)-i,g);
 		drawOutlineString("Tyler Christensen", x("Tyler Christensen",g), st+(si*34)-i,g);
+		drawOutlineString("Gaelen Hewitt", x("Gaelen Hewitt",g), st+(si*35)-i,g);
+		drawOutlineString("Thomas Kolstad", x("Thomas Kolstad",g), st+(si*36)-i,g);
+		drawOutlineString("Grady Rutledge", x("Grady Rutledge",g), st+(si*37)-i,g);
 		
-		drawOutlineString("Music & Audio:", x("Music & Audio:",g), st+(si*36)-i,g);
-		drawOutlineString("Background music: HeatleyBros", x("Background music: HeatleyBros",g), st+(si*37)-i,g);
-		drawOutlineString("Sound Effects: Bfxr.net", x("Sound Effects: Bfxr.net",g), st+(si*38)-i,g);
+		drawOutlineString("Music & Audio:", x("Music & Audio:",g), st+(si*39)-i,g);
+		drawOutlineString("Background music: HeatleyBros", x("Background music: HeatleyBros",g), st+(si*40)-i,g);
+		drawOutlineString("Sound Effects: Bfxr.net", x("Sound Effects: Bfxr.net",g), st+(si*41)-i,g);
 		
-		drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), st+(si*40)-i,g);
-		if(st+(si*41)-i <= 90)g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, 90, 600, 465, this);
-		else g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, st+(si*41)-i, 600, 465, this);
-		
+		if(st+(si*44)-i <= 90){
+			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), 90-(si),g);
+			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, 90, 600, 465, this);
+		}
+		else{
+			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), st+(si*43)-i,g);
+			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, st+(si*44)-i, 600, 465, this);
+		}
 		
 		
 		

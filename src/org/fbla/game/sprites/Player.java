@@ -465,7 +465,7 @@ public class Player extends Entity implements Moveable,Keyable {
 					if(sprite.getType().equals(SpriteType.GATE)){
 						((GameBoard)Bridge.getGame().getBoard()).gameStatus = "won:" + level;
 						((GameBoard)Bridge.getGame().getBoard()).ingame = false;
-						Audio.playSound(Sound.LEVELUP);
+//						Audio.playSound(Sound.LEVELUP);
 						x = 0;
 						y = 0;
 					}
