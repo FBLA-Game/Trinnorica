@@ -110,7 +110,7 @@ public class Audio {
 							playSound(sound);
 							timer.cancel();	
 						}	
-					}, (long) time*1000);
+					}, (long) time);
 				} catch(IllegalStateException ex){
 					
 				}
