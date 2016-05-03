@@ -87,7 +87,7 @@ public class MenuBoard extends Board implements ActionListener {
 
 	public void drawMenu(Graphics g) {
 		
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 45));
+		g.setFont(Bridge.font.deriveFont(45f));
 		
 		g.setColor(Color.WHITE);
 
@@ -99,7 +99,7 @@ public class MenuBoard extends Board implements ActionListener {
 		
 //		g.drawString("Trinnorica", (M_WIDTH/2) - (g.getFontMetrics().stringWidth("Trinnorica")/2), 55);
 
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+		g.setFont(Bridge.font.deriveFont(15f));
 		
 		String model;
 		
