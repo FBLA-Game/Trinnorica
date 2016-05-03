@@ -15,7 +15,7 @@ public enum Sound {
 	TEST("test.wav"), 
 	BACKGROUND_CAVE("background_cave_1.wav"),
 	BACKGROUND_BOSS("background_boss_1.wav"),
-	BACKGROUND_GRASS("background_grass_1.wav"), 
+	BACKGROUND_GRASS("background_grass_1.wav:background_grass_2.wav"), 
 	BACKGROUND_MENU("background_menu.wav"), 
 	BACKGROUND_CREDITS("background_credits.wav");
 	
