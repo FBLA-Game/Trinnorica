@@ -62,8 +62,7 @@ public class Bridge {
 		font = new Font("Helvetica", Font.BOLD, 20);
 		
 		
-		
-		
+	   
         
 		
 		

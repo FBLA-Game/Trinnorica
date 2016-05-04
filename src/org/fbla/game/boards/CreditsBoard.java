@@ -12,11 +12,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimerTask;
 
+import javax.sound.sampled.FloatControl;
 import javax.swing.Timer;
 
 import org.fbla.game.Bridge;
@@ -29,6 +28,7 @@ import org.fbla.game.utils.ButtonMethod;
 import org.fbla.game.utils.Images;
 import org.fbla.game.utils.Utils;
 
+import res.Audio;
 import res.Texture;
 
 public class CreditsBoard extends Board implements ActionListener {
@@ -43,6 +43,7 @@ public class CreditsBoard extends Board implements ActionListener {
 	private int mx = 0;
 	private int my = 0;
 	private int i = 0;
+	private double a = 0.2;
 	private int st = M_HEIGHT;
 	private int si = 20;
 	Timer timer;
@@ -66,7 +67,7 @@ public class CreditsBoard extends Board implements ActionListener {
 		addMouseMotionListener(new MMListener());
 		addMouseListener(new MListener());
 		
-		clickables.add(new Button("Back to menu", 100, 50, 100, 20, Color.GRAY, Color.WHITE, new Font(Font.SANS_SERIF, Font.BOLD, si), ButtonMethod.MAIN_MENU));
+		clickables.add(new Button("Back to menu", 50, 10, 100, 20, Color.GRAY, Color.WHITE, new Font(Font.SANS_SERIF, Font.BOLD, si), ButtonMethod.MAIN_MENU));
 
 
 		setLayout(null);
@@ -85,14 +86,15 @@ public class CreditsBoard extends Board implements ActionListener {
 
 	public void drawMenu(Graphics g) {
 		if(st+(si*68)-i <= 0){
-			startCreditsClose(g);
+			startCreditsClose(g, a);
 			return;
 		}
 		
 		
 
 		g.drawImage(Background.MENU.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
-		g.drawImage(Background.DARKEN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
+		g.drawImage(Images.makeImageTranslucent(Images.toBufferedImage(Images.createColorImage("#000000")), 0.2), 0, 0, M_WIDTH, M_HEIGHT, this);
+//		g.drawImage(Background.DARKEN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
 		
 		g.setColor(Color.WHITE);
 //		Bridge.font.getSize();
@@ -142,27 +144,26 @@ public class CreditsBoard extends Board implements ActionListener {
 		drawOutlineString("Gaelen Hewitt", x("Gaelen Hewitt",g), st+(si*35)-i,g);
 		drawOutlineString("Thomas Kolstad", x("Thomas Kolstad",g), st+(si*36)-i,g);
 		drawOutlineString("Grady Rutledge", x("Grady Rutledge",g), st+(si*37)-i,g);
+		drawOutlineString("Mike Trendle", x("Mike Trendle",g), st+(si*38)-i,g);
+		drawOutlineString("Edmund Scott", x("Edmund Scott",g), st+(si*39)-i,g);
 		
-		drawOutlineString("Music & Audio:", x("Music & Audio:",g), st+(si*39)-i,g);
-		drawOutlineString("Background music: HeatleyBros", x("Background music: HeatleyBros",g), st+(si*40)-i,g);
-		drawOutlineString("Sound Effects: Bfxr.net", x("Sound Effects: Bfxr.net",g), st+(si*41)-i,g);
+		drawOutlineString("Music & Audio:", x("Music & Audio:",g), st+(si*41)-i,g);
+		drawOutlineString("Background music: HeatleyBros", x("Background music: HeatleyBros",g), st+(si*42)-i,g);
+		drawOutlineString("Sound Effects: Bfxr.net", x("Sound Effects: Bfxr.net",g), st+(si*43)-i,g);
 		
-		if(st+(si*44)-i <= 90){
+		if(st+(si*46)-i <= 90){
 			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), 90-(si),g);
 			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, 90, 600, 465, this);
 		}
 		else{
-			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), st+(si*43)-i,g);
-			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, st+(si*44)-i, 600, 465, this);
+			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), st+(si*45)-i,g);
+			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, st+(si*46)-i, 600, 465, this);
 		}
 		
 		
 		
 		
-		
-		
-//			ButtonMethod.MAIN_MENU.clicked();
-
+		g.setFont(Bridge.font);
 		
 		
 		g.setFont(new Font(Font.SANS_SERIF, Font.TYPE1_FONT, 15));
@@ -179,8 +180,17 @@ public class CreditsBoard extends Board implements ActionListener {
 
 	}
 	
-	private void startCreditsClose(Graphics g) {
-		ButtonMethod.MAIN_MENU.clicked();
+	private void startCreditsClose(Graphics g, double a) {
+		if(!(a>=1.0)){
+			g.setFont(Bridge.font);
+			g.drawImage(Background.MENU.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
+			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), 90-(si),g);
+			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, 90, 600, 465, this);
+			g.drawImage(Images.makeImageTranslucent(Images.toBufferedImage(Images.createColorImage("#000000")), a), 0, 0, M_WIDTH, M_HEIGHT, this);
+			this.a = a+0.01;
+		}
+		else ButtonMethod.MAIN_MENU.clicked();
+		
 	}
 	
 	
