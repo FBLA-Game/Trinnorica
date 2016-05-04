@@ -163,6 +163,12 @@ public class Images {
 	
 	
 
+	public static Image createColorImage(String string) {
+		BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
+		image.setRGB(0, 0, Color.decode(string).getRGB());
+		return image;
+		
+	}
 	public static Image createColorImage(Sprite sprite, String string) {
 		
 		
