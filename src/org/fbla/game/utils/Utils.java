@@ -56,17 +56,17 @@ public class Utils {
 		backgrounds.put(10, Background.CAVE);
 		backgrounds.put(11, Background.ENTERING_CAVE);
 		
-		spawns.put(1, new int []{21,460});
-		spawns.put(2, new int []{21,405});
-		spawns.put(3, new int []{21,405});
-		spawns.put(4, new int []{21,480});
-		spawns.put(5, new int []{0,0});
+		spawns.put(1, new int []{21,470});
+		spawns.put(2, new int []{21,470});
+		spawns.put(3, new int []{21,410});
+		spawns.put(4, new int []{21,470});
+		spawns.put(5, new int []{1,50});
 		spawns.put(6, new int []{932,170});
-		spawns.put(7, new int []{15,430});
+		spawns.put(7, new int []{15,440});
 		spawns.put(8, new int []{21,470});
 		spawns.put(9, new int []{21,470});
-		spawns.put(10, new int []{15,430});
-		spawns.put(11, new int []{15,430});
+		spawns.put(10, new int []{15,440});
+		spawns.put(11, new int []{15,470});
 		
 		
 
