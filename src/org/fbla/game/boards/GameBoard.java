@@ -309,14 +309,18 @@ public class GameBoard extends Board implements ActionListener {
 	// Expand on ladders
 	private void loadLevel2(boolean debug) {
 
-		for (int i = 0; i != 32; i++) {
+		for (int i = 0; i != 32; i++) {		
+			
 			if (i >= 20)
 				level2.add(new Floor(i * 30, 8 * 30, Floor.GRASS, FloorBottom.DIRT));
 			level2.add(new Floor(i * 30, 17 * 30, Floor.GRASS));
-			if (i <= 16 && i >= 7 && (i & 1) == 0)
-				level2.add(new Ladder(17 * 30, i * 30));
+			
 		}
-
+		for (int y=18; y!=32; y++) {
+		
+			level2.add(new Ladder(4*30,y*30));
+			}
+		
 		level2.add(new Gate(31 * 30, 7 * 30, Gate.FLAG));
 		if (!debug)
 			level2.add(Bridge.getPlayer());
@@ -571,9 +575,7 @@ public class GameBoard extends Board implements ActionListener {
 
 		level10.add(new Bow(2 * 30, 9 * 30));
 
-		for (int y = 10; y != 16; y++) {
-			level10.add(new Ladder(5 * 30, y * 30));
-		}
+		
 
 		Switch s1 = new Switch(63 * 15, 1 * 30,
 				new Sprite[] { new Ladder(3 * 30, 5 * 30), new Ladder(3 * 30, 6 * 30), new Ladder(3 * 30, 7 * 30),
@@ -618,7 +620,10 @@ public class GameBoard extends Board implements ActionListener {
 						new Floor(31 * 30, 16 * 30, Floor.GRAY_STONE, FloorBottom.STONE),
 						new Floor(32 * 30, 16 * 30, Floor.GRAY_STONE, FloorBottom.STONE), },
 				level10, Rotation.LEFT, InteractionMethod.DISAPPEAR, SwitchType.GREEN);
-
+		
+		for (int y = 10; y != 16; y++) {
+			level10.add(new Ladder(5 * 30, y * 30));
+		}
 		level10.add(new Boss(30 * 30, 15 * 15, 31 * 30, 8 * 15));
 
 		level10.add(s1);
