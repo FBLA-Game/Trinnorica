@@ -316,10 +316,15 @@ public class GameBoard extends Board implements ActionListener {
 			level2.add(new Floor(i * 30, 17 * 30, Floor.GRASS));
 			
 		}
-		for (int y=18; y!=32; y++) {
+		for (int y=8; y!=17; y++) {
 		
 			level2.add(new Ladder(4*30,y*30));
 			}
+		
+		level2.add(new Ladder(7*30,8*30));
+		level2.add(new Ladder(10*30,8*30));
+		level2.add(new Ladder(13*30,8*30));
+		level2.add(new Ladder(16*30,8*30));
 		
 		level2.add(new Gate(31 * 30, 7 * 30, Gate.FLAG));
 		if (!debug)
