@@ -12,11 +12,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimerTask;
 
+import javax.sound.sampled.FloatControl;
 import javax.swing.Timer;
 
 import org.fbla.game.Bridge;
@@ -29,6 +28,7 @@ import org.fbla.game.utils.ButtonMethod;
 import org.fbla.game.utils.Images;
 import org.fbla.game.utils.Utils;
 
+import res.Audio;
 import res.Texture;
 
 public class CreditsBoard extends Board implements ActionListener {
@@ -43,7 +43,7 @@ public class CreditsBoard extends Board implements ActionListener {
 	private int mx = 0;
 	private int my = 0;
 	private int i = 0;
-	private int a = 0;
+	private double a = 0.2;
 	private int st = M_HEIGHT;
 	private int si = 20;
 	Timer timer;
@@ -85,10 +85,10 @@ public class CreditsBoard extends Board implements ActionListener {
 	}
 
 	public void drawMenu(Graphics g) {
-//		if(st+(si*68)-i <= 0){
-//			startCreditsClose(g);
-//			return;
-//		}
+		if(st+(si*68)-i <= 0){
+			startCreditsClose(g, a);
+			return;
+		}
 		
 		
 
@@ -165,9 +165,6 @@ public class CreditsBoard extends Board implements ActionListener {
 		
 		g.setFont(Bridge.font);
 		
-//			ButtonMethod.MAIN_MENU.clicked();
-
-		
 		
 		g.setFont(new Font(Font.SANS_SERIF, Font.TYPE1_FONT, 15));
 		
@@ -183,9 +180,17 @@ public class CreditsBoard extends Board implements ActionListener {
 
 	}
 	
-	private void startCreditsClose(Graphics g) {
+	private void startCreditsClose(Graphics g, double a) {
+		if(!(a>=1.0)){
+			g.setFont(Bridge.font);
+			g.drawImage(Background.MENU.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
+			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), 90-(si),g);
+			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, 90, 600, 465, this);
+			g.drawImage(Images.makeImageTranslucent(Images.toBufferedImage(Images.createColorImage("#000000")), a), 0, 0, M_WIDTH, M_HEIGHT, this);
+			this.a = a+0.01;
+		}
+		else ButtonMethod.MAIN_MENU.clicked();
 		
-		ButtonMethod.MAIN_MENU.clicked();
 	}
 	
 	

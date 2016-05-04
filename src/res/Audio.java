@@ -16,7 +16,7 @@ import org.fbla.game.utils.Utils;
 
 public class Audio {
 	
-	static Clip background = null;
+	public static Clip background = null;
 	final static Timer timer = new Timer();	
 	
 	public static synchronized void playSound(final org.fbla.game.utils.Sound sound) {
