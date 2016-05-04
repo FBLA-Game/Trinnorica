@@ -151,16 +151,15 @@ public class CreditsBoard extends Board implements ActionListener {
 		drawOutlineString("Background music: HeatleyBros", x("Background music: HeatleyBros",g), st+(si*42)-i,g);
 		drawOutlineString("Sound Effects: Bfxr.net", x("Sound Effects: Bfxr.net",g), st+(si*43)-i,g);
 		
-		drawOutlineString("Logo design: Tailorbrands.com", x("Logo design: Tailorbrands.com",g), st+(si*43)-i,g);
-		drawOutlineString("Sound Effects: Bfxr.net", x("Sound Effects: Bfxr.net",g), st+(si*43)-i,g);
+		drawOutlineString("Logo design: Tailorbrands.com", x("Logo design: Tailorbrands.com",g), st+(si*45)-i,g);
 		
-		if(st+(si*46)-i <= 90){
+		if(st+(si*48)-i <= 90){
 			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), 90-(si),g);
 			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, 90, 600, 465, this);
 		}
 		else{
-			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), st+(si*45)-i,g);
-			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, st+(si*46)-i, 600, 465, this);
+			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), st+(si*47)-i,g);
+			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, st+(si*48)-i, 600, 465, this);
 		}
 		
 		

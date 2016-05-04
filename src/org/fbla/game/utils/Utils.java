@@ -63,8 +63,8 @@ public class Utils {
 		spawns.put(5, new int []{0,0});
 		spawns.put(6, new int []{932,170});
 		spawns.put(7, new int []{15,430});
-		spawns.put(8, new int []{21,230});
-		spawns.put(9, new int []{21,260});
+		spawns.put(8, new int []{21,470});
+		spawns.put(9, new int []{21,470});
 		spawns.put(10, new int []{15,430});
 		spawns.put(11, new int []{15,430});
 		
