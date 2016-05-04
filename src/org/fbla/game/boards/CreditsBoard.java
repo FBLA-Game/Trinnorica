@@ -85,15 +85,15 @@ public class CreditsBoard extends Board implements ActionListener {
 	}
 
 	public void drawMenu(Graphics g) {
-		if(st+(si*68)-i <= 0){
+		if(st+(si*50)-i <= 0){
 			startCreditsClose(g, a);
 			return;
 		}
 		
-		
+		a=0.2;
 
 		g.drawImage(Background.MENU.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
-		g.drawImage(Images.makeImageTranslucent(Images.toBufferedImage(Images.createColorImage("#000000")), 0.2), 0, 0, M_WIDTH, M_HEIGHT, this);
+		g.drawImage(Images.makeImageTranslucent(Images.toBufferedImage(Images.createColorImage("#000000")), a), 0, 0, M_WIDTH, M_HEIGHT, this);
 //		g.drawImage(Background.DARKEN.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
 		
 		g.setColor(Color.WHITE);
@@ -147,21 +147,22 @@ public class CreditsBoard extends Board implements ActionListener {
 		drawOutlineString("Mike Trendle", x("Mike Trendle",g), st+(si*38)-i,g);
 		drawOutlineString("Edmund Scott", x("Edmund Scott",g), st+(si*39)-i,g);
 		drawOutlineString("Andrew Lindsay", x("Andrew Lindsay",g), st+(si*40)-i,g);
-		drawOutlineString("Mary Ann Chambers", x("Mary Ann Chambers",g), st+(si*41)-i,g);
+		drawOutlineString("David Ross", x("David Ross",g), st+(si*41)-i,g);
+		drawOutlineString("Mary Ann Chambers", x("Mary Ann Chambers",g), st+(si*42)-i,g);
 		
-		drawOutlineString("Music & Audio:", x("Music & Audio:",g), st+(si*43)-i,g);
-		drawOutlineString("Background music: HeatleyBros", x("Background music: HeatleyBros",g), st+(si*44)-i,g);
-		drawOutlineString("Sound Effects: Bfxr.net", x("Sound Effects: Bfxr.net",g), st+(si*45)-i,g);
+		drawOutlineString("Music & Audio:", x("Music & Audio:",g), st+(si*44)-i,g);
+		drawOutlineString("Background music: HeatleyBros", x("Background music: HeatleyBros",g), st+(si*45)-i,g);
+		drawOutlineString("Sound Effects: Bfxr.net", x("Sound Effects: Bfxr.net",g), st+(si*46)-i,g);
 		
-		drawOutlineString("Logo design: Tailorbrands.com", x("Logo design: Tailorbrands.com",g), st+(si*47)-i,g);
+		drawOutlineString("Logo design: Tailorbrands.com", x("Logo design: Tailorbrands.com",g), st+(si*48)-i,g);
 		
-		if(st+(si*(47+3))-i <= 90){
+		if(st+(si*(48+3))-i <= 90){
 			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), 90-(si),g);
 			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, 90, 600, 465, this);
 		}
 		else{
-			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), st+(si*(47+2))-i,g);
-			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, st+(si*(47+3))-i, 600, 465, this);
+			drawOutlineString("A big thanks to FBLA for giving us the opportunity to create this game!", x("A big thanks to FBLA for giving us the opportunity to create this game!",g), st+(si*(48+2))-i,g);
+			g.drawImage(Texture.loadTexture("fbla-logo.png"), M_WIDTH/2 - 300, st+(si*(48+3))-i, 600, 465, this);
 		}
 		
 		
