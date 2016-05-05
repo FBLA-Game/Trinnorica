@@ -101,7 +101,8 @@ public class MenuBoard extends Board implements ActionListener {
 
 			g.drawImage(Background.MENU.getImage(), 0, 0, M_WIDTH, M_HEIGHT, null);
 			
-			g.drawImage(Texture.loadTexture("title.png"), M_WIDTH/2-200, 25, 400, 50, this);
+			int n = 25;
+			g.drawImage(Texture.loadTexture("logo-title.png"), M_WIDTH/2-((10*n)/2), 25, 10*n, 7*n, this);
 			
 //			g.setFont(Bridge.font);
 			

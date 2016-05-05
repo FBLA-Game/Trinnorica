@@ -97,7 +97,9 @@ public class Audio {
 			
 			if(sound.getSoundType().equals(SoundType.BACKGROUND)){
 				background = clip;
+				background.loop(Clip.LOOP_CONTINUOUSLY);
 				background.start();
+			
 				AudioFormat format = background.getFormat();
 				long frames = background.getFrameLength();
 				double time = (frames+0.0) / format.getFrameRate(); 			
