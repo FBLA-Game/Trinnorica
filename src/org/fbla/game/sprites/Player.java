@@ -354,13 +354,7 @@ public class Player extends Entity implements Moveable,Keyable {
 	@Override
 	public void move() {
 		
-		if(!onground && !climbing){
-//			if(getImage() != images.get(2)){
-//				loadImage(Texture.loadTexture("playermodels/yellow/jump.png"));
-//				setImageDimensions(ww, wh, -2, -2);
-//			}
-			
-		} else {
+		
 			if(walking){
 				if(getImage() != images.get(1)){
 					loadImage(Texture.loadTexture("playermodels/yellow/walk.gif"));
@@ -373,7 +367,7 @@ public class Player extends Entity implements Moveable,Keyable {
 					setImageDimensions(rw, rh, -2, -2);
 				}
 				
-			}
+			
 		}
 		
 		if(!walking) setImageDimensions(rw, rh, -2, -2);
