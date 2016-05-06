@@ -50,7 +50,6 @@ public class Bridge {
 		File file = new File("C://KANSAS_WELLSVILLE_HIGHSCHOOL/master/");
 		if (!file.exists()) {
 			Utils.runInstall();
-			return;
 		}
 		Utils.init();
 		
