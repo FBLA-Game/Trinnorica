@@ -1466,9 +1466,9 @@ public class GameBoard extends Board implements ActionListener {
 		@Override
 		public void keyPressed(KeyEvent e) {
 
-			if (e.getKeyCode() == KeyEvent.VK_R) {
-				loadLevel();
-			}
+//			if (e.getKeyCode() == KeyEvent.VK_R) {
+//				loadLevel();
+//			}
 
 			if (inv) {
 

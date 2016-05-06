@@ -15,7 +15,6 @@ import javax.swing.JFrame;
 import org.fbla.game.Bridge;
 import org.fbla.game.spriteutils.Tool;
 import org.fbla.game.utils.Board;
-import org.fbla.game.utils.PropertiesFile;
 import org.fbla.game.utils.Utils;
 
 import res.Texture;
@@ -29,11 +28,10 @@ public class Game extends JFrame {
 	public int DEBUG_LEVEL = 1;
 	private String version;
 	public Board board;
-	public PropertiesFile description = new PropertiesFile(new File("description.properties"));
 
 	public Game() {
 		
-		version = description.getProperty("version");
+		version = "2.0.1";
 		
 		
 		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
@@ -47,9 +45,6 @@ public class Game extends JFrame {
 		
 	}
 	
-	public PropertiesFile getDescriptionFile(){
-		return description;
-	}
 
 	public String getVersion(){
 		return version;
@@ -62,7 +57,7 @@ public class Game extends JFrame {
 		setResizable(false);
 		pack();
 
-		setTitle(description.getProperty("title"));
+		setTitle("Trinnorica");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -75,7 +70,7 @@ public class Game extends JFrame {
 
 	public void start() {
 		clear();
-		setTitle(description.getProperty("title"));
+		setTitle("Trinnorica");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setIconImage(Texture.loadTexture("logo.png"));

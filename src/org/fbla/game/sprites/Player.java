@@ -219,14 +219,14 @@ public class Player extends Entity implements Moveable,Keyable {
 				openInventory(((GameBoard)Bridge.getGame().getBoard()));
 			}
 			
-			if (key == KeyEvent.VK_O && shifting) {
-
-				((GameBoard)Bridge.getGame().getBoard()).gameStatus = "won:" + level;
-				((GameBoard)Bridge.getGame().getBoard()).ingame = false;
-				x = 0;
-				y = 0;
-			
-			}
+//			if (key == KeyEvent.VK_O && shifting) {
+//
+//				((GameBoard)Bridge.getGame().getBoard()).gameStatus = "won:" + level;
+//				((GameBoard)Bridge.getGame().getBoard()).ingame = false;
+//				x = 0;
+//				y = 0;
+//			
+//			}
 			
 			if (key == KeyEvent.VK_K) {
 				if(shifting){
